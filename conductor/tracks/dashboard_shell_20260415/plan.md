@@ -9,20 +9,20 @@
   - [x] Write tests to verify redirection logic for authenticated and unauthenticated states.
 - [x] **Task: Conductor - User Manual Verification 'Phase 1: Auth Guarding' (Protocol in workflow.md)** (45eb95a)
 
-## Phase 2: App Shell UI Components (Sidebar & Header)
+## Phase 2: App Shell UI Components (Sidebar & Header) [checkpoint: cdc31ab]
 
-- [ ] **Task: Install and Setup shadcn/ui Components**
-  - [ ] Install `Sheet`, `ScrollArea`, `Avatar`, `Button`, `Separator`, `DropdownMenu`.
-- [ ] **Task: Implement Responsive Sidebar Component**
-  - [ ] Create `components/dashboard/Sidebar.tsx`.
-  - [ ] Implement desktop-fixed and mobile-drawer (using `Sheet`) versions.
-  - [ ] Add navigation links: Dashboard (LayoutDashboard), Budgets (Wallet), Transactions (Repeat), Settings (Settings).
-  - [ ] Write tests to verify navigation links and responsive visibility.
-- [ ] **Task: Implement Top Header Component**
-  - [ ] Create `components/dashboard/Header.tsx`.
-  - [ ] Add breadcrumbs placeholder and User Profile Menu (Avatar + Logout).
-  - [ ] Write tests for header elements and logout functionality placeholder.
-- [ ] **Task: Conductor - User Manual Verification 'Phase 2: App Shell UI' (Protocol in workflow.md)**
+- [x] **Task: Install and Setup shadcn/ui Components**
+  - [x] Install `Sheet`, `ScrollArea`, `Avatar`, `Button`, `Separator`, `DropdownMenu`.
+- [x] **Task: Implement Responsive Sidebar Component**
+  - [x] Create `components/dashboard/Sidebar.tsx`.
+  - [x] Implement desktop-fixed and mobile-drawer (using `Sheet`) versions.
+  - [x] Add navigation links: Dashboard (LayoutDashboard), Budgets (Wallet), Transactions (Repeat), Settings (Settings).
+  - [x] Write tests to verify navigation links and responsive visibility.
+- [x] **Task: Implement Top Header Component**
+  - [x] Create `components/dashboard/Header.tsx`.
+  - [x] Add breadcrumbs placeholder and User Profile Menu (Avatar + Logout).
+  - [x] Write tests for header elements and logout functionality placeholder.
+- [x] **Task: Conductor - User Manual Verification 'Phase 2: App Shell UI' (Protocol in workflow.md)** (cdc31ab)
 
 ## Phase 3: Dashboard Layout Assembly & Integration
 
