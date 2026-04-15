@@ -11,14 +11,14 @@ Focus on building the core utility logic with 100% test coverage before any UI w
 - [x] Task: Implement the logic to pass all tests in `lib/financial-logic.ts`. eb7df81
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Financial Logic' (Protocol in workflow.md) a59c6e7
 
-## Phase 2: Routing & Access Control
+## Phase 2: Routing & Access Control [checkpoint: 52508a3]
 
 Ensure users are correctly funneled into the onboarding flow.
 
 - [x] Task: Create `middleware.ts` to intercept requests to `/dashboard` and sub-routes. d0ab23a
 - [x] Task: Add logic to check `user_metadata.onboarding_complete` and redirect to `/onboarding` if false. d0ab23a
-- [ ] Task: Verify redirection logic with manual testing for both authenticated and unauthenticated states.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Routing & Access Control' (Protocol in workflow.md)
+- [x] Task: Verify redirection logic with manual testing for both authenticated and unauthenticated states. 52508a3
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Routing & Access Control' (Protocol in workflow.md) 52508a3
 
 ## Phase 3: Onboarding UI (Wizard)
 
