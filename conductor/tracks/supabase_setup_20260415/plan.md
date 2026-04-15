@@ -1,10 +1,10 @@
 # Implementation Plan: Setup Supabase Authentication, Database Schema, and strict RLS
 
 ## Phase 1: Database Setup
-- [ ] **Task 1: Generate SQL script for core database schema**
-    - [ ] Create `supabase/migrations/20260415_create_core_tables.sql`
-    - [ ] Define `categories`, `budgets`, `transactions`, and `emergency_funds` tables
-    - [ ] Verify foreign keys and default values
+- [x] **Task 1: Generate SQL script for core database schema** 08146fc
+    - [x] Create `supabase/migrations/20260415_create_core_tables.sql`
+    - [x] Define `categories`, `budgets`, `transactions`, and `emergency_funds` tables
+    - [x] Verify foreign keys and default values
 - [ ] **Task 2: Generate SQL script for strict RLS policies**
     - [ ] Create `supabase/migrations/20260415_enable_rls.sql`
     - [ ] Enable RLS on all tables
