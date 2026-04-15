@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import {
   EF_MULTIPLIER_BASE,
   EF_MULTIPLIER_EXTENDED,
@@ -5,14 +6,15 @@ import {
   TRANSITION_CATEGORY,
 } from './constants';
 
-export type EmploymentType = 'Full-time' | 'Freelance' | 'Business Owner';
+export const onboardingSchema = z.object({
+  monthlyIncome: z.coerce.number().min(1, 'Income must be at least 1'),
+  employmentType: z.enum(['Full-time', 'Freelance', 'Business Owner']),
+  hasDependents: z.boolean(),
+  planningCareerPivot: z.boolean(),
+});
 
-export interface OnboardingData {
-  monthlyIncome: number;
-  employmentType: EmploymentType;
-  hasDependents: boolean;
-  planningCareerPivot: boolean;
-}
+export type OnboardingData = z.infer<typeof onboardingSchema>;
+export type EmploymentType = OnboardingData['employmentType'];
 
 /**
  * Calculates the emergency fund target based on income, employment, and dependents.
