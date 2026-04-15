@@ -4,12 +4,13 @@
 
 Goal: Configure Supabase Auth with @supabase/ssr and define necessary schemas and types.
 
-- [ ] Task: Supabase SSR Integration Review
-  - [ ] Verify `utils/supabase/server.ts` and `utils/supabase/client.ts` are correctly configured for `@supabase/ssr`.
-  - [ ] Update `utils/supabase/server.ts` if needed to handle SSR cookie patterns.
-- [ ] Task: Define Auth Schemas
-  - [ ] Create `lib/validations/auth.ts` defining Zod schemas for login and registration.
-  - [ ] Implement password validation: min 8 characters, at least 1 number.
+- [x] Task: Supabase SSR Integration Review (5948ff4)
+  - [x] Verify `utils/supabase/server.ts` and `utils/supabase/client.ts` are correctly configured for `@supabase/ssr`.
+  - [x] Update `utils/supabase/server.ts` if needed to handle SSR cookie patterns.
+
+- [x] Task: Define Auth Schemas (0612671)
+  - [x] Create `lib/validations/auth.ts` defining Zod schemas for login and registration.
+  - [x] Implement password validation: min 8 characters, at least 1 number.
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Authentication Core Setup' (Protocol in workflow.md)
 
 ## Phase 2: Login Flow Implementation
