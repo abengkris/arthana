@@ -6,9 +6,9 @@ Focus on building the core utility logic with 100% test coverage before any UI w
 
 - [x] Task: Create `lib/constants.ts` for financial multipliers (e.g., `EF_MULTIPLIER_BASE: 6`, `EF_MULTIPLIER_EXTENDED: 12`). b48454c
 - [x] Task: Create `lib/financial-logic.ts` and define `calculateEF` and `getDefaultCategories` functions. b434abf
-- [ ] Task: (TDD) Write unit tests for `calculateEF` covering all 4 primary user personas.
-- [ ] Task: (TDD) Write unit tests for `getDefaultCategories` ensuring "Dana Transisi" is conditionally added.
-- [ ] Task: Implement the logic to pass all tests in `lib/financial-logic.ts`.
+- [x] Task: (TDD) Write unit tests for `calculateEF` covering all 4 primary user personas. eb7df81
+- [x] Task: (TDD) Write unit tests for `getDefaultCategories` ensuring "Dana Transisi" is conditionally added. eb7df81
+- [x] Task: Implement the logic to pass all tests in `lib/financial-logic.ts`. eb7df81
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Financial Logic' (Protocol in workflow.md)
 
 ## Phase 2: Routing & Access Control
