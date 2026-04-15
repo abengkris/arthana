@@ -51,8 +51,7 @@ export async function setupFinancialProfile(formData: OnboardingData) {
   const categoryInserts = categories.map((cat) => ({
     user_id: user.id,
     name: cat,
-    type:
-      cat === 'Investasi' || cat === 'Dana Transisi' ? 'savings' : 'expense',
+    type: cat === 'Gaji Utama' ? 'income' : 'expense',
     percentage_allocation: 0, // Default to 0, user can customize later
   }));
 
