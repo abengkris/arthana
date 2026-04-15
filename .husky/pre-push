@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "⏳ Running full Type-Check..."
+pnpm run type-check
+
+if [ $? -ne 0 ]; then
+  echo "❌ Type-Check failed! Please fix TypeScript errors before pushing."
+  exit 1
+fi
+
+echo "🏗️  Simulating Next.js Build process..."
+pnpm run build
+
+if [ $? -ne 0 ]; then
+  echo "❌ Build failed! The code is not safe to deploy to Vercel."
+  exit 1
+fi
+
+echo "✅ All pre-push checks passed. Proceeding with push..."
