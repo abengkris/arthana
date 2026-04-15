@@ -4,7 +4,7 @@
 
 Building the robust foundation for transaction processing.
 
-- [ ] **Task 1.1: Define Transaction Schemas**
+- [x] **Task 1.1: Define Transaction Schemas** 28bb923
   - [ ] Create `lib/validations/transaction.ts` with Zod schemas for 'Expense' and 'Income' inputs.
   - [ ] Define shared types for transaction data.
 - [ ] **Task 1.2: Implement Server Action Logic (TDD)**
