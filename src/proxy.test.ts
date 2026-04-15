@@ -34,6 +34,7 @@ describe('Auth Proxy', () => {
 
   it('redirects to /login if unauthenticated and accessing /dashboard', async () => {
     mockGetUser.mockResolvedValue({ data: { user: null }, error: null });
+    // Type assertion used to bypass complex NextRequest mocking in the test environment.
     const request = {
       nextUrl: {
         pathname: '/dashboard',
@@ -54,6 +55,7 @@ describe('Auth Proxy', () => {
       data: { user: { id: '123' } },
       error: null,
     });
+    // Type assertion used to bypass complex NextRequest mocking in the test environment.
     const request = {
       nextUrl: {
         pathname: '/dashboard',
@@ -69,6 +71,7 @@ describe('Auth Proxy', () => {
   });
 
   it('allows access to public routes', async () => {
+    // Type assertion used to bypass complex NextRequest mocking in the test environment.
     const request = {
       nextUrl: {
         pathname: '/',
