@@ -33,16 +33,16 @@ Goal: Implement the login page, server action, and UI components.
 
 Goal: Implement the registration page and server action.
 
-- [ ] Task: Write Tests for Registration Server Action
-  - [ ] Create `app/register/actions.test.ts` to test sign-up functionality.
-- [ ] Task: Implement Registration Server Action
-  - [ ] Create `app/register/actions.ts` with `signUpWithEmailPassword` function using `supabase.auth.signUp`.
-- [ ] Task: Write Tests for Registration UI Component
-  - [ ] Create `components/auth/RegisterForm.test.tsx` to verify form rendering and validation.
-- [ ] Task: Implement Registration UI Component
-  - [ ] Create `components/auth/RegisterForm.tsx` using `shadcn/ui`.
-- [ ] Task: Create Registration Page
-  - [ ] Create `app/register/page.tsx` rendering the `RegisterForm`.
+- [x] Task: Write Tests for Registration Server Action (dc2bdf6)
+  - [x] Create `app/register/actions.test.ts` to test sign-up functionality.
+- [x] Task: Implement Registration Server Action (335897f)
+  - [x] Create `app/register/actions.ts` with `signUpWithEmailPassword` function using `supabase.auth.signUp`.
+- [x] Task: Write Tests for Registration UI Component (dc2bdf6)
+  - [x] Create `components/auth/RegisterForm.test.tsx` to verify form rendering and validation.
+- [x] Task: Implement Registration UI Component (dd2c94a)
+  - [x] Create `components/auth/RegisterForm.tsx` using `shadcn/ui`.
+- [x] Task: Create Registration Page (023f990)
+  - [x] Create `app/register/page.tsx` rendering the `RegisterForm`.
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Registration Flow Implementation' (Protocol in workflow.md)
 
 ## Phase 4: Auth Callback and Redirection
