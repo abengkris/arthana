@@ -9,7 +9,7 @@
   - [x] Regenerate `src/types/database.ts` based on the updated schema.
 - [x] Task: Conductor - User Manual Verification 'Database Migration & Precision Seeding' (Protocol in workflow.md) 5c63053
 
-## Phase 2: Server Actions & Validations Update
+## Phase 2: Server Actions & Validations Update [checkpoint: f07c5ab]
 
 - [x] Task: Update Transaction Server Validations 0699523
   - [x] Write failing test to validate `category_id` against transaction `type`.
@@ -17,11 +17,11 @@
 - [x] Task: Localize Validation Schemas ffd72d7
   - [x] Write failing tests for localized validation errors.
   - [x] Update Zod schemas in `lib/validations/transaction.ts` to use Indonesian error messages (e.g., "Format nominal tidak valid").
-- [~] Task: Conductor - User Manual Verification 'Server Actions & Validations Update' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Server Actions & Validations Update' (Protocol in workflow.md) f07c5ab
 
 ## Phase 3: UI Update & Localization (Transaction Modal)
 
-- [ ] Task: Localize Transaction Form Texts
+- [~] Task: Localize Transaction Form Texts
   - [ ] Write failing tests ensuring the form renders Indonesian labels ("Tambah Transaksi", "Pemasukan", "Pengeluaran", "Nominal", "Tanggal", "Catatan", "Simpan").
   - [ ] Update `TransactionForm.tsx` (and related components) with the correct Indonesian translations for labels, placeholders, tooltips, and loading states.
 - [ ] Task: Implement Reactive Category Dropdown
