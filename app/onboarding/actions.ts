@@ -10,6 +10,13 @@ import {
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
+/**
+ * Initializes a user's financial profile by calculating their emergency fund target,
+ * generating default budget categories, and marking onboarding as complete.
+ * @param {OnboardingData} formData - The validated onboarding data from the client.
+ * @throws {Error} Throws an 'Unauthorized' error if the user is not authenticated.
+ * @returns {Promise<{ error: string } | void>} Returns an error object if the process fails, or redirects on success.
+ */
 export async function setupFinancialProfile(formData: OnboardingData) {
   const supabase = await createClient();
 

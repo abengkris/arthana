@@ -1,6 +1,11 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr';
+import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
+/**
+ * Updates the user session and handles onboarding redirection logic.
+ * @param {NextRequest} request - The incoming Next.js request.
+ * @returns {Promise<NextResponse>} The updated Next.js response.
+ */
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
@@ -11,96 +16,52 @@ export async function updateSession(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return request.cookies.get(name)?.value;
+        getAll() {
+          return request.cookies.getAll();
         },
-        set(name: string, value: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value,
-            ...options,
-          });
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value)
+          );
           supabaseResponse = NextResponse.next({
             request,
           });
-          supabaseResponse.cookies.set({
-            name,
-            value,
-            ...options,
-          });
-        },
-        remove(name: string, options: CookieOptions) {
-          request.cookies.set({
-            name,
-            value: '',
-            ...options,
-          });
-          supabaseResponse = NextResponse.next({
-            request,
-          });
-          supabaseResponse.cookies.set({
-            name,
-            value: '',
-            ...options,
-          });
+          cookiesToSet.forEach(({ name, value, options }) =>
+            supabaseResponse.cookies.set(name, value, options)
+          );
         },
       },
     }
   );
 
-  // IMPORTANT: Avoid writing any logic between createServerClient and
-  // getUser(). A simple mistake could make it very hard to debug
-  // issues with users being randomly logged out.
-
+  // refreshing the auth token
   const {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith('/login') &&
-    !request.nextUrl.pathname.startsWith('/auth') &&
-    request.nextUrl.pathname !== '/'
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
-    const url = request.nextUrl.clone();
-    url.pathname = '/login';
-    return NextResponse.redirect(url);
-  }
+  // Route paths
+  const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
+  const isOnboarding = request.nextUrl.pathname.startsWith('/onboarding');
+  const isAuth =
+    request.nextUrl.pathname.startsWith('/login') ||
+    request.nextUrl.pathname.startsWith('/auth');
 
-  // Onboarding Logic
   if (user) {
     const onboardingComplete = user.user_metadata?.onboarding_complete;
 
-    if (!onboardingComplete && request.nextUrl.pathname !== '/onboarding') {
-      // User is authenticated but hasn't completed onboarding.
-      // Redirect to /onboarding if they are not already there.
-      // We exclude auth routes and static files via matcher in middleware.ts
-      const url = request.nextUrl.clone();
-      url.pathname = '/onboarding';
-      return NextResponse.redirect(url);
+    if (!onboardingComplete && !isOnboarding && !isAuth) {
+      // Authenticated but not onboarded: force to /onboarding
+      return NextResponse.redirect(new URL('/onboarding', request.url));
     }
 
-    if (onboardingComplete && request.nextUrl.pathname === '/onboarding') {
-      // User has completed onboarding, should not be able to access /onboarding page.
-      const url = request.nextUrl.clone();
-      url.pathname = '/dashboard';
-      return NextResponse.redirect(url);
+    if (onboardingComplete && isOnboarding) {
+      // Onboarded user: redirect away from /onboarding to dashboard
+      return NextResponse.redirect(new URL('/dashboard', request.url));
     }
+  } else if (isDashboard || isOnboarding) {
+    // Unauthenticated user: redirect to login if trying to access dashboard/onboarding
+    return NextResponse.redirect(new URL('/login', request.url));
   }
-
-  // IMPORTANT: You *must* return the supabaseResponse object as it is. If you're
-  // creating a new response object with NextResponse.next() make sure to:
-  // 1. Pass the request in it, like so:
-  //    const myNewResponse = NextResponse.next({ request })
-  // 2. Copy over the cookies, like so:
-  //    myNewResponse.cookies.setAll(supabaseResponse.cookies.getAll())
-  // 3. Change the myNewResponse object to fit your needs, but avoid changing
-  //    the cookies!
-  // 4. Finally:
-  //    return myNewResponse
-  // If this is not done, you may be causing the browser and server to go out
-  // of sync and terminate the user's session prematurely!
 
   return supabaseResponse;
 }

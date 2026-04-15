@@ -6,6 +6,9 @@ import {
   TRANSITION_CATEGORY,
 } from './constants';
 
+/**
+ * Schema for user onboarding data validation using Zod.
+ */
 export const onboardingSchema = z.object({
   monthlyIncome: z.coerce.number().min(1, 'Income must be at least 1'),
   employmentType: z.enum(['Full-time', 'Freelance', 'Business Owner']),
@@ -13,7 +16,14 @@ export const onboardingSchema = z.object({
   planningCareerPivot: z.boolean(),
 });
 
+/**
+ * Type inferred from onboardingSchema.
+ */
 export type OnboardingData = z.infer<typeof onboardingSchema>;
+
+/**
+ * Type for employment options.
+ */
 export type EmploymentType = OnboardingData['employmentType'];
 
 /**
