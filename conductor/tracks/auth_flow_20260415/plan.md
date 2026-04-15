@@ -1,6 +1,6 @@
 # Implementation Plan: Authentication Flow
 
-## Phase 1: Authentication Core Setup
+## Phase 1: Authentication Core Setup [checkpoint: 4ec3df5]
 
 Goal: Configure Supabase Auth with @supabase/ssr and define necessary schemas and types.
 
@@ -11,7 +11,7 @@ Goal: Configure Supabase Auth with @supabase/ssr and define necessary schemas an
 - [x] Task: Define Auth Schemas (0612671)
   - [x] Create `lib/validations/auth.ts` defining Zod schemas for login and registration.
   - [x] Implement password validation: min 8 characters, at least 1 number.
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Authentication Core Setup' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Authentication Core Setup' (Protocol in workflow.md)
 
 ## Phase 2: Login Flow Implementation
 
