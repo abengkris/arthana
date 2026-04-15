@@ -1,13 +1,13 @@
 # Implementation Plan: Dashboard App Shell & Protected Routes
 
-## Phase 1: Authentication Guard & Protected Routes
+## Phase 1: Authentication Guard & Protected Routes [checkpoint: 45eb95a]
 
 - [x] **Task: Implement Next.js 16 Proxy for Auth Guarding** (28bab3a)
   - [x] Create `src/proxy.ts` (or `app/proxy.ts` if specified by Next.js 16) to handle redirection.
   - [x] Use `@supabase/ssr` to verify the user session.
   - [x] Implement logic to redirect unauthenticated requests from `/dashboard/*` to `/login`.
   - [x] Write tests to verify redirection logic for authenticated and unauthenticated states.
-- [ ] **Task: Conductor - User Manual Verification 'Phase 1: Auth Guarding' (Protocol in workflow.md)**
+- [x] **Task: Conductor - User Manual Verification 'Phase 1: Auth Guarding' (Protocol in workflow.md)** (45eb95a)
 
 ## Phase 2: App Shell UI Components (Sidebar & Header)
 
