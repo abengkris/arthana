@@ -8,17 +8,17 @@ describe('TransactionForm', () => {
     { id: 'cat-2', name: 'Rent' },
   ];
 
-  it('renders all fields', () => {
+  it('renders all fields with Indonesian labels', () => {
     render(<TransactionForm categories={mockCategories} onSubmit={vi.fn()} />);
 
-    expect(screen.getByLabelText(/transaction type/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/amount/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/category/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/date/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/note/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Jenis Transaksi/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Nominal/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Kategori/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Tanggal/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Catatan/i)).toBeInTheDocument();
   });
 
-  it('shows loading state on submit button', () => {
+  it('shows loading state on submit button with Indonesian text', () => {
     render(
       <TransactionForm
         categories={mockCategories}
@@ -27,7 +27,7 @@ describe('TransactionForm', () => {
       />
     );
     const submitButton = screen.getByRole('button', {
-      name: /add transaction/i,
+      name: /simpan/i,
     });
     expect(submitButton).toBeDisabled();
   });

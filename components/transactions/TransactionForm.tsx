@@ -27,7 +27,6 @@ import {
   FieldLabel,
   FieldDescription,
   FieldError,
-  FieldContent,
 } from '@/components/ui/field';
 import { cn } from '@/lib/utils';
 import {
@@ -56,7 +55,6 @@ export function TransactionForm({
     handleSubmit,
     control,
     watch,
-    setValue,
     formState: { errors },
   } = useForm<TransactionInput>({
     resolver: zodResolver(transactionSchema),
@@ -75,8 +73,10 @@ export function TransactionForm({
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <Field orientation="horizontal">
         <div className="flex-1">
-          <FieldLabel htmlFor="type">Transaction Type</FieldLabel>
-          <FieldDescription className="capitalize">{type}</FieldDescription>
+          <FieldLabel htmlFor="type">Jenis Transaksi</FieldLabel>
+          <FieldDescription className="capitalize">
+            {type === 'income' ? 'Pemasukan' : 'Pengeluaran'}
+          </FieldDescription>
         </div>
         <Controller
           control={control}
@@ -94,26 +94,26 @@ export function TransactionForm({
       </Field>
 
       <Field>
-        <FieldLabel htmlFor="amount">Amount</FieldLabel>
+        <FieldLabel htmlFor="amount">Nominal</FieldLabel>
         <Input
           id="amount"
           type="number"
           step="0.01"
-          placeholder="0.00"
+          placeholder="0"
           {...register('amount')}
         />
         <FieldError errors={[errors.amount]} />
       </Field>
 
       <Field>
-        <FieldLabel htmlFor="category_id">Category</FieldLabel>
+        <FieldLabel htmlFor="category_id">Kategori</FieldLabel>
         <Controller
           control={control}
           name="category_id"
           render={({ field }) => (
             <Select onValueChange={field.onChange} value={field.value}>
               <SelectTrigger id="category_id">
-                <SelectValue placeholder="Select a category" />
+                <SelectValue placeholder="Pilih kategori" />
               </SelectTrigger>
               <SelectContent>
                 {categories.map((category) => (
@@ -129,7 +129,7 @@ export function TransactionForm({
       </Field>
 
       <Field>
-        <FieldLabel htmlFor="date">Date</FieldLabel>
+        <FieldLabel htmlFor="date">Tanggal</FieldLabel>
         <Controller
           control={control}
           name="date"
@@ -147,7 +147,7 @@ export function TransactionForm({
                   {field.value ? (
                     format(field.value, 'PPP')
                   ) : (
-                    <span>Pick a date</span>
+                    <span>Pilih tanggal</span>
                   )}
                   <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                 </Button>
@@ -170,14 +170,18 @@ export function TransactionForm({
       </Field>
 
       <Field>
-        <FieldLabel htmlFor="note">Note (Optional)</FieldLabel>
-        <Input id="note" placeholder="Lunch at..." {...register('note')} />
+        <FieldLabel htmlFor="note">Catatan (Opsional)</FieldLabel>
+        <Input
+          id="note"
+          placeholder="Contoh: Makan siang..."
+          {...register('note')}
+        />
         <FieldError errors={[errors.note]} />
       </Field>
 
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        Add Transaction
+        Simpan
       </Button>
     </form>
   );
