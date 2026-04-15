@@ -17,9 +17,14 @@ import { onboardingSchema, type OnboardingData } from '@/lib/financial-logic';
 import { BasicInfo } from './steps/basic-info';
 import { RiskProfile } from './steps/risk-profile';
 import { Summary } from './steps/summary';
+import { setupFinancialProfile } from '@/app/onboarding/actions';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { Loader2Icon } from 'lucide-react';
 
 export function OnboardingWizard() {
   const [step, setStep] = useState(1);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const totalSteps = 3;
   const progress = (step / totalSteps) * 100;
 
@@ -45,9 +50,22 @@ export function OnboardingWizard() {
   };
 
   const onSubmit = async (data: OnboardingData) => {
-    console.log('Onboarding Data:', data);
-    // TODO: Implement server action for initialization
-    alert('Onboarding Complete! Initialization logic coming soon.');
+    setError(null);
+    setLoading(true);
+    try {
+      const result = await setupFinancialProfile(data);
+      if (result?.error) {
+        setError(result.error);
+      }
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'An unexpected error occurred during setup.'
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,6 +80,12 @@ export function OnboardingWizard() {
         <Progress value={progress} className="h-1.5" />
       </CardHeader>
       <CardContent>
+        {error && (
+          <Alert variant="destructive" className="mb-6">
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
         <AnimatePresence mode="wait">
           <motion.div
             key={step}
@@ -111,18 +135,22 @@ export function OnboardingWizard() {
           <Button
             variant="outline"
             onClick={() => setStep(Math.max(1, step - 1))}
-            disabled={step === 1}
+            disabled={step === 1 || loading}
           >
             Back
           </Button>
           {step < totalSteps ? (
-            <Button onClick={nextStep}>Next</Button>
+            <Button onClick={nextStep} disabled={loading}>
+              Next
+            </Button>
           ) : (
             <Button
               onClick={form.handleSubmit(onSubmit)}
               className="bg-primary text-primary-foreground"
+              disabled={loading}
             >
-              Initialize Dashboard
+              {loading && <Loader2Icon className="mr-2 size-4 animate-spin" />}
+              {loading ? 'Initializing...' : 'Initialize Dashboard'}
             </Button>
           )}
         </div>
