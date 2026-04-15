@@ -27,7 +27,7 @@
 - [x] **Task 2: Build basic Auth UI component (Login/Register) using shadcn/ui forms** 26a2bb8
     - [x] Create `components/auth/AuthForm.tsx` using `shadcn/ui` Form, Input, and Button
     - [x] Implement toggle between Login and Register modes
-- [ ] **Task 3: Integrate Supabase Auth and verify connection**
-    - [ ] Add Supabase Auth logic to the Auth UI
-    - [ ] Verify successful login and session persistence
+- [x] **Task 3: Integrate Supabase Auth and verify connection** fedb099
+    - [x] Add Supabase Auth logic to the Auth UI
+    - [x] Verify successful login and session persistence
 - [ ] **Task 4: Conductor - User Manual Verification 'UI Implementation' (Protocol in workflow.md)**
