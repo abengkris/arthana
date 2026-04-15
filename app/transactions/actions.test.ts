@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, Mock } from 'vitest';
 import { addTransaction } from './actions';
 import { createClient } from '@/utils/supabase/server';
 import { revalidatePath } from 'next/cache';
@@ -18,7 +18,7 @@ describe('addTransaction Action', () => {
   const mockInsert = vi.fn().mockResolvedValue({ error: null });
   const mockFrom = vi.fn().mockReturnValue({ insert: mockInsert });
 
-  // Define a minimal mock for Supabase to satisfy TypeScript
+  // Define a minimal mock for Supabase
   const mockSupabase = {
     auth: {
       getUser: vi
@@ -26,11 +26,11 @@ describe('addTransaction Action', () => {
         .mockResolvedValue({ data: { user: mockUser }, error: null }),
     },
     from: mockFrom,
-  } as unknown as ReturnType<typeof createClient>;
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();
-    vi.mocked(createClient).mockResolvedValue(mockSupabase);
+    (createClient as Mock).mockResolvedValue(mockSupabase);
   });
 
   const validExpense = {
@@ -73,8 +73,10 @@ describe('addTransaction Action', () => {
   });
 
   it('returns error on validation failure', async () => {
-    // @ts-expect-error - explicitly testing invalid input
-    const result = await addTransaction({ ...validExpense, amount: -10 });
+    const result = await addTransaction({
+      ...validExpense,
+      amount: -10,
+    } as unknown as Parameters<typeof addTransaction>[0]);
 
     expect(result).toHaveProperty('error');
     expect(mockInsert).not.toHaveBeenCalled();
