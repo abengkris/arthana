@@ -26,11 +26,11 @@ Build the user-facing onboarding experience.
 
 - [x] Task: Scaffold the `/onboarding` page and layout. ceafe69
 - [x] Task: Create a `StepIndicator` component with a progress bar and Framer Motion animations. ceafe69
-- [ ] Task: Build the multi-step form wizard using `react-hook-form` and `zod`.
-  - [ ] Sub-task: Step 1 - Basic Info (Income & Employment).
-  - [ ] Sub-task: Step 2 - Risk Profile (Dependents & Career Pivot).
-  - [ ] Sub-task: Step 3 - Summary & Confirmation.
-- [ ] Task: Add contextual tooltips and interactive feedback for each step.
+- [x] Task: Build the multi-step form wizard using `react-hook-form` and `zod`. 4239cd5
+  - [x] Sub-task: Step 1 - Basic Info (Income & Employment). 4239cd5
+  - [x] Sub-task: Step 2 - Risk Profile (Dependents & Career Pivot). 4239cd5
+  - [x] Sub-task: Step 3 - Summary & Confirmation. 4239cd5
+- [x] Task: Add contextual tooltips and interactive feedback for each step. 4239cd5
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Onboarding UI' (Protocol in workflow.md)
 
 ## Phase 4: Auto-Initialization Logic
