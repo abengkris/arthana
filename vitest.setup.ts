@@ -1,5 +1,16 @@
-import '@testing-library/jest-dom'
-import { vi } from 'vitest'
+import '@testing-library/jest-dom';
+import { vi } from 'vitest';
+
+// Mock ResizeObserver
+class ResizeObserverMock {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+
+if (typeof window !== 'undefined') {
+  window.ResizeObserver = ResizeObserverMock;
+}
 
 // Mock Supabase client
 vi.mock('@/utils/supabase/client', () => ({
@@ -9,7 +20,7 @@ vi.mock('@/utils/supabase/client', () => ({
       signUp: vi.fn(),
     },
   })),
-}))
+}));
 
 // Mock Next.js navigation
 vi.mock('next/navigation', () => ({
@@ -18,4 +29,4 @@ vi.mock('next/navigation', () => ({
     replace: vi.fn(),
     prefetch: vi.fn(),
   })),
-}))
+}));
