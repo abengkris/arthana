@@ -50,5 +50,5 @@ Connect the UI to Supabase using a secure transaction.
 Ensure a seamless transition to the dashboard.
 
 - [x] Task: Implement a smooth post-onboarding redirect to `/dashboard`. b47ba3a
-- [ ] Task: Final end-to-end verification of the full onboarding-to-dashboard flow.
+- [x] Task: Final end-to-end verification of the full onboarding-to-dashboard flow. f1b0cf9
 - [ ] Task: Conductor - User Manual Verification 'Phase 5: Final Integration & Verification' (Protocol in workflow.md)
