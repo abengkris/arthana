@@ -20,7 +20,11 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2Icon } from 'lucide-react';
 import Link from 'next/link';
 
-export default function LoginForm() {
+/**
+ * Component for user login form.
+ * Handles validation and submission to the login server action.
+ */
+export function LoginForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 

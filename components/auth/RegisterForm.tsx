@@ -20,7 +20,11 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Loader2Icon } from 'lucide-react';
 import Link from 'next/link';
 
-export default function RegisterForm() {
+/**
+ * Component for user registration form.
+ * Handles validation and submission to the registration server action.
+ */
+export function RegisterForm() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 

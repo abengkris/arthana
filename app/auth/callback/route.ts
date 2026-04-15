@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@/utils/supabase/server';
 
+/**
+ * GET handler for the auth callback route.
+ * Exchanges the code for a session and redirects to the dashboard.
+ * @param request - The incoming request.
+ * @returns A redirect response.
+ */
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get('code');

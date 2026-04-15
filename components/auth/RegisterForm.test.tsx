@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import RegisterForm from './RegisterForm';
+import { RegisterForm } from './RegisterForm';
 import { vi, describe, it, expect, beforeEach, type Mock } from 'vitest';
 import { signUpWithEmailPassword } from '@/app/register/actions';
 

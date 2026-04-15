@@ -5,6 +5,11 @@ import { registerSchema, type RegisterInput } from '@/lib/validations/auth';
 import { redirect } from 'next/navigation';
 import { headers } from 'next/headers';
 
+/**
+ * Registers a new user with email and password.
+ * @param data - The registration data.
+ * @returns An object with an error message if registration fails.
+ */
 export async function signUpWithEmailPassword(data: RegisterInput) {
   const validation = registerSchema.safeParse(data);
 
