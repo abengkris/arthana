@@ -1,0 +1,8 @@
+{
+  "track_id": "dashboard_shell_20260415",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-04-15T10:00:00Z",
+  "updated_at": "2026-04-15T10:00:00Z",
+  "description": "Create the Dashboard App Shell and setup Protected Routes via Next.js 16 Proxy."
+}
