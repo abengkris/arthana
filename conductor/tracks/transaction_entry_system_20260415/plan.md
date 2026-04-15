@@ -32,7 +32,7 @@ Setting up the entry points and the container for the form.
 
 Building the interactive form with dynamic data.
 
-- [ ] **Task 3.1: Transaction Form Implementation (TDD)**
+- [x] **Task 3.1: Transaction Form Implementation (TDD)** 25a8dae
   - [ ] **Write Tests**: Create `components/transactions/TransactionForm.test.tsx` to test form validation and submission behavior.
   - [ ] **Implement**: Build `TransactionForm.tsx` using React Hook Form, Zod, and `shadcn/ui` (Switch, Input, Select, Calendar).
 - [ ] **Task 3.2: Dynamic Category Integration**
