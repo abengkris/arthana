@@ -1,17 +1,17 @@
 # Implementation Plan: Category Refinement and Indonesian Localization
 
-## Phase 1: Database Migration & Precision Seeding
+## Phase 1: Database Migration & Precision Seeding [checkpoint: 5c63053]
 
 - [x] Task: Update Database Schema 84b5239
   - [x] Create a Supabase migration file to add the `type` column to the `categories` table.
   - [x] Add logic to the migration to clear existing categories and seed the new specified categories ("Gaji Utama", "Investasi", etc.).
 - [x] Task: Update Database Types 4528b6e
   - [x] Regenerate `src/types/database.ts` based on the updated schema.
-- [~] Task: Conductor - User Manual Verification 'Database Migration & Precision Seeding' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Database Migration & Precision Seeding' (Protocol in workflow.md) 5c63053
 
 ## Phase 2: Server Actions & Validations Update
 
-- [ ] Task: Update Transaction Server Validations
+- [~] Task: Update Transaction Server Validations
   - [ ] Write failing test to validate `category_id` against transaction `type`.
   - [ ] Update server actions (e.g., in `app/transactions/actions.ts`) to ensure the submitted category matches the transaction type (income/expense).
 - [ ] Task: Localize Validation Schemas
