@@ -45,7 +45,7 @@ export function calculateEF(data: OnboardingData): number {
  * Adds Dana Transisi if planning a career pivot.
  */
 export function getDefaultCategories(data: OnboardingData): string[] {
-  const categories = [...DEFAULT_CATEGORIES];
+  const categories: string[] = [...DEFAULT_CATEGORIES];
 
   if (data.planningCareerPivot) {
     categories.push(TRANSITION_CATEGORY);

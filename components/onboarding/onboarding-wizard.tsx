@@ -13,7 +13,11 @@ import {
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { motion, AnimatePresence } from 'framer-motion';
-import { onboardingSchema, type OnboardingData } from '@/lib/financial-logic';
+import {
+  onboardingSchema,
+  type OnboardingData,
+  type EmploymentType,
+} from '@/lib/financial-logic';
 import { BasicInfo } from './steps/basic-info';
 import { RiskProfile } from './steps/risk-profile';
 import { Summary } from './steps/summary';
@@ -32,7 +36,7 @@ export function OnboardingWizard() {
     resolver: zodResolver(onboardingSchema),
     defaultValues: {
       monthlyIncome: 0,
-      employmentType: 'Full-time',
+      employmentType: 'Full-time' as EmploymentType,
       hasDependents: false,
       planningCareerPivot: false,
     },
