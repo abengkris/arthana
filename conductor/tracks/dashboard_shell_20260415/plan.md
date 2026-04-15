@@ -24,13 +24,13 @@
   - [x] Write tests for header elements and logout functionality placeholder.
 - [x] **Task: Conductor - User Manual Verification 'Phase 2: App Shell UI' (Protocol in workflow.md)** (cdc31ab)
 
-## Phase 3: Dashboard Layout Assembly & Integration
+## Phase 3: Dashboard Layout Assembly & Integration [checkpoint: a35bc97]
 
-- [ ] **Task: Create Dashboard Root Layout**
-  - [ ] Implement `app/dashboard/layout.tsx` using the Sidebar and Header components.
-  - [ ] Ensure proper spacing and layout structure for the content area.
-- [ ] **Task: Implement Placeholder Dashboard Page**
-  - [ ] Create `app/dashboard/page.tsx`.
-  - [ ] Fetch the user session to display their email.
-  - [ ] Write integration tests to verify the full app shell and user data fetching.
-- [ ] **Task: Conductor - User Manual Verification 'Phase 3: Dashboard Assembly' (Protocol in workflow.md)**
+- [x] **Task: Create Dashboard Root Layout**
+  - [x] Implement `app/dashboard/layout.tsx` using the Sidebar and Header components.
+  - [x] Ensure proper spacing and layout structure for the content area.
+- [x] **Task: Implement Placeholder Dashboard Page**
+  - [x] Create `app/dashboard/page.tsx`.
+  - [x] Fetch the user session to display their email.
+  - [x] Write integration tests to verify the full app shell and user data fetching.
+- [x] **Task: Conductor - User Manual Verification 'Phase 3: Dashboard Assembly' (Protocol in workflow.md)** (a35bc97)
