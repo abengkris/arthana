@@ -15,8 +15,8 @@ Focus on building the core utility logic with 100% test coverage before any UI w
 
 Ensure users are correctly funneled into the onboarding flow.
 
-- [ ] Task: Create `src/middleware.ts` to intercept requests to `/dashboard` and sub-routes.
-- [ ] Task: Add logic to check `user_metadata.onboarding_complete` and redirect to `/onboarding` if false.
+- [x] Task: Create `middleware.ts` to intercept requests to `/dashboard` and sub-routes. d0ab23a
+- [x] Task: Add logic to check `user_metadata.onboarding_complete` and redirect to `/onboarding` if false. d0ab23a
 - [ ] Task: Verify redirection logic with manual testing for both authenticated and unauthenticated states.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Routing & Access Control' (Protocol in workflow.md)
 
