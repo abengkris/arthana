@@ -15,9 +15,9 @@
 - [x] **Task 1: Install and configure @supabase/ssr for Next.js 16.2.3** 093ea8a
     - [x] Install dependencies (`@supabase/ssr`, `@supabase/supabase-js`)
     - [x] Create `utils/supabase/server.ts` and `utils/supabase/client.ts` for RSC and Client Components
-- [ ] **Task 2: Create strict TypeScript interfaces in src/types/database.ts**
-    - [ ] Map all database tables to TypeScript interfaces
-    - [ ] Ensure consistent naming and optional fields
+- [x] **Task 2: Create strict TypeScript interfaces in src/types/database.ts** 65056e3
+    - [x] Map all database tables to TypeScript interfaces
+    - [x] Ensure consistent naming and optional fields
 - [ ] **Task 3: Conductor - User Manual Verification 'Project Configuration' (Protocol in workflow.md)**
 
 ## Phase 3: UI Implementation
