@@ -12,16 +12,16 @@ export const transactionSchema = z.object({
   type: TransactionType,
   amount: z.coerce
     .number()
-    .positive('Amount must be greater than zero')
-    .multipleOf(0.01, 'Amount cannot have more than 2 decimal places'),
-  category_id: z.string().uuid('Invalid category selected'),
+    .positive('Nominal harus lebih dari nol')
+    .multipleOf(0.01, 'Nominal maksimal 2 angka desimal'),
+  category_id: z.string().uuid('Kategori yang dipilih tidak valid'),
   date: z.date({
-    required_error: 'Please select a date',
-    invalid_type_error: "That's not a date!",
+    required_error: 'Silakan pilih tanggal',
+    invalid_type_error: 'Format tanggal tidak valid',
   }),
   note: z
     .string()
-    .max(255, 'Note must be less than 255 characters')
+    .max(255, 'Catatan tidak boleh lebih dari 255 karakter')
     .optional()
     .nullable(),
 });

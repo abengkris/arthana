@@ -32,33 +32,62 @@ describe('transactionSchema', () => {
     expect(transactionSchema.safeParse(nullNote).success).toBe(true);
   });
 
-  it('fails if amount is zero or negative', () => {
-    expect(
-      transactionSchema.safeParse({ ...validBase, amount: 0 }).success
-    ).toBe(false);
-    expect(
-      transactionSchema.safeParse({ ...validBase, amount: -10 }).success
-    ).toBe(false);
+  it('fails with correct localized error if amount is zero or negative', () => {
+    const zeroResult = transactionSchema.safeParse({ ...validBase, amount: 0 });
+    expect(zeroResult.success).toBe(false);
+    if (!zeroResult.success) {
+      expect(zeroResult.error.issues[0].message).toBe(
+        'Nominal harus lebih dari nol'
+      );
+    }
+
+    const negativeResult = transactionSchema.safeParse({
+      ...validBase,
+      amount: -10,
+    });
+    expect(negativeResult.success).toBe(false);
+    if (!negativeResult.success) {
+      expect(negativeResult.error.issues[0].message).toBe(
+        'Nominal harus lebih dari nol'
+      );
+    }
   });
 
-  it('fails if category_id is not a UUID', () => {
-    expect(
-      transactionSchema.safeParse({ ...validBase, category_id: 'not-a-uuid' })
-        .success
-    ).toBe(false);
+  it('fails with correct localized error if category_id is not a UUID', () => {
+    const result = transactionSchema.safeParse({
+      ...validBase,
+      category_id: 'not-a-uuid',
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0].message).toBe(
+        'Kategori yang dipilih tidak valid'
+      );
+    }
   });
 
-  it('fails if date is invalid', () => {
-    expect(
-      transactionSchema.safeParse({ ...validBase, date: 'not-a-date' }).success
-    ).toBe(false);
+  it('fails with correct localized error if date is invalid', () => {
+    const result = transactionSchema.safeParse({
+      ...validBase,
+      date: 'not-a-date',
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0].message).toBe('Format tanggal tidak valid');
+    }
   });
 
-  it('fails if note is too long', () => {
-    expect(
-      transactionSchema.safeParse({ ...validBase, note: 'a'.repeat(256) })
-        .success
-    ).toBe(false);
+  it('fails with correct localized error if note is too long', () => {
+    const result = transactionSchema.safeParse({
+      ...validBase,
+      note: 'a'.repeat(256),
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0].message).toBe(
+        'Catatan tidak boleh lebih dari 255 karakter'
+      );
+    }
   });
 
   it('validates amount as a string number (coerce)', () => {
@@ -72,9 +101,16 @@ describe('transactionSchema', () => {
     }
   });
 
-  it('fails if amount has more than 2 decimal places', () => {
-    expect(
-      transactionSchema.safeParse({ ...validBase, amount: 100.123 }).success
-    ).toBe(false);
+  it('fails with correct localized error if amount has more than 2 decimal places', () => {
+    const result = transactionSchema.safeParse({
+      ...validBase,
+      amount: 100.123,
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0].message).toBe(
+        'Nominal maksimal 2 angka desimal'
+      );
+    }
   });
 });
