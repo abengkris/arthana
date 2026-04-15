@@ -49,9 +49,9 @@ Goal: Implement the registration page and server action.
 
 Goal: Handle the auth code exchange and ensure secure redirection.
 
-- [ ] Task: Implement Auth Callback Route
-  - [ ] Create `app/auth/callback/route.ts` using `@supabase/ssr` to exchange the `code` for a session.
-  - [ ] Implement secure redirect to `/dashboard`.
-- [ ] Task: Verify Authentication State Protection
-  - [ ] Ensure `middleware.ts` correctly handles session cookies for protected routes like `/dashboard`.
+- [x] Task: Implement Auth Callback Route (d954cf1)
+  - [x] Create `app/auth/callback/route.ts` using `@supabase/ssr` to exchange the `code` for a session.
+  - [x] Implement secure redirect to `/dashboard`.
+- [x] Task: Verify Authentication State Protection (d954cf1)
+  - [x] Ensure `middleware.ts` correctly handles session cookies for protected routes like `/dashboard`.
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Auth Callback and Redirection' (Protocol in workflow.md)
