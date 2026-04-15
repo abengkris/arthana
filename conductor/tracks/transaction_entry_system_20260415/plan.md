@@ -28,7 +28,7 @@ Setting up the entry points and the container for the form.
   - [ ] **Implement**: Create `components/transactions/TransactionModal.tsx` using `shadcn/ui` Dialog.
 - [x] **Task 2.4: Conductor - User Manual Verification 'Phase 2: Global UI Elements' (Protocol in workflow.md)** 6c8a304
 
-## Phase 3: Form Development (Transaction Form)
+## Phase 3: Form Development (Transaction Form) [checkpoint: f0a678b]
 
 Building the interactive form with dynamic data.
 
@@ -38,7 +38,7 @@ Building the interactive form with dynamic data.
 - [x] **Task 3.2: Dynamic Category Integration** f0a678b
   - [ ] **Write Tests**: Mock category data in `TransactionForm.test.tsx` to verify dropdown rendering.
   - [ ] **Implement**: Fetch user categories within the form or pass them as props from a server component.
-- [ ] **Task 3.3: Conductor - User Manual Verification 'Phase 3: Form Development' (Protocol in workflow.md)**
+- [x] **Task 3.3: Conductor - User Manual Verification 'Phase 3: Form Development' (Protocol in workflow.md)** f0a678b
 
 ## Phase 4: Integration & Feedback (Final Polish)
 
