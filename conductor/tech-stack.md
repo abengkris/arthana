@@ -9,7 +9,7 @@
 ## UI & Styling
 
 - **Styling:** Tailwind CSS (v4).
-- **Components:** shadcn/ui (Radix UI, Lucide React).
+- **Components:** shadcn/ui (Radix UI, Lucide React, Sonner).
 - **Animations:** Framer Motion.
 
 ## Forms & Validation
