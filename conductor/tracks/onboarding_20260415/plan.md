@@ -37,12 +37,12 @@ Build the user-facing onboarding experience.
 
 Connect the UI to Supabase using a secure transaction.
 
-- [ ] Task: Create a Next.js Server Action `setupFinancialProfile` in `src/app/onboarding/actions.ts`.
-- [ ] Task: Implement the Supabase transaction:
-  - [ ] Sub-task: Insert into `emergency_funds`.
-  - [ ] Sub-task: Bulk insert into `categories`.
-  - [ ] Sub-task: Update `auth.users` metadata via `supabase.auth.updateUser`.
-- [ ] Task: Add error handling and loading states to the form submission.
+- [x] Task: Create a Next.js Server Action `setupFinancialProfile` in `app/onboarding/actions.ts`. 0a44296
+- [x] Task: Implement the Supabase transaction: 0a44296
+  - [x] Sub-task: Insert into `emergency_funds`. 0a44296
+  - [x] Sub-task: Bulk insert into `categories`. 0a44296
+  - [x] Sub-task: Update `auth.users` metadata via `supabase.auth.updateUser`. 0a44296
+- [x] Task: Add error handling and loading states to the form submission. 0a44296
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Auto-Initialization Logic' (Protocol in workflow.md)
 
 ## Phase 5: Final Integration & Verification
