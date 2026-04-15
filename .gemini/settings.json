@@ -1,5 +1,15 @@
 {
   "context": {
     "fileName": ["AGENTS.md", "GEMINI.md"]
+  },
+  "mcpServers": {
+    "supabase": {
+      "url": "https://mcp.supabase.com/mcp?project_ref=nkutmnkgofaaywqkcfjs&features=docs%2Caccount%2Cdatabase%2Cdebugging%2Cdevelopment%2Cfunctions%2Cbranching%2Cstorage",
+      "type": "http"
+    },
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
   }
 }
