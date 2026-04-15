@@ -20,7 +20,7 @@ Ensure users are correctly funneled into the onboarding flow.
 - [x] Task: Verify redirection logic with manual testing for both authenticated and unauthenticated states. 52508a3
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Routing & Access Control' (Protocol in workflow.md) 52508a3
 
-## Phase 3: Onboarding UI (Wizard)
+## Phase 3: Onboarding UI (Wizard) [checkpoint: 8b08459]
 
 Build the user-facing onboarding experience.
 
@@ -31,7 +31,7 @@ Build the user-facing onboarding experience.
   - [x] Sub-task: Step 2 - Risk Profile (Dependents & Career Pivot). 4239cd5
   - [x] Sub-task: Step 3 - Summary & Confirmation. 4239cd5
 - [x] Task: Add contextual tooltips and interactive feedback for each step. 4239cd5
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Onboarding UI' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Onboarding UI' (Protocol in workflow.md) 8b08459
 
 ## Phase 4: Auto-Initialization Logic
 
