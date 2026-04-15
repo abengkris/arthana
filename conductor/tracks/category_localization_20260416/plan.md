@@ -11,13 +11,13 @@
 
 ## Phase 2: Server Actions & Validations Update
 
-- [~] Task: Update Transaction Server Validations
-  - [ ] Write failing test to validate `category_id` against transaction `type`.
-  - [ ] Update server actions (e.g., in `app/transactions/actions.ts`) to ensure the submitted category matches the transaction type (income/expense).
-- [ ] Task: Localize Validation Schemas
-  - [ ] Write failing tests for localized validation errors.
-  - [ ] Update Zod schemas in `lib/validations/transaction.ts` to use Indonesian error messages (e.g., "Format nominal tidak valid").
-- [ ] Task: Conductor - User Manual Verification 'Server Actions & Validations Update' (Protocol in workflow.md)
+- [x] Task: Update Transaction Server Validations 0699523
+  - [x] Write failing test to validate `category_id` against transaction `type`.
+  - [x] Update server actions (e.g., in `app/transactions/actions.ts`) to ensure the submitted category matches the transaction type (income/expense).
+- [x] Task: Localize Validation Schemas ffd72d7
+  - [x] Write failing tests for localized validation errors.
+  - [x] Update Zod schemas in `lib/validations/transaction.ts` to use Indonesian error messages (e.g., "Format nominal tidak valid").
+- [~] Task: Conductor - User Manual Verification 'Server Actions & Validations Update' (Protocol in workflow.md)
 
 ## Phase 3: UI Update & Localization (Transaction Modal)
 
