@@ -35,7 +35,7 @@ Building the interactive form with dynamic data.
 - [x] **Task 3.1: Transaction Form Implementation (TDD)** 25a8dae
   - [ ] **Write Tests**: Create `components/transactions/TransactionForm.test.tsx` to test form validation and submission behavior.
   - [ ] **Implement**: Build `TransactionForm.tsx` using React Hook Form, Zod, and `shadcn/ui` (Switch, Input, Select, Calendar).
-- [ ] **Task 3.2: Dynamic Category Integration**
+- [x] **Task 3.2: Dynamic Category Integration** f0a678b
   - [ ] **Write Tests**: Mock category data in `TransactionForm.test.tsx` to verify dropdown rendering.
   - [ ] **Implement**: Fetch user categories within the form or pass them as props from a server component.
 - [ ] **Task 3.3: Conductor - User Manual Verification 'Phase 3: Form Development' (Protocol in workflow.md)**
