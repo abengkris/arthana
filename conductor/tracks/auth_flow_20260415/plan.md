@@ -17,16 +17,16 @@ Goal: Configure Supabase Auth with @supabase/ssr and define necessary schemas an
 
 Goal: Implement the login page, server action, and UI components.
 
-- [ ] Task: Write Tests for Login Server Action
-  - [ ] Create `app/login/actions.test.ts` to test login functionality (success/failure scenarios).
-- [ ] Task: Implement Login Server Action
-  - [ ] Create `app/login/actions.ts` with `signInWithEmailPassword` function using `supabase.auth.signInWithPassword`.
-- [ ] Task: Write Tests for Login UI Component
-  - [ ] Create `components/auth/LoginForm.test.tsx` to verify form rendering and client-side validation.
-- [ ] Task: Implement Login UI Component
-  - [ ] Create `components/auth/LoginForm.tsx` using `shadcn/ui` components (Card, Form, Input, Button).
-- [ ] Task: Create Login Page
-  - [ ] Create `app/login/page.tsx` rendering the `LoginForm`.
+- [x] Task: Write Tests for Login Server Action (0612671)
+  - [x] Create `app/login/actions.test.ts` to test login functionality (success/failure scenarios).
+- [x] Task: Implement Login Server Action (ccd315d)
+  - [x] Create `app/login/actions.ts` with `signInWithEmailPassword` function using `supabase.auth.signInWithPassword`.
+- [x] Task: Write Tests for Login UI Component (0612671)
+  - [x] Create `components/auth/LoginForm.test.tsx` to verify form rendering and client-side validation.
+- [x] Task: Implement Login UI Component (f442741)
+  - [x] Create `components/auth/LoginForm.tsx` using `shadcn/ui` components (Card, Form, Input, Button).
+- [x] Task: Create Login Page (c4d2cbc)
+  - [x] Create `app/login/page.tsx` rendering the `LoginForm`.
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Login Flow Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Registration Flow Implementation
