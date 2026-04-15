@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { toast } from 'sonner';
 import { TransactionForm } from './TransactionForm';
 import { addTransaction } from '@/app/transactions/actions';
 import { createClient } from '@/utils/supabase/client';
@@ -36,10 +37,9 @@ export function TransactionFormContainer() {
 
     if (result.success) {
       setOpen(false);
-      // Toast notification will be added in Phase 4
+      toast.success('Transaction added successfully');
     } else {
-      console.error(result.error);
-      // Toast error will be added in Phase 4
+      toast.error(result.error || 'Failed to add transaction');
     }
   };
 
