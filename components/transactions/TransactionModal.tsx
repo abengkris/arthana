@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog';
+import { TransactionFormContainer } from './TransactionFormContainer';
 
 interface TransactionModalProps {
   open: boolean;
@@ -28,10 +29,7 @@ export function TransactionModal({
           </DialogDescription>
         </DialogHeader>
         <div className="py-4">
-          {/* TransactionForm will be inserted here in Phase 3 */}
-          <div className="border-muted-foreground/25 bg-muted/50 flex h-32 items-center justify-center rounded-md border border-dashed">
-            <p className="text-muted-foreground text-sm">Form Placeholder</p>
-          </div>
+          <TransactionFormContainer />
         </div>
       </DialogContent>
     </Dialog>

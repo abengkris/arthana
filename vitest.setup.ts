@@ -19,6 +19,11 @@ vi.mock('@/utils/supabase/client', () => ({
       signInWithPassword: vi.fn(),
       signUp: vi.fn(),
     },
+    from: vi.fn(() => ({
+      select: vi.fn(() => ({
+        order: vi.fn(() => Promise.resolve({ data: [], error: null })),
+      })),
+    })),
   })),
 }));
 
