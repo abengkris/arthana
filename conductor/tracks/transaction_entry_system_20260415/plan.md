@@ -11,7 +11,7 @@ Building the robust foundation for transaction processing.
   - [ ] **Write Tests**: Create `app/transactions/actions.test.ts` to test `addTransaction` logic (input validation, negative conversion for expenses).
   - [ ] **Implement**: Create `app/transactions/actions.ts` and implement `addTransaction` with Supabase integration and revalidation.
   - [ ] **Verify**: Ensure all tests pass and RLS is correctly utilized via the server-side client.
-- [ ] **Task 1.3: Conductor - User Manual Verification 'Phase 1: Logic & Schema' (Protocol in workflow.md)**
+- [~] **Task 1.3: Conductor - User Manual Verification 'Phase 1: Logic & Schema' (Protocol in workflow.md)**
 
 ## Phase 2: Global UI Elements (Buttons & Modals)
 
