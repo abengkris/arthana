@@ -16,7 +16,17 @@ vi.mock('next/cache', () => ({
 describe('addTransaction Action', () => {
   const mockUser = { id: 'user-123' };
   const mockInsert = vi.fn().mockResolvedValue({ error: null });
-  const mockFrom = vi.fn().mockReturnValue({ insert: mockInsert });
+  const mockEq = vi.fn().mockReturnValue({
+    single: vi
+      .fn()
+      .mockResolvedValue({ data: { type: 'expense' }, error: null }),
+  });
+  const mockSelect = vi.fn().mockReturnValue({ eq: mockEq });
+  const mockFrom = vi.fn((table) => {
+    if (table === 'transactions') return { insert: mockInsert };
+    if (table === 'categories') return { select: mockSelect };
+    return {};
+  });
 
   // Define a minimal mock for Supabase
   const mockSupabase = {
@@ -57,6 +67,11 @@ describe('addTransaction Action', () => {
   });
 
   it('successfully adds income with positive amount', async () => {
+    mockEq.mockReturnValueOnce({
+      single: vi
+        .fn()
+        .mockResolvedValueOnce({ data: { type: 'income' }, error: null }),
+    });
     const validIncome = {
       ...validExpense,
       type: 'income' as const,
@@ -90,6 +105,21 @@ describe('addTransaction Action', () => {
     const result = await addTransaction(validExpense);
 
     expect(result).toEqual({ error: 'Unauthorized' });
+    expect(mockInsert).not.toHaveBeenCalled();
+  });
+
+  it('returns error if category type does not match transaction type', async () => {
+    mockEq.mockReturnValueOnce({
+      single: vi
+        .fn()
+        .mockResolvedValueOnce({ data: { type: 'income' }, error: null }),
+    });
+
+    const result = await addTransaction(validExpense);
+
+    expect(result).toEqual({
+      error: 'Kategori tidak sesuai dengan jenis transaksi',
+    });
     expect(mockInsert).not.toHaveBeenCalled();
   });
 

@@ -33,6 +33,23 @@ export async function addTransaction(data: TransactionInput) {
     return { error: 'Unauthorized' };
   }
 
+  // Validate category matches transaction type
+  if (validation.data.category_id) {
+    const { data: category, error: categoryError } = await supabase
+      .from('categories')
+      .select('type')
+      .eq('id', validation.data.category_id)
+      .single();
+
+    if (categoryError || !category) {
+      return { error: 'Kategori tidak ditemukan' };
+    }
+
+    if (category.type !== validation.data.type) {
+      return { error: 'Kategori tidak sesuai dengan jenis transaksi' };
+    }
+  }
+
   // Normalize amount: negative for expense, positive for income
   const normalizedAmount =
     validation.data.type === 'expense'
