@@ -13,7 +13,7 @@ Goal: Configure Supabase Auth with @supabase/ssr and define necessary schemas an
   - [x] Implement password validation: min 8 characters, at least 1 number.
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Authentication Core Setup' (Protocol in workflow.md)
 
-## Phase 2: Login Flow Implementation
+## Phase 2: Login Flow Implementation [checkpoint: 557e38f]
 
 Goal: Implement the login page, server action, and UI components.
 
@@ -27,7 +27,7 @@ Goal: Implement the login page, server action, and UI components.
   - [x] Create `components/auth/LoginForm.tsx` using `shadcn/ui` components (Card, Form, Input, Button).
 - [x] Task: Create Login Page (c4d2cbc)
   - [x] Create `app/login/page.tsx` rendering the `LoginForm`.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Login Flow Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Login Flow Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Registration Flow Implementation
 
