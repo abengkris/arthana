@@ -21,9 +21,9 @@
 - [x] **Task 3: Conductor - User Manual Verification 'Project Configuration' (Protocol in workflow.md)** 30086d3
 
 ## Phase 3: UI Implementation
-- [ ] **Task 1: Write Tests for Auth UI**
-    - [ ] Create `components/auth/AuthForm.test.tsx`
-    - [ ] Define tests for form validation and submission
+- [x] **Task 1: Write Tests for Auth UI** 99fcbcb
+    - [x] Create `components/auth/AuthForm.test.tsx`
+    - [x] Define tests for form validation and submission
 - [ ] **Task 2: Build basic Auth UI component (Login/Register) using shadcn/ui forms**
     - [ ] Create `components/auth/AuthForm.tsx` using `shadcn/ui` Form, Input, and Button
     - [ ] Implement toggle between Login and Register modes
