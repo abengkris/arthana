@@ -2,11 +2,11 @@
 
 ## Phase 1: Authentication Guard & Protected Routes
 
-- [ ] **Task: Implement Next.js 16 Proxy for Auth Guarding**
-  - [ ] Create `src/proxy.ts` (or `app/proxy.ts` if specified by Next.js 16) to handle redirection.
-  - [ ] Use `@supabase/ssr` to verify the user session.
-  - [ ] Implement logic to redirect unauthenticated requests from `/dashboard/*` to `/login`.
-  - [ ] Write tests to verify redirection logic for authenticated and unauthenticated states.
+- [x] **Task: Implement Next.js 16 Proxy for Auth Guarding** (28bab3a)
+  - [x] Create `src/proxy.ts` (or `app/proxy.ts` if specified by Next.js 16) to handle redirection.
+  - [x] Use `@supabase/ssr` to verify the user session.
+  - [x] Implement logic to redirect unauthenticated requests from `/dashboard/*` to `/login`.
+  - [x] Write tests to verify redirection logic for authenticated and unauthenticated states.
 - [ ] **Task: Conductor - User Manual Verification 'Phase 1: Auth Guarding' (Protocol in workflow.md)**
 
 ## Phase 2: App Shell UI Components (Sidebar & Header)
