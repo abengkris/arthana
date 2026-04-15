@@ -24,9 +24,9 @@
 - [x] **Task 1: Write Tests for Auth UI** 99fcbcb
     - [x] Create `components/auth/AuthForm.test.tsx`
     - [x] Define tests for form validation and submission
-- [ ] **Task 2: Build basic Auth UI component (Login/Register) using shadcn/ui forms**
-    - [ ] Create `components/auth/AuthForm.tsx` using `shadcn/ui` Form, Input, and Button
-    - [ ] Implement toggle between Login and Register modes
+- [x] **Task 2: Build basic Auth UI component (Login/Register) using shadcn/ui forms** 26a2bb8
+    - [x] Create `components/auth/AuthForm.tsx` using `shadcn/ui` Form, Input, and Button
+    - [x] Implement toggle between Login and Register modes
 - [ ] **Task 3: Integrate Supabase Auth and verify connection**
     - [ ] Add Supabase Auth logic to the Auth UI
     - [ ] Verify successful login and session persistence
