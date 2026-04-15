@@ -33,7 +33,7 @@ Build the user-facing onboarding experience.
 - [x] Task: Add contextual tooltips and interactive feedback for each step. 4239cd5
 - [x] Task: Conductor - User Manual Verification 'Phase 3: Onboarding UI' (Protocol in workflow.md) 8b08459
 
-## Phase 4: Auto-Initialization Logic
+## Phase 4: Auto-Initialization Logic [checkpoint: 90fc192]
 
 Connect the UI to Supabase using a secure transaction.
 
