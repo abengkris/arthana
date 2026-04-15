@@ -7,7 +7,7 @@ Building the robust foundation for transaction processing.
 - [x] **Task 1.1: Define Transaction Schemas** 28bb923
   - [ ] Create `lib/validations/transaction.ts` with Zod schemas for 'Expense' and 'Income' inputs.
   - [ ] Define shared types for transaction data.
-- [ ] **Task 1.2: Implement Server Action Logic (TDD)**
+- [x] **Task 1.2: Implement Server Action Logic (TDD)** 15f3e5f
   - [ ] **Write Tests**: Create `app/transactions/actions.test.ts` to test `addTransaction` logic (input validation, negative conversion for expenses).
   - [ ] **Implement**: Create `app/transactions/actions.ts` and implement `addTransaction` with Supabase integration and revalidation.
   - [ ] **Verify**: Ensure all tests pass and RLS is correctly utilized via the server-side client.
