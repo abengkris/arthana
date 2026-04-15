@@ -1,6 +1,6 @@
 # Implementation Plan: User Onboarding & Financial Profile Setup
 
-## Phase 1: Foundation & Financial Logic (TDD)
+## Phase 1: Foundation & Financial Logic (TDD) [checkpoint: a59c6e7]
 
 Focus on building the core utility logic with 100% test coverage before any UI work.
 
@@ -9,7 +9,7 @@ Focus on building the core utility logic with 100% test coverage before any UI w
 - [x] Task: (TDD) Write unit tests for `calculateEF` covering all 4 primary user personas. eb7df81
 - [x] Task: (TDD) Write unit tests for `getDefaultCategories` ensuring "Dana Transisi" is conditionally added. eb7df81
 - [x] Task: Implement the logic to pass all tests in `lib/financial-logic.ts`. eb7df81
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Financial Logic' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Foundation & Financial Logic' (Protocol in workflow.md) a59c6e7
 
 ## Phase 2: Routing & Access Control
 
