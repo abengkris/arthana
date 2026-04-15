@@ -5,9 +5,9 @@
 - [x] Task: Update Database Schema 84b5239
   - [x] Create a Supabase migration file to add the `type` column to the `categories` table.
   - [x] Add logic to the migration to clear existing categories and seed the new specified categories ("Gaji Utama", "Investasi", etc.).
-- [~] Task: Update Database Types
-  - [ ] Regenerate `src/types/database.ts` based on the updated schema.
-- [ ] Task: Conductor - User Manual Verification 'Database Migration & Precision Seeding' (Protocol in workflow.md)
+- [x] Task: Update Database Types 4528b6e
+  - [x] Regenerate `src/types/database.ts` based on the updated schema.
+- [~] Task: Conductor - User Manual Verification 'Database Migration & Precision Seeding' (Protocol in workflow.md)
 
 ## Phase 2: Server Actions & Validations Update
 
