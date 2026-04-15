@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { Header } from './Header';
 import { vi, describe, it, expect, beforeEach, Mock } from 'vitest';
 import { createClient } from '@/utils/supabase/client';
+import { TransactionModalRoot } from '../transactions/TransactionModalRoot';
 
 // Mock Supabase client
 vi.mock('@/utils/supabase/client', () => ({
@@ -27,15 +28,29 @@ describe('Header', () => {
     });
   });
 
+  const renderWithModal = () =>
+    render(
+      <TransactionModalRoot>
+        <Header />
+      </TransactionModalRoot>
+    );
+
   it('renders breadcrumbs placeholder', () => {
-    render(<Header />);
+    renderWithModal();
     expect(screen.getByText(/dashboard/i)).toBeInTheDocument();
   });
 
   it('renders user avatar', () => {
-    render(<Header />);
+    renderWithModal();
     expect(
       screen.getByRole('button', { name: /user menu/i })
+    ).toBeInTheDocument();
+  });
+
+  it('renders New Transaction button', () => {
+    renderWithModal();
+    expect(
+      screen.getByRole('button', { name: /new transaction/i })
     ).toBeInTheDocument();
   });
 });
