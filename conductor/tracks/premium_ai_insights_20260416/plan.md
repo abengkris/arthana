@@ -11,7 +11,7 @@
   - [x] Run `supabase gen types typescript` (or manual update if needed) to include new table and column
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Database & Schema Migration' (Protocol in workflow.md)
 
-## Phase 2: Backend Logic (AI Insights Generator)
+## Phase 2: Backend Logic (AI Insights Generator) [checkpoint: e089736]
 
 - [x] Task: Implement AI Insights Utility Function (34377dc)
   - [x] Write tests for `generateInsights` utility
@@ -23,7 +23,7 @@
   - [x] Implement ephemeral logic: delete old insights before inserting new ones
 - [x] Task: Create Server Action/Utility for Dashboard Integration (34377dc)
   - [x] Create a function to fetch transactions/budgets and trigger insight generation
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: Backend Logic (AI Insights Generator)' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Backend Logic (AI Insights Generator)' (Protocol in workflow.md)
 
 ## Phase 3: UI Components & Dashboard Integration
 
