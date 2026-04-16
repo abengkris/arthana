@@ -27,16 +27,16 @@
 
 ## Phase 3: UI Components & Dashboard Integration
 
-- [ ] Task: Create AI Insight Card Component
-  - [ ] Write tests for `AIInsightCard` component
-  - [ ] Implement component using shadcn/ui `Alert` or `Card`
-  - [ ] Support different types ('warning', 'encouragement', 'saving_tip') with icons/colors
-- [ ] Task: Implement "Wawasan AI" Section on Dashboard
-  - [ ] Update `app/dashboard/page.tsx` (Server Component) to evaluate and fetch insights
-  - [ ] Implement conditional rendering based on `subscription_tier`:
-    - [ ] Free: Show 1 card
-    - [ ] Premium: Show multiple cards + "Konsultasi Chat" placeholder
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Components & Dashboard Integration' (Protocol in workflow.md)
+- [x] Task: Create AI Insight Card Component (53a31f4)
+  - [x] Write tests for `AIInsightCard` component
+  - [x] Implement component using shadcn/ui `Alert` or `Card`
+  - [x] Support different types ('warning', 'encouragement', 'saving_tip') with icons/colors
+- [x] Task: Implement "Wawasan AI" Section on Dashboard (53a31f4)
+  - [x] Update `app/dashboard/page.tsx` (Server Component) to evaluate and fetch insights
+  - [x] Implement conditional rendering based on `subscription_tier`:
+    - [x] Free: Show 1 card
+    - [x] Premium: Show multiple cards + "Konsultasi Chat" placeholder
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI Components & Dashboard Integration' (Protocol in workflow.md)
 
 ## Phase 4: Final Integration & Verification
 
