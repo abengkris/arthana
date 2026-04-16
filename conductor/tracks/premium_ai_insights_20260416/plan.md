@@ -1,15 +1,15 @@
 # Implementation Plan: Premium Tiers & AI Smart Cards
 
-## Phase 1: Database & Schema Migration
+## Phase 1: Database & Schema Migration [checkpoint: bed9a58]
 
 - [x] Task: Create Supabase migration for `profiles` and `ai_insights` (1f713c0)
-  - [ ] Add `subscription_tier` column to `profiles` table with default 'free'
-  - [ ] Create `ai_insights` table with columns: `id`, `user_id`, `content`, `type`, `created_at`
-  - [ ] Enable Row Level Security (RLS) on `ai_insights` table
-  - [ ] Add RLS policies for `ai_insights` (select/delete for owner)
+  - [x] Add `subscription_tier` column to `profiles` table with default 'free'
+  - [x] Create `ai_insights` table with columns: `id`, `user_id`, `content`, `type`, `created_at`
+  - [x] Enable Row Level Security (RLS) on `ai_insights` table
+  - [x] Add RLS policies for `ai_insights` (select/delete for owner)
 - [x] Task: Update TypeScript database types (11b1ac2)
-  - [ ] Run `supabase gen types typescript` (or manual update if needed) to include new table and column
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Database & Schema Migration' (Protocol in workflow.md)
+  - [x] Run `supabase gen types typescript` (or manual update if needed) to include new table and column
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Database & Schema Migration' (Protocol in workflow.md)
 
 ## Phase 2: Backend Logic (AI Insights Generator)
 
