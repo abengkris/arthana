@@ -35,3 +35,7 @@ vi.mock('next/navigation', () => ({
     prefetch: vi.fn(),
   })),
 }));
+
+Element.prototype.scrollIntoView = vi.fn();
+Element.prototype.hasPointerCapture = vi.fn();
+Element.prototype.releasePointerCapture = vi.fn();
