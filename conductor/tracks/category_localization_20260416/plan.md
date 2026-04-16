@@ -19,7 +19,7 @@
   - [x] Update Zod schemas in `lib/validations/transaction.ts` to use Indonesian error messages (e.g., "Format nominal tidak valid").
 - [x] Task: Conductor - User Manual Verification 'Server Actions & Validations Update' (Protocol in workflow.md) f07c5ab
 
-## Phase 3: UI Update & Localization (Transaction Modal)
+## Phase 3: UI Update & Localization (Transaction Modal) [checkpoint: 48eccf2]
 
 - [x] Task: Localize Transaction Form Texts 0e5ef6b
   - [x] Write failing tests ensuring the form renders Indonesian labels ("Tambah Transaksi", "Pemasukan", "Pengeluaran", "Nominal", "Tanggal", "Catatan", "Simpan").
@@ -30,4 +30,7 @@
   - [x] Implement logic to reset the category selection and require manual re-selection when the transaction type is toggled.
 - [x] Task: Localize Toast Notifications 01ad9e9
   - [x] Update the form submission and related UI actions to use Indonesian toast messages (e.g., "Transaksi berhasil disimpan", "Gagal menyimpan transaksi").
-- [ ] Task: Conductor - User Manual Verification 'UI Update & Localization (Transaction Modal)' (Protocol in workflow.md)
+
+## Phase: Review Fixes [checkpoint: 4658064]
+
+- [x] Task: Apply review suggestions 4658064
