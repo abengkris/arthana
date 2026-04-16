@@ -5,6 +5,7 @@ import GoalTrackerCard from '@/components/dashboard/GoalTrackerCard';
 import BudgetProgressBar from '@/components/dashboard/BudgetProgressBar';
 import TransactionFeed from '@/components/dashboard/TransactionFeed';
 import { getDashboardData } from './actions';
+import { AIInsightSection } from '@/components/dashboard/AIInsightSection';
 
 /**
  * Dashboard Overview Page
@@ -21,6 +22,8 @@ export default async function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <GreetingHeader name={user?.user_metadata?.name || 'Halo'} />
+
+      <AIInsightSection />
 
       <SummaryCards
         balance={data.balance}

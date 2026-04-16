@@ -23,6 +23,26 @@ vi.mock('next/navigation', () => ({
   }),
 }));
 
+// Mock AIInsightSection
+vi.mock('@/components/dashboard/AIInsightSection', () => ({
+  AIInsightSection: () => <div data-testid="mock-insights">Mock Insights</div>,
+}));
+
+// Mock insight actions
+vi.mock('@/app/dashboard/insight-actions', () => ({
+  refreshInsights: vi
+    .fn()
+    .mockResolvedValue([{ content: 'Mock Insight', type: 'warning' }]),
+  getInsights: vi
+    .fn()
+    .mockResolvedValue([{ content: 'Mock Insight', type: 'warning' }]),
+}));
+
+// Mock next/cache
+vi.mock('next/cache', () => ({
+  revalidatePath: vi.fn(),
+}));
+
 describe('Dashboard Integration', () => {
   const mockGetUser = vi.fn();
   const mockSignOut = vi.fn();
@@ -36,7 +56,16 @@ describe('Dashboard Integration', () => {
       from: vi.fn().mockReturnThis(),
       select: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
-      single: vi.fn().mockResolvedValue({ data: null, error: null }),
+      single: vi
+        .fn()
+        .mockResolvedValue({
+          data: { subscription_tier: 'free' },
+          error: null,
+        }),
+      order: vi.fn().mockReturnThis(),
+      delete: vi.fn().mockReturnThis(),
+      insert: vi.fn().mockResolvedValue({ error: null }),
+      gte: vi.fn().mockResolvedValue({ data: [], error: null }),
     });
     (createClientSide as Mock).mockReturnValue({
       auth: {
