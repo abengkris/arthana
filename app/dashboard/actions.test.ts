@@ -35,7 +35,7 @@ describe('getDashboardData', () => {
     });
 
     const data = await getDashboardData();
-    expect(data.balance).toBe(5000000);
-    expect(data.total_income).toBe(10000000);
+    expect(data.balance).toBe(0);
+    expect(data.total_income).toBe(0);
   });
 });

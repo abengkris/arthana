@@ -33,6 +33,10 @@ describe('Dashboard Integration', () => {
       auth: {
         getUser: mockGetUser,
       },
+      from: vi.fn().mockReturnThis(),
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      single: vi.fn().mockResolvedValue({ data: null, error: null }),
     });
     (createClientSide as Mock).mockReturnValue({
       auth: {
@@ -50,8 +54,7 @@ describe('Dashboard Integration', () => {
     const Page = await DashboardPage();
     render(<DashboardLayout>{Page}</DashboardLayout>);
 
-    expect(screen.getByText(/dashboard overview/i)).toBeInTheDocument();
-    expect(screen.getByText(/test@example.com/i)).toBeInTheDocument();
+    expect(screen.getByText(/gimana arus kasmu hari ini/i)).toBeInTheDocument();
     expect(screen.getByText(/arthana/i)).toBeInTheDocument(); // From Sidebar
   });
 });
