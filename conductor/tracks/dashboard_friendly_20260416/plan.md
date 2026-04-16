@@ -2,8 +2,8 @@
 
 ## Phase 1: Data Integration
 
-- [ ] Task: Create server-side data fetching logic for dashboard (Server Components).
-- [ ] Task: Create Currency.js formatting utility.
+- [x] Task: Create server-side data fetching logic for dashboard (Server Components). 72bb223
+- [x] Task: Create Currency.js formatting utility. 72bb223
 - [ ] Task: Conductor - User Manual Verification 'Data Integration' (Protocol in workflow.md)
 
 ## Phase 2: UI Shell & Summary Cards
