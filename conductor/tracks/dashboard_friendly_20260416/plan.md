@@ -1,10 +1,10 @@
 # Implementation Plan: Friendly Dashboard (dashboard_friendly_20260416)
 
-## Phase 1: Data Integration
+## Phase 1: Data Integration [checkpoint: 38c7363]
 
 - [x] Task: Create server-side data fetching logic for dashboard (Server Components). 72bb223
 - [x] Task: Create Currency.js formatting utility. 72bb223
-- [ ] Task: Conductor - User Manual Verification 'Data Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Data Integration' (Protocol in workflow.md) 38c7363
 
 ## Phase 2: UI Shell & Summary Cards
 
