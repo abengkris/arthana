@@ -15,7 +15,7 @@
 ## Phase 3: Financial Goals & Budgeting
 
 - [x] Task: Implement 'Tabungan Impian 🚀' card. 59e4a93
-- [ ] Task: Implement budget progress bars using Shadcn charts.
+- [x] Task: Implement budget progress bars using Shadcn charts. 61e2b46
 - [ ] Task: Implement budget alerts (Toasts/Banners).
 - [ ] Task: Conductor - User Manual Verification 'Financial Goals & Budgeting' (Protocol in workflow.md)
 
