@@ -29,7 +29,7 @@ export default async function DashboardPage() {
       />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <GoalTrackerCard current={data.savings} target={10000000} />
+        <GoalTrackerCard current={data.savings} target={data.target} />
         <div>
           <h3 className="mb-4 text-lg font-bold">Anggaranmu</h3>
           <BudgetProgressBar

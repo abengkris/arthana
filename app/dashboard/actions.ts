@@ -12,24 +12,30 @@ export async function getDashboardData() {
     throw new Error('User not authenticated');
   }
 
-  // Initial fetch for demo/prototype logic (requires adjustment as schema evolves)
-  const { data, error } = await supabase
-    .from('dashboard_stats')
-    .select('*')
-    .eq('user_id', user.id)
-    .single();
+  // Fetch transactions and emergency fund for current user
+  const [transactionsRes, emergencyFundRes] = await Promise.all([
+    supabase.from('transactions').select('amount').eq('user_id', user.id),
+    supabase
+      .from('emergency_funds')
+      .select('target_amount, current_amount')
+      .eq('user_id', user.id)
+      .single(),
+  ]);
 
-  if (error) {
-    console.error('Dashboard data fetch error:', error);
-    // Return mock data for now since tables might not be fully populated
-    return {
-      total_income: 0,
-      total_expenses: 0,
-      balance: 0,
-      investments: 0,
-      savings: 0,
-    };
-  }
+  const transactions = transactionsRes.data || [];
+  const emergencyFund = emergencyFundRes.data;
 
-  return data;
+  const total_expenses = transactions.reduce(
+    (acc, t) => acc + Number(t.amount),
+    0
+  );
+
+  return {
+    total_income: 0, // Requires additional table logic
+    total_expenses,
+    balance: 0, // Placeholder
+    investments: 0,
+    savings: Number(emergencyFund?.current_amount || 0),
+    target: Number(emergencyFund?.target_amount || 0),
+  };
 }
