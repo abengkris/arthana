@@ -110,7 +110,7 @@ export function LoginForm() {
         <CardFooter className="flex flex-col space-y-4">
           <Button type="submit" className="w-full" disabled={loading}>
             {loading && <Loader2Icon className="mr-2 size-4 animate-spin" />}
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Logging in…' : 'Login'}
           </Button>
           <div className="text-muted-foreground text-center text-sm">
             Don&apos;t have an account?{' '}

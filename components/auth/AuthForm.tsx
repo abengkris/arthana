@@ -1,8 +1,8 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -10,39 +10,34 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import {
-  Field,
-  FieldGroup,
-  FieldLabel,
-  FieldError,
-} from "@/components/ui/field"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { createClient } from "@/utils/supabase/client"
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Field, FieldGroup, FieldLabel } from '@/components/ui/field';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { createClient } from '@/utils/supabase/client';
 
 export default function AuthForm() {
-  const [mode, setMode] = useState<"login" | "register">("login")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
-  const supabase = createClient()
+  const [mode, setMode] = useState<'login' | 'register'>('login');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const supabase = createClient();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setError(null)
-    setLoading(true)
+    e.preventDefault();
+    setError(null);
+    setLoading(true);
 
     try {
-      if (mode === "login") {
+      if (mode === 'login') {
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
-        })
-        if (error) throw error
-        router.push("/dashboard")
+        });
+        if (error) throw error;
+        router.push('/dashboard');
       } else {
         const { error } = await supabase.auth.signUp({
           email,
@@ -50,25 +45,27 @@ export default function AuthForm() {
           options: {
             emailRedirectTo: `${window.location.origin}/auth/callback`,
           },
-        })
-        if (error) throw error
-        setError("Check your email for the confirmation link.")
+        });
+        if (error) throw error;
+        setError('Check your email for the confirmation link.');
       }
-    } catch (err: any) {
-      setError(err.message || "An unexpected error occurred")
+    } catch (err: unknown) {
+      setError(
+        err instanceof Error ? err.message : 'An unexpected error occurred'
+      );
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="mx-auto w-full max-w-md">
       <CardHeader>
-        <CardTitle>{mode === "login" ? "Login" : "Register"}</CardTitle>
+        <CardTitle>{mode === 'login' ? 'Login' : 'Register'}</CardTitle>
         <CardDescription>
-          {mode === "login"
-            ? "Enter your credentials to access your account"
-            : "Create a new account to start managing your finances"}
+          {mode === 'login'
+            ? 'Enter your credentials to access your account'
+            : 'Create a new account to start managing your finances'}
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
@@ -105,20 +102,20 @@ export default function AuthForm() {
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
           <Button type="submit" className="w-full" disabled={loading}>
-            {loading ? "Processing..." : mode === "login" ? "Login" : "Register"}
+            {loading ? 'Processing…' : mode === 'login' ? 'Login' : 'Register'}
           </Button>
           <Button
             type="button"
             variant="link"
-            onClick={() => setMode(mode === "login" ? "register" : "login")}
-            className="text-sm text-muted-foreground"
+            onClick={() => setMode(mode === 'login' ? 'register' : 'login')}
+            className="text-muted-foreground text-sm"
           >
-            {mode === "login"
+            {mode === 'login'
               ? "Don't have an account? Register"
-              : "Already have an account? Login"}
+              : 'Already have an account? Login'}
           </Button>
         </CardFooter>
       </form>
     </Card>
-  )
+  );
 }

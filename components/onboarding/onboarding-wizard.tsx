@@ -154,7 +154,7 @@ export function OnboardingWizard() {
               disabled={loading}
             >
               {loading && <Loader2Icon className="mr-2 size-4 animate-spin" />}
-              {loading ? 'Initializing...' : 'Initialize Dashboard'}
+              {loading ? 'Initializing…' : 'Initialize Dashboard'}
             </Button>
           )}
         </div>

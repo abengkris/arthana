@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { useForm, Controller, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { format } from 'date-fns';
 import { CalendarIcon, Loader2 } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
@@ -155,7 +154,9 @@ export function TransactionForm({
                   )}
                 >
                   {field.value ? (
-                    format(field.value, 'PPP')
+                    new Intl.DateTimeFormat('id-ID', {
+                      dateStyle: 'full',
+                    }).format(field.value)
                   ) : (
                     <span>Pilih tanggal</span>
                   )}
@@ -183,7 +184,7 @@ export function TransactionForm({
         <FieldLabel htmlFor="note">Catatan (Opsional)</FieldLabel>
         <Input
           id="note"
-          placeholder="Contoh: Makan siang..."
+          placeholder="Contoh: Makan siang…"
           {...register('note')}
         />
         <FieldError errors={[errors.note]} />

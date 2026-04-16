@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { Sidebar } from '@/components/dashboard/Sidebar';
 import { Header } from '@/components/dashboard/Header';
 import { TransactionModalRoot } from '@/components/transactions/TransactionModalRoot';
@@ -15,8 +16,12 @@ export default function DashboardLayout({
     <TransactionModalRoot>
       <div className="flex min-h-screen w-full">
         {/* Sidebar - handles its own desktop fixed and mobile drawer states */}
-        <Sidebar />
-
+        <Suspense
+          fallback={<div className="bg-card hidden w-64 border-r lg:block" />}
+        >
+          <Sidebar />
+        </Suspense>
+        ...
         {/* Main Content Area */}
         <div className="flex flex-1 flex-col transition-all duration-300 lg:pl-64">
           {/* Sticky Header */}

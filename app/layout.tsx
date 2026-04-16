@@ -17,6 +17,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Arthana - Automated Pocket Financial Advisor',
   description: 'Proactive personal finance management SaaS.',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
 };
 
 export default function RootLayout({
@@ -28,6 +32,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      style={{ colorScheme: 'dark light' }}
     >
       <body className="flex min-h-full flex-col">
         <TooltipProvider>
