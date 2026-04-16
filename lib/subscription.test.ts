@@ -31,7 +31,7 @@ describe('Database Schema: Subscription Tier', () => {
       single: mockSingle,
     });
 
-    const supabase = createServerClient();
+    const supabase = await createServerClient();
     const { data, error } = await supabase
       .from('profiles')
       .select('subscription_tier')
@@ -59,7 +59,7 @@ describe('Database Schema: AI Insights', () => {
     mockSelect.mockReturnThis();
     mockEq.mockResolvedValue({ data: mockData, error: null });
 
-    const supabase = createServerClient();
+    const supabase = await createServerClient();
     const { data, error } = await supabase
       .from('ai_insights')
       .select('*')
