@@ -21,10 +21,10 @@
 
 ## Phase 3: UI Update & Localization (Transaction Modal)
 
-- [~] Task: Localize Transaction Form Texts
-  - [ ] Write failing tests ensuring the form renders Indonesian labels ("Tambah Transaksi", "Pemasukan", "Pengeluaran", "Nominal", "Tanggal", "Catatan", "Simpan").
-  - [ ] Update `TransactionForm.tsx` (and related components) with the correct Indonesian translations for labels, placeholders, tooltips, and loading states.
-- [ ] Task: Implement Reactive Category Dropdown
+- [x] Task: Localize Transaction Form Texts 0e5ef6b
+  - [x] Write failing tests ensuring the form renders Indonesian labels ("Tambah Transaksi", "Pemasukan", "Pengeluaran", "Nominal", "Tanggal", "Catatan", "Simpan").
+  - [x] Update `TransactionForm.tsx` (and related components) with the correct Indonesian translations for labels, placeholders, tooltips, and loading states.
+- [~] Task: Implement Reactive Category Dropdown
   - [ ] Write failing tests for category dropdown filtering based on the selected transaction type.
   - [ ] Update the UI logic in `TransactionForm.tsx` to filter the category list based on the active type ("Pemasukan" vs "Pengeluaran").
   - [ ] Implement logic to reset the category selection and require manual re-selection when the transaction type is toggled.
