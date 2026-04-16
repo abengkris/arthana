@@ -7,7 +7,7 @@
   - [ ] Create `ai_insights` table with columns: `id`, `user_id`, `content`, `type`, `created_at`
   - [ ] Enable Row Level Security (RLS) on `ai_insights` table
   - [ ] Add RLS policies for `ai_insights` (select/delete for owner)
-- [ ] Task: Update TypeScript database types
+- [x] Task: Update TypeScript database types (11b1ac2)
   - [ ] Run `supabase gen types typescript` (or manual update if needed) to include new table and column
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Database & Schema Migration' (Protocol in workflow.md)
 
