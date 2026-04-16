@@ -1,15 +1,14 @@
 import { createClient } from '@/utils/supabase/server';
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardContent,
-  CardDescription,
-} from '@/components/ui/card';
+import GreetingHeader from '@/components/dashboard/GreetingHeader';
+import SummaryCards from '@/components/dashboard/SummaryCards';
+import GoalTrackerCard from '@/components/dashboard/GoalTrackerCard';
+import BudgetProgressBar from '@/components/dashboard/BudgetProgressBar';
+import TransactionFeed from '@/components/dashboard/TransactionFeed';
+import { getDashboardData } from './actions';
 
 /**
  * Dashboard Overview Page
- * Fetches the user session and displays a welcome message.
+ * Fetches the user session and displays a friendly dashboard.
  */
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -17,31 +16,36 @@ export default async function DashboardPage() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const data = await getDashboardData();
+
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex flex-col gap-2">
-        <h2 className="text-3xl font-bold tracking-tight">
-          Dashboard Overview
-        </h2>
-        <p className="text-muted-foreground">
-          Welcome back to your financial command center.
-        </p>
+      <GreetingHeader name={user?.user_metadata?.name || 'Halo'} />
+
+      <SummaryCards
+        balance={data.balance}
+        income={data.total_income}
+        expenses={data.total_expenses}
+      />
+
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <GoalTrackerCard current={data.savings} target={10000000} />
+        <div>
+          <h3 className="mb-4 text-lg font-bold">Anggaranmu</h3>
+          <BudgetProgressBar
+            label="Kebutuhan Harian"
+            progress={65}
+            status="safe"
+          />
+          <BudgetProgressBar
+            label="Langganan Digital"
+            progress={90}
+            status="warning"
+          />
+        </div>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Welcome!</CardTitle>
-          <CardDescription>We&apos;re glad to see you again.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm">
-            You are logged in as:{' '}
-            <span className="font-semibold">
-              {user?.email || 'Unknown User'}
-            </span>
-          </p>
-        </CardContent>
-      </Card>
+      <TransactionFeed transactions={[]} />
     </div>
   );
 }
