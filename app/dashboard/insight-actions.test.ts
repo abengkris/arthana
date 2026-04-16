@@ -13,10 +13,6 @@ vi.mock('@/lib/insights', () => ({
   ]),
 }));
 
-vi.mock('next/cache', () => ({
-  revalidatePath: vi.fn(),
-}));
-
 describe('insight-actions', () => {
   const mockGetUser = vi.fn();
 

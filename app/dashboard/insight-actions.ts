@@ -6,7 +6,6 @@ import {
   type Transaction,
   type BudgetCategory,
 } from '@/lib/insights';
-import { revalidatePath } from 'next/cache';
 
 /**
  * Refreshes and returns AI Insights for the authenticated user.
@@ -79,8 +78,6 @@ export async function refreshInsights() {
 
     await supabase.from('ai_insights').insert(insightsToInsert);
   }
-
-  revalidatePath('/dashboard');
 
   // Return insights filtered by tier
   // Free: 1 card, Premium: all cards
