@@ -1,0 +1,46 @@
+# Implementation Plan: Premium Tiers & AI Smart Cards
+
+## Phase 1: Database & Schema Migration [checkpoint: bed9a58]
+
+- [x] Task: Create Supabase migration for `profiles` and `ai_insights` (1f713c0)
+  - [x] Add `subscription_tier` column to `profiles` table with default 'free'
+  - [x] Create `ai_insights` table with columns: `id`, `user_id`, `content`, `type`, `created_at`
+  - [x] Enable Row Level Security (RLS) on `ai_insights` table
+  - [x] Add RLS policies for `ai_insights` (select/delete for owner)
+- [x] Task: Update TypeScript database types (11b1ac2)
+  - [x] Run `supabase gen types typescript` (or manual update if needed) to include new table and column
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Database & Schema Migration' (Protocol in workflow.md)
+
+## Phase 2: Backend Logic (AI Insights Generator) [checkpoint: e089736]
+
+- [x] Task: Implement AI Insights Utility Function (34377dc)
+  - [x] Write tests for `generateInsights` utility
+  - [x] Implement `generateInsights` logic:
+    - [x] Budget Warning (>80% limit)
+    - [x] Deficit Warning (Expenses > Income)
+    - [x] Savings Prompt (No 'Investasi' transactions)
+  - [x] Implement casual Indonesian tone for each scenario
+  - [x] Implement ephemeral logic: delete old insights before inserting new ones
+- [x] Task: Create Server Action/Utility for Dashboard Integration (34377dc)
+  - [x] Create a function to fetch transactions/budgets and trigger insight generation
+- [x] Task: Conductor - User Manual Verification 'Phase 2: Backend Logic (AI Insights Generator)' (Protocol in workflow.md)
+
+## Phase 3: UI Components & Dashboard Integration [checkpoint: cbd49f2]
+
+- [x] Task: Create AI Insight Card Component (53a31f4)
+  - [x] Write tests for `AIInsightCard` component
+  - [x] Implement component using shadcn/ui `Alert` or `Card`
+  - [x] Support different types ('warning', 'encouragement', 'saving_tip') with icons/colors
+- [x] Task: Implement "Wawasan AI" Section on Dashboard (53a31f4)
+  - [x] Update `app/dashboard/page.tsx` (Server Component) to evaluate and fetch insights
+  - [x] Implement conditional rendering based on `subscription_tier`:
+    - [x] Free: Show 1 card
+    - [x] Premium: Show multiple cards + "Konsultasi Chat" placeholder
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI Components & Dashboard Integration' (Protocol in workflow.md)
+
+## Phase 4: Final Integration & Verification
+
+- [x] Task: End-to-end verification of the Premium/Free user flow
+  - [x] Verify free user limitations
+  - [x] Verify premium user features
+- [x] Task: Conductor - User Manual Verification 'Phase 4: Final Integration & Verification' (Protocol in workflow.md)
