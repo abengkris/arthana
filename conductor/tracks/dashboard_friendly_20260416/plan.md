@@ -19,8 +19,8 @@
 - [x] Task: Implement budget alerts (Toasts/Banners). a980078
 - [x] Task: Conductor - User Manual Verification 'Financial Goals & Budgeting' (Protocol in workflow.md) 543fa71
 
-## Phase 4: Transaction Feed
+## Phase 4: Transaction Feed [checkpoint: a711f22]
 
 - [x] Task: Implement 'Jejak Uangmu' section. be69f18
 - [x] Task: Implement illustrative empty state for transaction feed. 7da99e0
-- [ ] Task: Conductor - User Manual Verification 'Transaction Feed' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Transaction Feed' (Protocol in workflow.md) a711f22
