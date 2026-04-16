@@ -10,7 +10,7 @@ import { useTransactionModal } from './TransactionContext';
 
 export function TransactionFormContainer() {
   const [categories, setCategories] = React.useState<
-    { id: string; name: string }[]
+    { id: string; name: string; type: 'income' | 'expense' }[]
   >([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const { setOpen } = useTransactionModal();
@@ -20,7 +20,7 @@ export function TransactionFormContainer() {
       const supabase = createClient();
       const { data, error } = await supabase
         .from('categories')
-        .select('id, name')
+        .select('id, name, type')
         .order('name');
 
       if (!error && data) {
@@ -37,9 +37,9 @@ export function TransactionFormContainer() {
 
     if (result.success) {
       setOpen(false);
-      toast.success('Transaction added successfully');
+      toast.success('Transaksi berhasil disimpan');
     } else {
-      toast.error(result.error || 'Failed to add transaction');
+      toast.error(result.error || 'Gagal menyimpan transaksi');
     }
   };
 
