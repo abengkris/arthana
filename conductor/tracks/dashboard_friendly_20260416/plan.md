@@ -9,7 +9,7 @@
 ## Phase 2: UI Shell & Summary Cards
 
 - [x] Task: Implement dynamic greeting header. 33c23b3
-- [ ] Task: Implement 'Sisa Dompet', 'Uang Masuk', 'Uang Keluar' cards.
+- [x] Task: Implement 'Sisa Dompet', 'Uang Masuk', 'Uang Keluar' cards. 2ae57be
 - [ ] Task: Conductor - User Manual Verification 'UI Shell & Summary Cards' (Protocol in workflow.md)
 
 ## Phase 3: Financial Goals & Budgeting
