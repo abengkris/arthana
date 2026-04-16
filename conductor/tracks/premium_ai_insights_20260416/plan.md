@@ -25,7 +25,7 @@
   - [x] Create a function to fetch transactions/budgets and trigger insight generation
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Backend Logic (AI Insights Generator)' (Protocol in workflow.md)
 
-## Phase 3: UI Components & Dashboard Integration
+## Phase 3: UI Components & Dashboard Integration [checkpoint: cbd49f2]
 
 - [x] Task: Create AI Insight Card Component (53a31f4)
   - [x] Write tests for `AIInsightCard` component
