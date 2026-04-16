@@ -2,7 +2,7 @@
 
 ## Phase 1: Database & Schema Migration
 
-- [ ] Task: Create Supabase migration for `profiles` and `ai_insights`
+- [x] Task: Create Supabase migration for `profiles` and `ai_insights` (1f713c0)
   - [ ] Add `subscription_tier` column to `profiles` table with default 'free'
   - [ ] Create `ai_insights` table with columns: `id`, `user_id`, `content`, `type`, `created_at`
   - [ ] Enable Row Level Security (RLS) on `ai_insights` table
