@@ -12,12 +12,12 @@
 - [x] Task: Implement 'Sisa Dompet', 'Uang Masuk', 'Uang Keluar' cards. 2ae57be
 - [x] Task: Conductor - User Manual Verification 'UI Shell & Summary Cards' (Protocol in workflow.md) ad14892
 
-## Phase 3: Financial Goals & Budgeting
+## Phase 3: Financial Goals & Budgeting [checkpoint: 543fa71]
 
 - [x] Task: Implement 'Tabungan Impian 🚀' card. 59e4a93
 - [x] Task: Implement budget progress bars using Shadcn charts. 61e2b46
 - [x] Task: Implement budget alerts (Toasts/Banners). a980078
-- [ ] Task: Conductor - User Manual Verification 'Financial Goals & Budgeting' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Financial Goals & Budgeting' (Protocol in workflow.md) 543fa71
 
 ## Phase 4: Transaction Feed
 
