@@ -16,7 +16,7 @@
 
 - [x] Task: Implement 'Tabungan Impian 🚀' card. 59e4a93
 - [x] Task: Implement budget progress bars using Shadcn charts. 61e2b46
-- [ ] Task: Implement budget alerts (Toasts/Banners).
+- [x] Task: Implement budget alerts (Toasts/Banners). a980078
 - [ ] Task: Conductor - User Manual Verification 'Financial Goals & Budgeting' (Protocol in workflow.md)
 
 ## Phase 4: Transaction Feed
