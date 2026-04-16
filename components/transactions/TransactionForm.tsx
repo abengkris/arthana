@@ -37,6 +37,7 @@ import {
 interface Category {
   id: string;
   name: string;
+  type: 'income' | 'expense';
 }
 
 interface TransactionFormProps {
@@ -54,7 +55,7 @@ export function TransactionForm({
     register,
     handleSubmit,
     control,
-    watch,
+    setValue,
     formState: { errors },
   } = useForm<TransactionInput>({
     resolver: zodResolver(transactionSchema),
@@ -67,7 +68,16 @@ export function TransactionForm({
     },
   });
 
-  const type = watch('type');
+  const type = useWatch({ control, name: 'type' }) || 'expense';
+
+  // Reset category selection when transaction type changes
+  React.useEffect(() => {
+    setValue('category_id', '', { shouldValidate: true });
+  }, [type, setValue]);
+
+  const filteredCategories = React.useMemo(() => {
+    return categories.filter((category) => category.type === type);
+  }, [categories, type]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -116,7 +126,7 @@ export function TransactionForm({
                 <SelectValue placeholder="Pilih kategori" />
               </SelectTrigger>
               <SelectContent>
-                {categories.map((category) => (
+                {filteredCategories.map((category) => (
                   <SelectItem key={category.id} value={category.id}>
                     {category.name}
                   </SelectItem>
