@@ -22,5 +22,5 @@
 ## Phase 4: Transaction Feed
 
 - [x] Task: Implement 'Jejak Uangmu' section. be69f18
-- [ ] Task: Implement illustrative empty state for transaction feed.
+- [x] Task: Implement illustrative empty state for transaction feed. 7da99e0
 - [ ] Task: Conductor - User Manual Verification 'Transaction Feed' (Protocol in workflow.md)
