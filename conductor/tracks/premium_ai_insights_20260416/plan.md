@@ -13,16 +13,16 @@
 
 ## Phase 2: Backend Logic (AI Insights Generator)
 
-- [ ] Task: Implement AI Insights Utility Function
-  - [ ] Write tests for `generateInsights` utility
-  - [ ] Implement `generateInsights` logic:
-    - [ ] Budget Warning (>80% limit)
-    - [ ] Deficit Warning (Expenses > Income)
-    - [ ] Savings Prompt (No 'Investasi' transactions)
-  - [ ] Implement casual Indonesian tone for each scenario
-  - [ ] Implement ephemeral logic: delete old insights before inserting new ones
-- [ ] Task: Create Server Action/Utility for Dashboard Integration
-  - [ ] Create a function to fetch transactions/budgets and trigger insight generation
+- [x] Task: Implement AI Insights Utility Function (34377dc)
+  - [x] Write tests for `generateInsights` utility
+  - [x] Implement `generateInsights` logic:
+    - [x] Budget Warning (>80% limit)
+    - [x] Deficit Warning (Expenses > Income)
+    - [x] Savings Prompt (No 'Investasi' transactions)
+  - [x] Implement casual Indonesian tone for each scenario
+  - [x] Implement ephemeral logic: delete old insights before inserting new ones
+- [x] Task: Create Server Action/Utility for Dashboard Integration (34377dc)
+  - [x] Create a function to fetch transactions/budgets and trigger insight generation
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Backend Logic (AI Insights Generator)' (Protocol in workflow.md)
 
 ## Phase 3: UI Components & Dashboard Integration
