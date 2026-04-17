@@ -27,20 +27,20 @@
 
 ## Phase 3: Insight Service Refactor
 
-- [ ] Task: Define `IInsightService` interface
-  - [ ] Create `lib/services/insight.ts`
-  - [ ] Define methods for fetching and refreshing AI insights
-- [ ] Task: Implement `SupabaseInsightService`
-  - [ ] Create `lib/services/supabase-insight.ts`
-  - [ ] Implement `IInsightService` using Supabase client
-- [ ] Task: Write tests for `SupabaseInsightService`
-  - [ ] Create `lib/services/supabase-insight.test.ts`
-  - [ ] Mock Supabase client and verify insight logic
-- [ ] Task: Refactor Insight Actions
-  - [ ] Update `app/dashboard/insight-actions.ts` to use `IInsightService`
-  - [ ] Ensure financial logic remains in `lib/insights.ts`
-- [ ] Task: Verify Insight Functionality
-  - [ ] Ensure AI insights still load and refresh correctly on the dashboard
+- [x] Task: Define `IInsightService` interface 4a9c918
+  - [x] Create `lib/services/insight.ts`
+  - [x] Define methods for fetching and refreshing AI insights
+- [x] Task: Implement `SupabaseInsightService` 4831ab5
+  - [x] Create `lib/services/supabase-insight.ts`
+  - [x] Implement `IInsightService` using Supabase client
+- [x] Task: Write tests for `SupabaseInsightService` d5fec3b
+  - [x] Create `lib/services/supabase-insight.test.ts`
+  - [x] Mock Supabase client and verify insight logic
+- [x] Task: Refactor Insight Actions 88c5449
+  - [x] Update `app/dashboard/insight-actions.ts` to use `IInsightService`
+  - [x] Ensure financial logic remains in `lib/insights.ts`
+- [x] Task: Verify Insight Functionality 88c5449
+  - [x] Ensure AI insights still load and refresh correctly on the dashboard
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: Insight Service Refactor' (Protocol in workflow.md)
 
 ## Phase 4: Final Verification and Cleanup

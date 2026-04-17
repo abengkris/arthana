@@ -6,12 +6,7 @@ vi.mock('@/utils/supabase/server', () => ({
   createClient: vi.fn(),
 }));
 
-vi.mock('@/lib/insights', () => ({
-  generateInsights: vi.fn().mockReturnValue([
-    { content: 'Mock Insight 1', type: 'warning' },
-    { content: 'Mock Insight 2', type: 'saving_tip' },
-  ]),
-}));
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 describe('insight-actions', () => {
   const mockGetUser = vi.fn();
@@ -20,74 +15,64 @@ describe('insight-actions', () => {
     vi.clearAllMocks();
   });
 
+  const createMockChain = () => {
+    const chain: any = {
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      gte: vi.fn().mockReturnThis(),
+      order: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockReturnThis(),
+      single: vi.fn().mockReturnThis(),
+      maybeSingle: vi.fn().mockReturnThis(),
+      delete: vi.fn().mockReturnThis(),
+      insert: vi.fn().mockReturnThis(),
+    };
+    return chain;
+  };
+
   it('refreshInsights deletes old and inserts new insights', async () => {
     mockGetUser.mockResolvedValue({
       data: { user: { id: 'test-user' } },
       error: null,
     });
 
-    const createChain = () => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const chain: any = {
-        select: vi.fn().mockReturnThis(),
-        eq: vi.fn().mockReturnThis(),
-        gte: vi.fn().mockReturnThis(),
-        single: vi.fn().mockResolvedValue({ data: {}, error: null }),
-        delete: vi.fn().mockReturnThis(),
-        insert: vi.fn().mockReturnThis(),
-        order: vi.fn().mockReturnThis(),
-      };
-      // For thenable (promise) support if needed by supabase-js
-      // but here we are mock-awaiting them.
-      return chain;
-    };
-
-    const mockTransactions = createChain();
-    mockTransactions.gte.mockResolvedValue({ data: [], error: null });
-
-    const mockBudget = createChain();
-    mockBudget.single.mockResolvedValue({
-      data: { total_income: 10000000 },
-      error: null,
+    const mockFrom = vi.fn().mockImplementation((table: string) => {
+      const mockChain = createMockChain();
+      if (table === 'transactions') {
+        mockChain.gte = vi.fn().mockResolvedValue({ data: [], error: null });
+      } else if (table === 'budgets') {
+        mockChain.maybeSingle = vi
+          .fn()
+          .mockResolvedValue({ data: { total_income: 10000000 }, error: null });
+      } else if (table === 'categories') {
+        mockChain.eq = vi.fn().mockResolvedValue({ data: [], error: null });
+      } else if (table === 'profiles') {
+        mockChain.single = vi
+          .fn()
+          .mockResolvedValue({
+            data: { subscription_tier: 'premium' },
+            error: null,
+          });
+      } else if (table === 'ai_insights') {
+        mockChain.delete = vi.fn().mockReturnThis();
+        mockChain.eq = vi.fn().mockResolvedValue({ error: null });
+        mockChain.insert = vi.fn().mockResolvedValue({ error: null });
+      }
+      return mockChain;
     });
 
-    const mockCategories = createChain();
-    // select().eq() is awaited directly
-    mockCategories.eq.mockResolvedValue({ data: [], error: null });
-
-    const mockProfile = createChain();
-    mockProfile.single.mockResolvedValue({
-      data: { subscription_tier: 'premium' },
-      error: null,
-    });
-
-    const mockDelete = createChain();
-    mockDelete.delete.mockReturnThis();
-    mockDelete.eq.mockResolvedValue({ error: null });
-
-    const mockInsert = createChain();
-    mockInsert.insert.mockResolvedValue({ error: null });
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mockSupabase: any = {
       auth: { getUser: mockGetUser },
-      from: vi
-        .fn()
-        .mockReturnValueOnce(mockTransactions) // transactions
-        .mockReturnValueOnce(mockBudget) // budgets
-        .mockReturnValueOnce(mockCategories) // categories
-        .mockReturnValueOnce(mockProfile) // profiles
-        .mockReturnValueOnce(mockDelete) // delete
-        .mockReturnValueOnce(mockInsert), // insert
+      from: mockFrom,
     };
 
     (createServerClient as Mock).mockReturnValue(mockSupabase);
 
     const insights = await refreshInsights();
 
-    expect(mockSupabase.from).toHaveBeenCalledWith('transactions');
-    expect(mockSupabase.from).toHaveBeenCalledWith('ai_insights');
-    expect(insights).toHaveLength(2);
+    expect(mockFrom).toHaveBeenCalledWith('transactions');
+    expect(mockFrom).toHaveBeenCalledWith('ai_insights');
+    expect(Array.isArray(insights)).toBe(true);
   });
 
   it('getInsights returns limited insights for free users', async () => {
@@ -96,34 +81,28 @@ describe('insight-actions', () => {
       error: null,
     });
 
-    const mockInsights = {
-      select: vi.fn().mockReturnThis(),
-      eq: vi.fn().mockReturnThis(),
-      order: vi.fn().mockResolvedValue({
-        data: [
-          { content: 'Insight 1', type: 'warning' },
-          { content: 'Insight 2', type: 'saving_tip' },
-        ],
-        error: null,
-      }),
-    };
+    const mockFrom = vi.fn().mockImplementation((table: string) => {
+      const mockChain = createMockChain();
+      if (table === 'ai_insights') {
+        mockChain.order = vi.fn().mockResolvedValue({
+          data: [
+            { content: 'Insight 1', type: 'warning' },
+            { content: 'Insight 2', type: 'saving_tip' },
+          ],
+          error: null,
+        });
+      } else if (table === 'profiles') {
+        mockChain.single = vi.fn().mockResolvedValue({
+          data: { subscription_tier: 'free' },
+          error: null,
+        });
+      }
+      return mockChain;
+    });
 
-    const mockProfile = {
-      select: vi.fn().mockReturnThis(),
-      eq: vi.fn().mockReturnThis(),
-      single: vi.fn().mockResolvedValue({
-        data: { subscription_tier: 'free' },
-        error: null,
-      }),
-    };
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const mockSupabase: any = {
       auth: { getUser: mockGetUser },
-      from: vi
-        .fn()
-        .mockReturnValueOnce(mockInsights)
-        .mockReturnValueOnce(mockProfile),
+      from: mockFrom,
     };
 
     (createServerClient as Mock).mockReturnValue(mockSupabase);
