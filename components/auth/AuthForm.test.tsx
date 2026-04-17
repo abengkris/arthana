@@ -21,10 +21,9 @@ describe('AuthForm', () => {
   const mockSignUp = vi.fn();
 
   beforeEach(() => {
-    vi.clearAllMocks()(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      createClient as any
-    ).mockReturnValue({
+    vi.clearAllMocks();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (createClient as any).mockReturnValue({
       auth: {
         signInWithPassword: mockSignInWithPassword,
         signUp: mockSignUp,
