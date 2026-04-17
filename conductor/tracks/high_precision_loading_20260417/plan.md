@@ -26,6 +26,6 @@
 - [x] Task: Create a generic `SectionErrorBoundary` component [910bea0]
   - [x] Implement error boundary to show specific error message with a 'Retry' button
   - [x] Write unit tests for error catching and retry functionality
-- [ ] Task: Wrap dashboard sections in `SectionErrorBoundary`
-  - [ ] Apply to `SummaryCards`, `AIInsightSection`, and `TransactionFeed`
+- [x] Task: Wrap dashboard sections in `SectionErrorBoundary` [c45ac0b]
+  - [x] Apply to `SummaryCards`, `AIInsightSection`, and `TransactionFeed`
 - [ ] Task: Conductor - User Manual Verification 'Granular Error Boundaries Implementation' (Protocol in workflow.md)
