@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 
 const getGreeting = () => {
   const hour = new Date().getHours();
@@ -13,10 +15,22 @@ interface GreetingHeaderProps {
 }
 
 export default function GreetingHeader({ name }: GreetingHeaderProps) {
-  const greeting = getGreeting();
+  const [greeting, setGreeting] = useState<string>('Halo');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setGreeting(getGreeting());
+
+    setMounted(true);
+  }, []);
+
+  const displayName = name || 'Teman';
+  const displayGreeting = mounted ? greeting : 'Halo';
+
   return (
     <h1 className="text-2xl font-bold tracking-tight text-balance">
-      {greeting}, {name}! Gimana arus kasmu hari ini? ☕
+      {displayGreeting}, {displayName}! Gimana arus kasmu hari ini? ☕
     </h1>
   );
 }

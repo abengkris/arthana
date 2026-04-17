@@ -84,7 +84,9 @@ export default async function DashboardPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <GreetingHeader name={user?.user_metadata?.name || 'Halo'} />
+      <GreetingHeader
+        name={user?.user_metadata?.name || user?.email?.split('@')[0] || ''}
+      />
 
       <SectionErrorBoundary>
         <Suspense fallback={<AIInsightSkeleton />}>
