@@ -7,3 +7,8 @@ This file tracks all major tracks for the project. Each track has its own detail
 ---
 
 - [x] **Track: Build the Dashboard Data Visualization with a Friendly, Casual Indonesian Persona for General Users.**
+
+---
+
+- [ ] **Track: High-Precision Loading & Error States**
+      _Link: [./tracks/high_precision_loading_20260417/](./tracks/high_precision_loading_20260417/)_
