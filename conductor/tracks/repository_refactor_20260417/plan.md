@@ -9,20 +9,20 @@
 
 ## Phase 2: Dashboard Service Refactor
 
-- [ ] Task: Define `IDashboardService` interface
-  - [ ] Create `lib/services/dashboard.ts` (or `.types.ts`)
-  - [ ] Define methods for fetching balance, income, expenses, and transaction feed
-- [ ] Task: Implement `SupabaseDashboardService`
-  - [ ] Create `lib/services/supabase-dashboard.ts`
-  - [ ] Implement `IDashboardService` using Supabase client
-- [ ] Task: Write tests for `SupabaseDashboardService`
-  - [ ] Create `lib/services/supabase-dashboard.test.ts`
-  - [ ] Mock Supabase client and verify data fetching logic
-- [ ] Task: Refactor Dashboard Actions
-  - [ ] Update `app/dashboard/actions.ts` to inject and use `IDashboardService`
-  - [ ] Remove direct Supabase imports from `app/dashboard/actions.ts`
-- [ ] Task: Verify Dashboard Functionality
-  - [ ] Ensure `app/dashboard/page.tsx` renders correctly with refactored actions
+- [x] Task: Define `IDashboardService` interface 7c2bcc8
+  - [x] Create `lib/services/dashboard.ts` (or `.types.ts`)
+  - [x] Define methods for fetching balance, income, expenses, and transaction feed
+- [x] Task: Implement `SupabaseDashboardService` 339d53e
+  - [x] Create `lib/services/supabase-dashboard.ts`
+  - [x] Implement `IDashboardService` using Supabase client
+- [x] Task: Write tests for `SupabaseDashboardService` 58a4dd1
+  - [x] Create `lib/services/supabase-dashboard.test.ts`
+  - [x] Mock Supabase client and verify data fetching logic
+- [x] Task: Refactor Dashboard Actions c9f5fd1
+  - [x] Update `app/dashboard/actions.ts` to inject and use `IDashboardService`
+  - [x] Remove direct Supabase imports from `app/dashboard/actions.ts`
+- [x] Task: Verify Dashboard Functionality c9f5fd1
+  - [x] Ensure `app/dashboard/page.tsx` renders correctly with refactored actions
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: Dashboard Service Refactor' (Protocol in workflow.md)
 
 ## Phase 3: Insight Service Refactor
