@@ -2,9 +2,9 @@
 
 ## Phase 1: Skeleton Components Development
 
-- [ ] Task: Create `SummaryCardsSkeleton` component
-  - [ ] Create basic geometric shape skeletons with pulse effect
-  - [ ] Write unit tests for rendering without errors
+- [x] Task: Create `SummaryCardsSkeleton` component [80968a9]
+  - [x] Create basic geometric shape skeletons with pulse effect
+  - [x] Write unit tests for rendering without errors
 - [ ] Task: Create `AIInsightSkeleton` component
   - [ ] Create basic geometric shape skeletons with pulse effect
   - [ ] Write unit tests for rendering without errors
