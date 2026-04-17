@@ -25,7 +25,7 @@
   - [x] Ensure `app/dashboard/page.tsx` renders correctly with refactored actions
 - [x] Task: Conductor - User Manual Verification 'Phase 2: Dashboard Service Refactor' (Protocol in workflow.md) 247e4f6
 
-## Phase 3: Insight Service Refactor
+## Phase 3: Insight Service Refactor [checkpoint: d16de64]
 
 - [x] Task: Define `IInsightService` interface 4a9c918
   - [x] Create `lib/services/insight.ts`
@@ -41,7 +41,7 @@
   - [x] Ensure financial logic remains in `lib/insights.ts`
 - [x] Task: Verify Insight Functionality 88c5449
   - [x] Ensure AI insights still load and refresh correctly on the dashboard
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Insight Service Refactor' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: Insight Service Refactor' (Protocol in workflow.md) d16de64
 
 ## Phase 4: Final Verification and Cleanup
 
