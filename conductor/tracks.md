@@ -10,5 +10,5 @@ This file tracks all major tracks for the project. Each track has its own detail
 
 ---
 
-- [~] **Track: Refactor Data Access to Repository Pattern**
-  _Link: [./tracks/repository_refactor_20260417/](./tracks/repository_refactor_20260417/)_
+- [x] **Track: Refactor Data Access to Repository Pattern**
+      _Link: [./tracks/repository_refactor_20260417/](./tracks/repository_refactor_20260417/)_
