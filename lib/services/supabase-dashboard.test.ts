@@ -25,8 +25,8 @@ describe('SupabaseDashboardService', () => {
         if (table === 'transactions') {
           queryBuilder.eq = vi.fn().mockResolvedValue({
             data: [
-              { amount: 5000, type: 'income' },
-              { amount: 2000, type: 'expense' },
+              { amount: 5000, categories: { type: 'income' } },
+              { amount: 2000, categories: { type: 'expense' } },
             ],
             error: null,
           } as any);

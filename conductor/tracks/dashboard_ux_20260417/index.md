@@ -1,4 +1,4 @@
-# Track repository_refactor_20260417 Context
+# Track dashboard_ux_20260417 Context
 
 - [Specification](./spec.md)
 - [Implementation Plan](./plan.md)

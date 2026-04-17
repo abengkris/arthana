@@ -1,14 +1,13 @@
 import { Suspense, cache } from 'react';
 import { createClient } from '@/utils/supabase/server';
 import GreetingHeader from '@/components/dashboard/GreetingHeader';
+import MobileHeader from '@/components/dashboard/MobileHeader';
 import SummaryCards from '@/components/dashboard/SummaryCards';
-import GoalTrackerCard from '@/components/dashboard/GoalTrackerCard';
-import BudgetProgressBar from '@/components/dashboard/BudgetProgressBar';
+import TimeFilter from '@/components/dashboard/TimeFilter';
+import SpendingByCategory from '@/components/dashboard/SpendingByCategory';
 import TransactionFeed from '@/components/dashboard/TransactionFeed';
-import { getDashboardData } from './actions';
-import { AIInsightSection } from '@/components/dashboard/AIInsightSection';
+import { getDashboardData, getDashboardSpendingByCategory } from './actions';
 import { SummaryCardsSkeleton } from '@/components/dashboard/SummaryCardsSkeleton';
-import { AIInsightSkeleton } from '@/components/dashboard/AIInsightSkeleton';
 import { TransactionFeedSkeleton } from '@/components/dashboard/TransactionFeedSkeleton';
 import { SectionErrorBoundary } from '@/components/dashboard/SectionErrorBoundary';
 import { SupabaseDashboardService } from '@/lib/services/supabase-dashboard';
@@ -30,26 +29,9 @@ async function SummaryCardsAsync() {
   );
 }
 
-async function MetricsCardsAsync() {
-  const data = await getCachedDashboardData();
-  return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-      <GoalTrackerCard current={data.savings} target={data.target} />
-      <div>
-        <h3 className="mb-4 text-lg font-bold">Anggaranmu</h3>
-        <BudgetProgressBar
-          label="Kebutuhan Harian"
-          progress={65}
-          status="safe"
-        />
-        <BudgetProgressBar
-          label="Langganan Digital"
-          progress={90}
-          status="warning"
-        />
-      </div>
-    </div>
-  );
+async function SpendingByCategoryAsync() {
+  const data = await getDashboardSpendingByCategory();
+  return <SpendingByCategory categories={data} />;
 }
 
 async function TransactionFeedAsync() {
@@ -83,16 +65,13 @@ export default async function DashboardPage() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="flex flex-col gap-6">
-      <GreetingHeader
-        name={user?.user_metadata?.name || user?.email?.split('@')[0] || ''}
-      />
-
-      <SectionErrorBoundary>
-        <Suspense fallback={<AIInsightSkeleton />}>
-          <AIInsightSection />
-        </Suspense>
-      </SectionErrorBoundary>
+    <div className="mx-auto flex w-full max-w-2xl flex-col gap-2">
+      <MobileHeader />
+      <div className="mb-6 hidden lg:block">
+        <GreetingHeader
+          name={user?.user_metadata?.name || user?.email?.split('@')[0] || ''}
+        />
+      </div>
 
       <SectionErrorBoundary>
         <Suspense fallback={<SummaryCardsSkeleton />}>
@@ -100,16 +79,17 @@ export default async function DashboardPage() {
         </Suspense>
       </SectionErrorBoundary>
 
+      <div className="flex justify-center md:justify-start">
+        <TimeFilter />
+      </div>
+
       <SectionErrorBoundary>
         <Suspense
           fallback={
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              <div className="bg-muted h-[150px] animate-pulse rounded-lg" />
-              <div className="bg-muted h-[150px] animate-pulse rounded-lg" />
-            </div>
+            <div className="mb-8 h-[200px] animate-pulse rounded-[24px] bg-[#1A1D24]" />
           }
         >
-          <MetricsCardsAsync />
+          <SpendingByCategoryAsync />
         </Suspense>
       </SectionErrorBoundary>
 

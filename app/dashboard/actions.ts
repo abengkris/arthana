@@ -35,3 +35,24 @@ export async function getDashboardData() {
 
   return summary;
 }
+
+export async function getDashboardSpendingByCategory() {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error('User not authenticated');
+  }
+
+  const dashboardService = new SupabaseDashboardService(supabase);
+  const { data, error } = await dashboardService.getSpendingByCategory(user.id);
+
+  if (error) {
+    console.error('Error fetching spending by category:', error);
+    return [];
+  }
+
+  return data || [];
+}

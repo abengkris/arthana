@@ -13,8 +13,15 @@ export interface TransactionSummary {
   id: string;
   amount: number;
   description: string;
-  category_id: string;
+  category_id: string | null;
+  category_name?: string;
   date: string;
+}
+
+export interface CategorySpending {
+  name: string;
+  value: number;
+  color: string;
 }
 
 /**
@@ -34,4 +41,12 @@ export interface IDashboardService {
     userId: string,
     limit?: number
   ): Promise<ServiceResult<TransactionSummary[]>>;
+
+  /**
+   * Fetches spending grouped by category for a specific time range.
+   */
+  getSpendingByCategory(
+    userId: string,
+    range?: 'Week' | 'Month' | 'Year'
+  ): Promise<ServiceResult<CategorySpending[]>>;
 }
