@@ -1,7 +1,12 @@
 'use server';
 
 import { createClient } from '@/utils/supabase/server';
+import { SupabaseDashboardService } from '@/lib/services/supabase-dashboard';
 
+/**
+ * Server Action to fetch dashboard data.
+ * Refactored to use SupabaseDashboardService for centralized data access.
+ */
 export async function getDashboardData() {
   const supabase = await createClient();
   const {
@@ -12,30 +17,21 @@ export async function getDashboardData() {
     throw new Error('User not authenticated');
   }
 
-  // Fetch transactions and emergency fund for current user
-  const [transactionsRes, emergencyFundRes] = await Promise.all([
-    supabase.from('transactions').select('amount').eq('user_id', user.id),
-    supabase
-      .from('emergency_funds')
-      .select('target_amount, current_amount')
-      .eq('user_id', user.id)
-      .single(),
-  ]);
+  const dashboardService = new SupabaseDashboardService(supabase);
+  const { data: summary, error } = await dashboardService.getSummary(user.id);
 
-  const transactions = transactionsRes.data || [];
-  const emergencyFund = emergencyFundRes.data;
+  if (error) {
+    console.error('Error fetching dashboard summary:', error);
+    // Return default values or handle error as needed
+    return {
+      total_income: 0,
+      total_expenses: 0,
+      balance: 0,
+      investments: 0,
+      savings: 0,
+      target: 0,
+    };
+  }
 
-  const total_expenses = transactions.reduce(
-    (acc, t) => acc + Number(t.amount),
-    0
-  );
-
-  return {
-    total_income: 0, // Requires additional table logic
-    total_expenses,
-    balance: 0, // Placeholder
-    investments: 0,
-    savings: Number(emergencyFund?.current_amount || 0),
-    target: Number(emergencyFund?.target_amount || 0),
-  };
+  return summary;
 }
