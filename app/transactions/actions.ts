@@ -61,7 +61,8 @@ export async function addTransaction(data: TransactionInput) {
     category_id: validation.data.category_id,
     amount: normalizedAmount,
     date: validation.data.date.toISOString(),
-    note: validation.data.note,
+    description: validation.data.note,
+    payment_method: validation.data.payment_method || 'Cash',
   };
 
   const { error } = await supabase

@@ -50,7 +50,7 @@ describe('Header', () => {
   it('renders New Transaction button', () => {
     renderWithModal();
     expect(
-      screen.getByRole('button', { name: /new transaction/i })
+      screen.getByRole('link', { name: /new transaction/i })
     ).toBeInTheDocument();
   });
 });

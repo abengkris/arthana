@@ -24,6 +24,7 @@ export const transactionSchema = z.object({
     .max(255, 'Catatan tidak boleh lebih dari 255 karakter')
     .optional()
     .nullable(),
+  payment_method: z.string().optional(),
 });
 
 /**
@@ -39,5 +40,6 @@ export interface TransactionRecord {
   category_id: string;
   amount: number; // Stored as positive for income, negative for expense
   date: string; // ISO format
-  note?: string | null;
+  description?: string | null;
+  payment_method?: string;
 }

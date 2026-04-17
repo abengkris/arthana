@@ -19,12 +19,12 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
 } from '@/components/ui/breadcrumb';
-import { useTransactionModal } from '../transactions/TransactionContext';
+
+import Link from 'next/link';
 
 export function Header() {
   const router = useRouter();
   const supabase = createClient();
-  const { setOpen } = useTransactionModal();
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -45,14 +45,11 @@ export function Header() {
       </div>
 
       <div className="flex items-center gap-4">
-        <Button
-          variant="default"
-          size="sm"
-          className="hidden md:flex"
-          onClick={() => setOpen(true)}
-        >
-          <PlusCircleIcon className="mr-2 h-4 w-4" />
-          New Transaction
+        <Button variant="default" size="sm" className="hidden md:flex" asChild>
+          <Link href="/dashboard/transactions/new">
+            <PlusCircleIcon className="mr-2 h-4 w-4" />
+            New Transaction
+          </Link>
         </Button>
 
         <DropdownMenu>

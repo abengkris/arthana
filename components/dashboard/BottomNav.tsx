@@ -4,22 +4,20 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, BarChart2, Wallet, User, Plus } from 'lucide-react';
-import { useTransactionModal } from '../transactions/TransactionContext';
 
 export default function BottomNav() {
   const pathname = usePathname();
-  const { setOpen } = useTransactionModal();
 
   return (
     <div className="fixed right-0 bottom-0 left-0 z-50 w-full bg-[#0F1115] lg:hidden">
       {/* FAB */}
       <div className="absolute -top-6 right-6 z-20">
-        <button
-          onClick={() => setOpen(true)}
+        <Link
+          href="/dashboard/transactions/new"
           className="flex h-14 w-14 items-center justify-center rounded-full bg-[#4A85F6] text-white shadow-lg shadow-blue-500/40 transition-colors hover:bg-blue-600 active:scale-95"
         >
           <Plus size={28} />
-        </button>
+        </Link>
       </div>
 
       {/* Navigation Bar */}

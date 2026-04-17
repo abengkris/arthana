@@ -61,7 +61,8 @@ describe('addTransaction Action', () => {
       category_id: validExpense.category_id,
       amount: -100, // Negative for expense
       date: validExpense.date.toISOString(),
-      note: 'Dinner',
+      description: 'Dinner',
+      payment_method: 'Cash',
     });
     expect(revalidatePath).toHaveBeenCalledWith('/dashboard');
   });
