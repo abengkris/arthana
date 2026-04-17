@@ -13,13 +13,13 @@
   - [x] Write unit tests for rendering without errors
 - [x] Task: Conductor - User Manual Verification 'Skeleton Components Development' (Protocol in workflow.md)
 
-## Phase 2: Granular Suspense Boundaries Implementation
+## Phase 2: Granular Suspense Boundaries Implementation [checkpoint: c912c05]
 
 - [x] Task: Refactor `Dashboard` page to use granular `Suspense` [c45ac0b]
   - [x] Wrap `SummaryCards` in `Suspense` with `SummaryCardsSkeleton` as fallback
   - [x] Wrap `AIInsightSection` in `Suspense` with `AIInsightSkeleton` as fallback
   - [x] Wrap `TransactionFeed` in `Suspense` with `TransactionFeedSkeleton` as fallback
-- [ ] Task: Conductor - User Manual Verification 'Granular Suspense Boundaries Implementation' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Granular Suspense Boundaries Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Granular Error Boundaries Implementation
 
