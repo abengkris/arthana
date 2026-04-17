@@ -1,15 +1,11 @@
 'use server';
 
 import { createClient } from '@/utils/supabase/server';
-import {
-  generateInsights,
-  type Transaction,
-  type BudgetCategory,
-} from '@/lib/insights';
+import { SupabaseInsightService } from '@/lib/services/supabase-insight';
 
 /**
  * Refreshes and returns AI Insights for the authenticated user.
- * Implements ephemeral logic: deletes old insights before inserting new ones.
+ * Refactored to use SupabaseInsightService for centralized data access.
  */
 export async function refreshInsights() {
   const supabase = await createClient();
@@ -21,71 +17,22 @@ export async function refreshInsights() {
     throw new Error('User not authenticated');
   }
 
-  // 1. Fetch current month data
-  const now = new Date();
-  const month = now.getMonth() + 1;
-  const year = now.getFullYear();
-
-  const [transactionsRes, budgetRes, categoriesRes, profileRes] =
-    await Promise.all([
-      supabase
-        .from('transactions')
-        .select('amount, category_id')
-        .eq('user_id', user.id)
-        .gte('date', `${year}-${month.toString().padStart(2, '0')}-01`),
-      supabase
-        .from('budgets')
-        .select('total_income')
-        .eq('user_id', user.id)
-        .eq('month', month)
-        .eq('year', year)
-        .single(),
-      supabase
-        .from('categories')
-        .select('id, name, percentage_allocation')
-        .eq('user_id', user.id),
-      supabase
-        .from('profiles')
-        .select('subscription_tier')
-        .eq('id', user.id)
-        .single(),
-    ]);
-
-  const transactions = (transactionsRes.data || []) as Transaction[];
-  const totalIncome = Number(budgetRes.data?.total_income || 0);
-  const categories: BudgetCategory[] = (categoriesRes.data || []).map(
-    (cat) => ({
-      id: cat.id,
-      name: cat.name,
-      limit: totalIncome * (Number(cat.percentage_allocation || 0) / 100),
-    })
+  const insightService = new SupabaseInsightService(supabase);
+  const { data: insights, error } = await insightService.refreshInsights(
+    user.id
   );
-  const subscriptionTier = profileRes.data?.subscription_tier || 'free';
 
-  // 2. Generate Insights
-  const allInsights = generateInsights(transactions, categories, totalIncome);
-
-  // 3. Ephemeral Logic: Delete old, Insert new
-  // We use a transaction-like approach (or just sequential for MVP)
-  await supabase.from('ai_insights').delete().eq('user_id', user.id);
-
-  if (allInsights.length > 0) {
-    const insightsToInsert = allInsights.map((i) => ({
-      user_id: user.id,
-      content: i.content,
-      type: i.type,
-    }));
-
-    await supabase.from('ai_insights').insert(insightsToInsert);
+  if (error) {
+    console.error('Error refreshing insights:', error);
+    return [];
   }
 
-  // Return insights filtered by tier
-  // Free: 1 card, Premium: all cards
-  return subscriptionTier === 'premium' ? allInsights : allInsights.slice(0, 1);
+  return insights || [];
 }
 
 /**
  * Fetches existing insights from the database.
+ * Refactored to use SupabaseInsightService for centralized data access.
  */
 export async function getInsights() {
   const supabase = await createClient();
@@ -95,21 +42,13 @@ export async function getInsights() {
 
   if (!user) return [];
 
-  const [insightsRes, profileRes] = await Promise.all([
-    supabase
-      .from('ai_insights')
-      .select('content, type')
-      .eq('user_id', user.id)
-      .order('created_at', { ascending: false }),
-    supabase
-      .from('profiles')
-      .select('subscription_tier')
-      .eq('id', user.id)
-      .single(),
-  ]);
+  const insightService = new SupabaseInsightService(supabase);
+  const { data: insights, error } = await insightService.getInsights(user.id);
 
-  const insights = insightsRes.data || [];
-  const subscriptionTier = profileRes.data?.subscription_tier || 'free';
+  if (error) {
+    console.error('Error fetching insights:', error);
+    return [];
+  }
 
-  return subscriptionTier === 'premium' ? insights : insights.slice(0, 1);
+  return insights || [];
 }
