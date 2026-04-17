@@ -15,10 +15,10 @@
 
 ## Phase 2: Granular Suspense Boundaries Implementation
 
-- [ ] Task: Refactor `Dashboard` page to use granular `Suspense`
-  - [ ] Wrap `SummaryCards` in `Suspense` with `SummaryCardsSkeleton` as fallback
-  - [ ] Wrap `AIInsightSection` in `Suspense` with `AIInsightSkeleton` as fallback
-  - [ ] Wrap `TransactionFeed` in `Suspense` with `TransactionFeedSkeleton` as fallback
+- [x] Task: Refactor `Dashboard` page to use granular `Suspense` [c45ac0b]
+  - [x] Wrap `SummaryCards` in `Suspense` with `SummaryCardsSkeleton` as fallback
+  - [x] Wrap `AIInsightSection` in `Suspense` with `AIInsightSkeleton` as fallback
+  - [x] Wrap `TransactionFeed` in `Suspense` with `TransactionFeedSkeleton` as fallback
 - [ ] Task: Conductor - User Manual Verification 'Granular Suspense Boundaries Implementation' (Protocol in workflow.md)
 
 ## Phase 3: Granular Error Boundaries Implementation
