@@ -19,7 +19,9 @@ export default function SummaryCards({
           <CardTitle className="text-sm font-medium">Sisa Dompet</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatIDR(balance)}</div>
+          <div className="text-2xl font-bold tabular-nums">
+            {formatIDR(balance)}
+          </div>
         </CardContent>
       </Card>
       <Card>
@@ -27,7 +29,9 @@ export default function SummaryCards({
           <CardTitle className="text-sm font-medium">Uang Masuk</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatIDR(income)}</div>
+          <div className="text-2xl font-bold tabular-nums">
+            {formatIDR(income)}
+          </div>
         </CardContent>
       </Card>
       <Card>
@@ -35,7 +39,9 @@ export default function SummaryCards({
           <CardTitle className="text-sm font-medium">Uang Keluar</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{formatIDR(expenses)}</div>
+          <div className="text-2xl font-bold tabular-nums">
+            {formatIDR(expenses)}
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -86,6 +86,8 @@ export default function AuthForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                spellCheck={false}
+                autoComplete="email"
               />
             </Field>
             <Field>
@@ -96,6 +98,9 @@ export default function AuthForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                autoComplete={
+                  mode === 'login' ? 'current-password' : 'new-password'
+                }
               />
             </Field>
           </FieldGroup>

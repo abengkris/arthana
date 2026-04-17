@@ -81,6 +81,8 @@ export function RegisterForm() {
               placeholder="name@example.com"
               {...register('email')}
               disabled={loading}
+              spellCheck={false}
+              autoComplete="email"
             />
             {errors.email && (
               <p className="text-destructive text-xs font-medium">
@@ -95,6 +97,7 @@ export function RegisterForm() {
               type="password"
               {...register('password')}
               disabled={loading}
+              autoComplete="new-password"
             />
             {errors.password && (
               <p className="text-destructive text-xs font-medium">

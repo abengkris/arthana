@@ -108,6 +108,7 @@ export function TransactionForm({
           id="amount"
           type="number"
           step="0.01"
+          inputMode="decimal"
           placeholder="0"
           {...register('amount')}
         />

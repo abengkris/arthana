@@ -46,7 +46,8 @@ export function BasicInfo({ form }: BasicInfoProps) {
         <Input
           id="monthlyIncome"
           type="number"
-          placeholder="e.g. 10000000"
+          inputMode="numeric"
+          placeholder="e.g., 10,000,000…"
           {...register('monthlyIncome')}
         />
         <FieldDescription>Your total take-home pay per month.</FieldDescription>

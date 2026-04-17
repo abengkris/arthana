@@ -15,7 +15,7 @@ export default function TransactionFeed({
 }: TransactionFeedProps) {
   return (
     <div className="mt-6">
-      <h2 className="mb-4 text-xl font-bold">Jejak Uangmu</h2>
+      <h2 className="mb-4 text-xl font-bold text-balance">Jejak Uangmu</h2>
       {transactions.length === 0 ? (
         <div className="text-muted-foreground py-8 text-center">
           Belum ada pergerakan uang nih. Yuk catat pengeluaran pertamamu!
@@ -28,7 +28,9 @@ export default function TransactionFeed({
               className="flex items-center justify-between rounded border p-4"
             >
               <span>{t.description}</span>
-              <span className="font-bold">{formatIDR(t.amount)}</span>
+              <span className="font-bold tabular-nums">
+                {formatIDR(t.amount)}
+              </span>
             </li>
           ))}
         </ul>

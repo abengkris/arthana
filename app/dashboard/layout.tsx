@@ -21,9 +21,8 @@ export default function DashboardLayout({
         >
           <Sidebar />
         </Suspense>
-        ...
         {/* Main Content Area */}
-        <div className="flex flex-1 flex-col transition-all duration-300 lg:pl-64">
+        <div className="flex flex-1 flex-col transition-[padding-left] duration-300 lg:pl-64">
           {/* Sticky Header */}
           <Header />
 

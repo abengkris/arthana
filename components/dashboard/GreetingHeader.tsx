@@ -15,7 +15,7 @@ interface GreetingHeaderProps {
 export default function GreetingHeader({ name }: GreetingHeaderProps) {
   const greeting = getGreeting();
   return (
-    <h1 className="text-2xl font-bold tracking-tight">
+    <h1 className="text-2xl font-bold tracking-tight text-balance">
       {greeting}, {name}! Gimana arus kasmu hari ini? ☕
     </h1>
   );
