@@ -5,9 +5,9 @@
 - [x] Task: Create `SummaryCardsSkeleton` component [80968a9]
   - [x] Create basic geometric shape skeletons with pulse effect
   - [x] Write unit tests for rendering without errors
-- [ ] Task: Create `AIInsightSkeleton` component
-  - [ ] Create basic geometric shape skeletons with pulse effect
-  - [ ] Write unit tests for rendering without errors
+- [x] Task: Create `AIInsightSkeleton` component [b49e120]
+  - [x] Create basic geometric shape skeletons with pulse effect
+  - [x] Write unit tests for rendering without errors
 - [ ] Task: Create `TransactionFeedSkeleton` component
   - [ ] Create basic geometric shape skeletons with pulse effect
   - [ ] Write unit tests for rendering without errors
