@@ -12,11 +12,11 @@
 
 ## Phase 2: i18n Infrastructure (next-intl)
 
-- [ ] Task: Setup `next-intl`
-  - [ ] Write configuration tests (if applicable) for the routing and middleware
-  - [ ] Implement `next-intl` initialization, routing, and middleware to read `locale`
-- [ ] Task: Create Dictionaries
-  - [ ] Create `messages/en.json` and `messages/id.json` with base UI and category keys
+- [x] Task: Setup `next-intl` 569f622
+  - [x] Write configuration tests (if applicable) for the routing and middleware
+  - [x] Implement `next-intl` initialization, routing, and middleware to read `locale`
+- [x] Task: Create Dictionaries 569f622
+  - [x] Create `messages/en.json` and `messages/id.json` with base UI and category keys
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: i18n Infrastructure (next-intl)' (Protocol in workflow.md)
 
 ## Phase 3: UI Components & Settings
