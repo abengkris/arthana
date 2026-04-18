@@ -33,10 +33,13 @@ import {
   type TransactionInput,
 } from '@/lib/validations/transaction';
 
+import { useTranslations } from 'next-intl';
+
 interface Category {
   id: string;
   name: string;
-  type: 'income' | 'expense';
+  type: 'income' | 'expense' | 'savings';
+  classification: string;
 }
 
 interface TransactionFormProps {
@@ -50,6 +53,8 @@ export function TransactionForm({
   onSubmit,
   isLoading,
 }: TransactionFormProps) {
+  const t = useTranslations('transaction');
+  const tc = useTranslations('category');
   const {
     register,
     handleSubmit,
@@ -62,17 +67,42 @@ export function TransactionForm({
       type: 'expense',
       amount: undefined,
       category_id: '',
+      classification: undefined,
       date: new Date(),
       note: '',
     },
   });
 
   const type = useWatch({ control, name: 'type' }) || 'expense';
+  const category_id = useWatch({ control, name: 'category_id' });
 
   // Reset category selection when transaction type changes
   React.useEffect(() => {
     setValue('category_id', '', { shouldValidate: true });
+    setValue(
+      'classification',
+      '' as 'kebutuhan' | 'keinginan' | 'tabungan' | 'pendapatan',
+      { shouldValidate: true }
+    );
   }, [type, setValue]);
+
+  // Automatically set classification when category changes
+  React.useEffect(() => {
+    if (category_id) {
+      const category = categories.find((c) => c.id === category_id);
+      if (category) {
+        setValue(
+          'classification',
+          category.classification as
+            | 'kebutuhan'
+            | 'keinginan'
+            | 'tabungan'
+            | 'pendapatan',
+          { shouldValidate: true }
+        );
+      }
+    }
+  }, [category_id, categories, setValue]);
 
   const filteredCategories = React.useMemo(() => {
     return categories.filter((category) => category.type === type);
@@ -82,7 +112,9 @@ export function TransactionForm({
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <Field orientation="horizontal">
         <div className="flex-1">
-          <FieldLabel htmlFor="type">Jenis Transaksi</FieldLabel>
+          <FieldLabel htmlFor="type">
+            {t('type') || 'Jenis Transaksi'}
+          </FieldLabel>
           <FieldDescription className="capitalize">
             {type === 'income' ? 'Pemasukan' : 'Pengeluaran'}
           </FieldDescription>
@@ -103,7 +135,7 @@ export function TransactionForm({
       </Field>
 
       <Field>
-        <FieldLabel htmlFor="amount">Nominal</FieldLabel>
+        <FieldLabel htmlFor="amount">{t('amount')}</FieldLabel>
         <Input
           id="amount"
           type="number"
@@ -116,7 +148,7 @@ export function TransactionForm({
       </Field>
 
       <Field>
-        <FieldLabel htmlFor="category_id">Kategori</FieldLabel>
+        <FieldLabel htmlFor="category_id">{t('category')}</FieldLabel>
         <Controller
           control={control}
           name="category_id"
@@ -128,7 +160,7 @@ export function TransactionForm({
               <SelectContent>
                 {filteredCategories.map((category) => (
                   <SelectItem key={category.id} value={category.id}>
-                    {category.name}
+                    {tc(category.name)}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -139,7 +171,37 @@ export function TransactionForm({
       </Field>
 
       <Field>
-        <FieldLabel htmlFor="date">Tanggal</FieldLabel>
+        <FieldLabel htmlFor="classification">{t('classification')}</FieldLabel>
+        <Controller
+          control={control}
+          name="classification"
+          render={({ field }) => (
+            <Select onValueChange={field.onChange} value={field.value}>
+              <SelectTrigger id="classification">
+                <SelectValue placeholder="Pilih klasifikasi" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="kebutuhan">
+                  {t('classification_options.kebutuhan')}
+                </SelectItem>
+                <SelectItem value="keinginan">
+                  {t('classification_options.keinginan')}
+                </SelectItem>
+                <SelectItem value="tabungan">
+                  {t('classification_options.tabungan')}
+                </SelectItem>
+                <SelectItem value="pendapatan">
+                  {t('classification_options.pendapatan')}
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          )}
+        />
+        <FieldError errors={[errors.classification]} />
+      </Field>
+
+      <Field>
+        <FieldLabel htmlFor="date">{t('date')}</FieldLabel>
         <Controller
           control={control}
           name="date"
@@ -182,7 +244,7 @@ export function TransactionForm({
       </Field>
 
       <Field>
-        <FieldLabel htmlFor="note">Catatan (Opsional)</FieldLabel>
+        <FieldLabel htmlFor="note">{t('description')}</FieldLabel>
         <Input
           id="note"
           placeholder="Contoh: Makan siang…"
@@ -193,7 +255,7 @@ export function TransactionForm({
 
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-        Simpan
+        {t('save')}
       </Button>
     </form>
   );

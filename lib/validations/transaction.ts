@@ -5,6 +5,13 @@ import { z } from 'zod';
  */
 export const TransactionType = z.enum(['expense', 'income']);
 
+export const ClassificationType = z.enum([
+  'kebutuhan',
+  'keinginan',
+  'tabungan',
+  'pendapatan',
+]);
+
 /**
  * Schema for transaction entry validation.
  */
@@ -15,6 +22,7 @@ export const transactionSchema = z.object({
     .positive('Nominal harus lebih dari nol')
     .multipleOf(0.01, 'Nominal maksimal 2 angka desimal'),
   category_id: z.string().uuid('Kategori yang dipilih tidak valid'),
+  classification: ClassificationType,
   date: z.date({
     required_error: 'Silakan pilih tanggal',
     invalid_type_error: 'Format tanggal tidak valid',
@@ -40,6 +48,7 @@ export interface TransactionRecord {
   category_id: string;
   amount: number; // Stored as positive for income, negative for expense
   date: string; // ISO format
+  classification: string;
   description?: string | null;
   payment_method?: string;
 }

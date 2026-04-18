@@ -38,7 +38,8 @@ import {
 interface Category {
   id: string;
   name: string;
-  type: 'income' | 'expense';
+  type: 'income' | 'expense' | 'savings';
+  classification: string;
 }
 
 interface NewTransactionFormProps {
@@ -62,6 +63,7 @@ export function NewTransactionForm({ categories }: NewTransactionFormProps) {
       type: 'expense',
       amount: undefined,
       category_id: '',
+      classification: undefined,
       date: new Date(),
       note: '',
       payment_method: 'Cash',
@@ -71,6 +73,7 @@ export function NewTransactionForm({ categories }: NewTransactionFormProps) {
   const currentType = watch('type');
   const currentCategory = watch('category_id');
   const currentPaymentMethod = watch('payment_method');
+  const currentClassification = watch('classification');
 
   const filteredCategories = React.useMemo(() => {
     return categories.filter((cat) => cat.type === currentType);
@@ -83,14 +86,49 @@ export function NewTransactionForm({ categories }: NewTransactionFormProps) {
         (c) => c.id === currentCategory
       );
       if (!isCurrentValid) {
-        setValue('category_id', filteredCategories[0].id, {
+        const firstCategory = filteredCategories[0];
+        setValue('category_id', firstCategory.id, {
           shouldValidate: true,
         });
+        setValue(
+          'classification',
+          firstCategory.classification as
+            | 'kebutuhan'
+            | 'keinginan'
+            | 'tabungan'
+            | 'pendapatan',
+          {
+            shouldValidate: true,
+          }
+        );
       }
     } else {
       setValue('category_id', '', { shouldValidate: true });
+      setValue(
+        'classification',
+        '' as 'kebutuhan' | 'keinginan' | 'tabungan' | 'pendapatan',
+        { shouldValidate: true }
+      );
     }
   }, [currentType, filteredCategories, currentCategory, setValue]);
+
+  // Sync classification when category changes
+  React.useEffect(() => {
+    if (currentCategory) {
+      const category = categories.find((c) => c.id === currentCategory);
+      if (category) {
+        setValue(
+          'classification',
+          category.classification as
+            | 'kebutuhan'
+            | 'keinginan'
+            | 'tabungan'
+            | 'pendapatan',
+          { shouldValidate: true }
+        );
+      }
+    }
+  }, [currentCategory, categories, setValue]);
 
   const onSubmit = async (data: TransactionInput) => {
     setIsLoading(true);
@@ -240,6 +278,47 @@ export function NewTransactionForm({ categories }: NewTransactionFormProps) {
           {errors.category_id && (
             <p className="mt-2 text-xs text-[#F87171]">
               {errors.category_id.message}
+            </p>
+          )}
+        </div>
+
+        {/* Classification Selector */}
+        <div>
+          <h3 className="mb-4 text-lg font-bold text-white">Classification</h3>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { id: 'kebutuhan', label: 'Needs' },
+              { id: 'keinginan', label: 'Wants' },
+              { id: 'tabungan', label: 'Savings' },
+              { id: 'pendapatan', label: 'Income' },
+            ].map((cls) => (
+              <button
+                key={cls.id}
+                type="button"
+                onClick={() =>
+                  setValue(
+                    'classification',
+                    cls.id as
+                      | 'kebutuhan'
+                      | 'keinginan'
+                      | 'tabungan'
+                      | 'pendapatan'
+                  )
+                }
+                className={cn(
+                  'rounded-full px-6 py-2 text-sm font-medium transition-all',
+                  currentClassification === cls.id
+                    ? 'bg-[#4A85F6] text-white'
+                    : 'bg-[#1A1D24] text-[#9CA3AF] hover:text-white lg:bg-[#0F1115]'
+                )}
+              >
+                {cls.label}
+              </button>
+            ))}
+          </div>
+          {errors.classification && (
+            <p className="mt-2 text-xs text-[#F87171]">
+              {errors.classification.message}
             </p>
           )}
         </div>

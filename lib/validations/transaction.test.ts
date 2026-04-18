@@ -6,6 +6,7 @@ describe('transactionSchema', () => {
     type: 'expense' as const,
     amount: 100.5,
     category_id: '550e8400-e29b-41d4-a716-446655440000',
+    classification: 'kebutuhan' as const,
     date: new Date(),
     note: 'Test note',
   };

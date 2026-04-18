@@ -47,6 +47,7 @@ describe('addTransaction Action', () => {
     type: 'expense' as const,
     amount: 100,
     category_id: '550e8400-e29b-41d4-a716-446655440000',
+    classification: 'kebutuhan',
     date: new Date('2026-04-15'),
     note: 'Dinner',
   };
@@ -61,6 +62,7 @@ describe('addTransaction Action', () => {
       category_id: validExpense.category_id,
       amount: -100, // Negative for expense
       date: validExpense.date.toISOString(),
+      classification: 'kebutuhan',
       description: 'Dinner',
       payment_method: 'Cash',
     });

@@ -2,13 +2,36 @@ import { render, screen } from '@testing-library/react';
 import { TransactionModal } from './TransactionModal';
 import { describe, it, expect, vi } from 'vitest';
 import { TransactionProvider } from './TransactionContext';
+import { NextIntlClientProvider } from 'next-intl';
+
+const messages = {
+  transaction: {
+    add_new: 'Add Transaction',
+    type: 'Transaction Type',
+    amount: 'Amount',
+    category: 'Category',
+    classification: 'Classification',
+    classification_options: {
+      kebutuhan: 'Needs',
+      keinginan: 'Wants',
+      tabungan: 'Savings',
+      pendapatan: 'Income',
+    },
+    description: 'Description',
+    date: 'Date',
+    save: 'Save',
+  },
+  category: {},
+};
 
 describe('TransactionModal', () => {
   const renderWithProvider = (open: boolean) =>
     render(
-      <TransactionProvider>
-        <TransactionModal open={open} onOpenChange={vi.fn()} />
-      </TransactionProvider>
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <TransactionProvider>
+          <TransactionModal open={open} onOpenChange={vi.fn()} />
+        </TransactionProvider>
+      </NextIntlClientProvider>
     );
 
   it('renders the modal when open is true', () => {

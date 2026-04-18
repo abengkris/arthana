@@ -10,7 +10,12 @@ import { useTransactionModal } from './TransactionContext';
 
 export function TransactionFormContainer() {
   const [categories, setCategories] = React.useState<
-    { id: string; name: string; type: 'income' | 'expense' }[]
+    {
+      id: string;
+      name: string;
+      type: 'income' | 'expense' | 'savings';
+      classification: string;
+    }[]
   >([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const { setOpen } = useTransactionModal();
@@ -20,7 +25,7 @@ export function TransactionFormContainer() {
       const supabase = createClient();
       const { data, error } = await supabase
         .from('categories')
-        .select('id, name, type')
+        .select('id, name, type, classification')
         .order('name');
 
       if (!error && data) {

@@ -15,7 +15,7 @@ export default async function AddTransactionPage() {
   // Fetch categories
   const { data: categories, error } = await supabase
     .from('categories')
-    .select('id, name, type')
+    .select('id, name, type, classification')
     .order('name');
 
   if (error) {

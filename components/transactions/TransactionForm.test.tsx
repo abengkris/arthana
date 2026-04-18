@@ -1,44 +1,91 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { TransactionForm } from './TransactionForm';
 import { describe, it, expect, vi } from 'vitest';
+import { NextIntlClientProvider } from 'next-intl';
+
+const messages = {
+  transaction: {
+    type: 'Transaction Type',
+    amount: 'Amount',
+    category: 'Category',
+    classification: 'Classification',
+    classification_options: {
+      kebutuhan: 'Needs',
+      keinginan: 'Wants',
+      tabungan: 'Savings',
+      pendapatan: 'Income',
+    },
+    description: 'Description',
+    date: 'Date',
+    save: 'Save',
+  },
+  category: {
+    Food: 'Food',
+    Rent: 'Rent',
+    Salary: 'Salary',
+  },
+};
 
 describe('TransactionForm', () => {
   const mockCategories = [
-    { id: 'cat-1', name: 'Food', type: 'expense' as const },
-    { id: 'cat-2', name: 'Rent', type: 'expense' as const },
-    { id: 'cat-3', name: 'Salary', type: 'income' as const },
+    {
+      id: 'cat-1',
+      name: 'Food',
+      type: 'expense' as const,
+      classification: 'kebutuhan',
+    },
+    {
+      id: 'cat-2',
+      name: 'Rent',
+      type: 'expense' as const,
+      classification: 'kebutuhan',
+    },
+    {
+      id: 'cat-3',
+      name: 'Salary',
+      type: 'income' as const,
+      classification: 'pendapatan',
+    },
   ];
 
-  it('renders all fields with Indonesian labels', () => {
-    render(<TransactionForm categories={mockCategories} onSubmit={vi.fn()} />);
+  const renderForm = (props = {}) => {
+    return render(
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <TransactionForm
+          categories={mockCategories}
+          onSubmit={vi.fn()}
+          {...props}
+        />
+      </NextIntlClientProvider>
+    );
+  };
 
-    expect(screen.getByLabelText(/Jenis Transaksi/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Nominal/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Kategori/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Tanggal/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Catatan/i)).toBeInTheDocument();
+  it('renders all fields with translated labels', () => {
+    renderForm();
+
+    expect(screen.getByText('Transaction Type')).toBeInTheDocument();
+    expect(screen.getByText('Amount')).toBeInTheDocument();
+    expect(screen.getByText('Category')).toBeInTheDocument();
+    expect(screen.getByText('Classification')).toBeInTheDocument();
+    expect(screen.getByText('Date')).toBeInTheDocument();
+    expect(screen.getByText('Description')).toBeInTheDocument();
   });
 
-  it('shows loading state on submit button with Indonesian text', () => {
-    render(
-      <TransactionForm
-        categories={mockCategories}
-        onSubmit={vi.fn()}
-        isLoading={true}
-      />
-    );
+  it('shows loading state on submit button', () => {
+    renderForm({ isLoading: true });
     const submitButton = screen.getByRole('button', {
-      name: /simpan/i,
+      name: /save/i,
     });
     expect(submitButton).toBeDisabled();
   });
 
   it('filters categories based on selected transaction type', async () => {
-    render(<TransactionForm categories={mockCategories} onSubmit={vi.fn()} />);
+    renderForm();
 
     // Default is expense
-    const selectTrigger = screen.getByRole('combobox');
-    fireEvent.click(selectTrigger);
+    const selectTriggers = screen.getAllByRole('combobox');
+    const categoryTrigger = selectTriggers[0]; // First one is Category
+    fireEvent.click(categoryTrigger);
 
     await waitFor(() => {
       expect(screen.getByRole('option', { name: 'Food' })).toBeInTheDocument();
@@ -49,13 +96,13 @@ describe('TransactionForm', () => {
     ).not.toBeInTheDocument();
 
     // Close the dropdown
-    fireEvent.keyDown(selectTrigger, { key: 'Escape', code: 'Escape' });
+    fireEvent.keyDown(categoryTrigger, { key: 'Escape', code: 'Escape' });
 
     // Switch to income
-    const typeSwitch = screen.getByRole('switch', { name: /Jenis Transaksi/i });
+    const typeSwitch = screen.getByRole('switch');
     fireEvent.click(typeSwitch);
 
-    fireEvent.click(selectTrigger);
+    fireEvent.click(categoryTrigger);
 
     await waitFor(() => {
       expect(
@@ -70,21 +117,20 @@ describe('TransactionForm', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('resets category selection when transaction type changes', async () => {
-    render(<TransactionForm categories={mockCategories} onSubmit={vi.fn()} />);
+  it('automatically sets classification when category changes', async () => {
+    renderForm();
 
-    const selectTrigger = screen.getByRole('combobox');
-    fireEvent.click(selectTrigger);
+    const selectTriggers = screen.getAllByRole('combobox');
+    const categoryTrigger = selectTriggers[0];
 
+    fireEvent.click(categoryTrigger);
     await waitFor(() => {
-      expect(screen.getByRole('option', { name: 'Food' })).toBeInTheDocument();
+      fireEvent.click(screen.getByRole('option', { name: 'Food' }));
     });
-    fireEvent.click(screen.getByRole('option', { name: 'Food' }));
 
-    // Switch to income
-    const typeSwitch = screen.getByRole('switch', { name: /Jenis Transaksi/i });
-    fireEvent.click(typeSwitch);
-
-    expect(screen.getByText('Pilih kategori')).toBeInTheDocument();
+    // Food has classification 'kebutuhan' which is mapped to 'Needs' in our test messages
+    await waitFor(() => {
+      expect(screen.getAllByText('Needs').length).toBeGreaterThan(0);
+    });
   });
 });

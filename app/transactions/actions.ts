@@ -61,6 +61,7 @@ export async function addTransaction(data: TransactionInput) {
     category_id: validation.data.category_id,
     amount: normalizedAmount,
     date: validation.data.date.toISOString(),
+    classification: validation.data.classification,
     description: validation.data.note,
     payment_method: validation.data.payment_method || 'Cash',
   };
