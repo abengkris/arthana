@@ -25,8 +25,10 @@
 - **Authentication:** Supabase Auth.
 - **Functions:** Edge Functions.
 - **Hosting:** Vercel.
+- **AI:** Vercel AI SDK with OpenAI provider and AI Gateway.
 
 ## Dev Tools
 
 - **Linter:** ESLint.
 - **Formatting:** Prettier (integrated via ESLint).
+  t).

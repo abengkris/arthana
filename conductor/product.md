@@ -17,10 +17,11 @@ Arthana is a dynamic personal finance management SaaS designed to act as an "Aut
 ## Core Features (MVP)
 
 1.  **Premium Tiers:** Foundation for tiered subscription access (Free vs. Premium).
-2.  **Dynamic Budgeting:** Automated allocation of income into specific categories based on customizable percentages.
+2.  **Strategy-Based Budgeting Engine:** Automated allocation of income into specific categories based on customizable percentages (e.g., 50/30/20).
 3.  **Auto Emergency Fund:** Dynamic calculation of emergency fund targets (3, 6, or 12 months) based on employment and risk profile during onboarding.
 4.  **Wawasan AI (Smart Advisory):** Automated, logic-based financial advice cards ("Smart Cards") that detect rapid budget depletion, monthly deficits, and savings gaps with personalized Indonesian coaching.
-5.  **Transaction Logging:** Real-time income and expense tracking synced with remaining category budgets, fully localized in Indonesian.
+5.  **Multi-Language Support (i18n):** Full support for English and Indonesian across the application, including localized AI coaching and budgeting logic.
+6.  **Transaction Logging:** Real-time income and expense tracking synced with remaining category budgets and categorized by classification (Needs, Wants, Savings).
 
 ## Product Objectives
 
