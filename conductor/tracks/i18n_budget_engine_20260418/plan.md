@@ -19,7 +19,7 @@
   - [x] Create `messages/en.json` and `messages/id.json` with base UI and category keys
 - [x] Task: Conductor - User Manual Verification 'Phase 2: i18n Infrastructure (next-intl)' (Protocol in workflow.md) 748db80
 
-## Phase 3: UI Components & Settings
+## Phase 3: UI Components & Settings [checkpoint: 180325b]
 
 - [x] Task: Settings Page (`/settings`) 84b3265
   - [x] Write unit tests for Settings page rendering and interaction
@@ -31,7 +31,7 @@
 - [x] Task: Apply Translations to UI 6034b0b
   - [x] Write tests to verify translations are applied to Dashboard and Modal components
   - [x] Implement text replacement using `next-intl` hooks across the UI
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Components & Settings' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI Components & Settings' (Protocol in workflow.md) 180325b
 
 ## Phase 4: AI Gateway & Context Integration
 
