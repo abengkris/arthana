@@ -1,6 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
+
+interface GreetingHeaderProps {
+  name?: string | null;
+}
 
 export default function GreetingHeader({ name }: GreetingHeaderProps) {
   const t = useTranslations('dashboard.greeting');
