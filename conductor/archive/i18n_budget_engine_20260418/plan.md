@@ -1,0 +1,47 @@
+# Implementation Plan: Comprehensive Overhaul for i18n & Strategy-Based Budgeting Engine
+
+## Phase 1: Database Migration & Triggers [checkpoint: 4e799ce]
+
+- [x] Task: Create Supabase Migration for New Columns 9aae8a1
+  - [x] Write tests for new database constraints (if using pgTap, else define manual test steps)
+  - [x] Implement migration using Supabase CLI to add `budget_strategy`, `locale` to `profiles` and `classification` to `categories`
+- [x] Task: Update `handle_new_user` Trigger 9aae8a1
+  - [x] Write tests to verify new users receive default categories with proper classifications
+  - [x] Implement SQL update for the trigger to insert localized-key default categories
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Database Migration & Triggers' (Protocol in workflow.md) 4e799ce
+
+## Phase 2: i18n Infrastructure (next-intl) [checkpoint: 748db80]
+
+- [x] Task: Setup `next-intl` 569f622
+  - [x] Write configuration tests (if applicable) for the routing and middleware
+  - [x] Implement `next-intl` initialization, routing, and middleware to read `locale`
+- [x] Task: Create Dictionaries 569f622
+  - [x] Create `messages/en.json` and `messages/id.json` with base UI and category keys
+- [x] Task: Conductor - User Manual Verification 'Phase 2: i18n Infrastructure (next-intl)' (Protocol in workflow.md) 748db80
+
+## Phase 3: UI Components & Settings [checkpoint: 180325b]
+
+- [x] Task: Settings Page (`/settings`) 84b3265
+  - [x] Write unit tests for Settings page rendering and interaction
+  - [x] Implement Language Toggle and Budget Strategy Selector components
+  - [x] Implement server actions to update user `locale` and `budget_strategy` in Supabase
+- [x] Task: Transaction Modal Classification Field 40e6e97
+  - [x] Write unit tests for `AddTransactionForm` requiring `classification`
+  - [x] Implement mandatory `classification` Select field in the modal
+- [x] Task: Apply Translations to UI 6034b0b
+  - [x] Write tests to verify translations are applied to Dashboard and Modal components
+  - [x] Implement text replacement using `next-intl` hooks across the UI
+- [x] Task: Conductor - User Manual Verification 'Phase 3: UI Components & Settings' (Protocol in workflow.md) 180325b
+
+## Phase 4: AI Gateway & Context Integration [checkpoint: bb4edb9]
+
+- [x] Task: Fetch Context for AI 9feea12
+  - [x] Write tests to verify `locale` and `budget_strategy` are fetched correctly in the route handler
+  - [x] Implement data fetching logic in `/api/chat/route.ts`
+- [x] Task: Dynamic System Prompting 9feea12
+  - [x] Write tests for dynamic prompt construction based on locale and strategy
+  - [x] Implement dynamic prompt injection in the AI Gateway setup
+- [x] Task: Update AI Tools & Delivery 9feea12
+  - [x] Write tests for updated aggregation functions (e.g., `getSpendingByClassification`)
+  - [x] Implement AI tools to use `classification` and deliver insights via Smart Cards and Chat
+- [x] Task: Conductor - User Manual Verification 'Phase 4: AI Gateway & Context Integration' (Protocol in workflow.md) bb4edb9
