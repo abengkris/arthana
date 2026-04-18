@@ -33,7 +33,7 @@
   - [x] Implement text replacement using `next-intl` hooks across the UI
 - [x] Task: Conductor - User Manual Verification 'Phase 3: UI Components & Settings' (Protocol in workflow.md) 180325b
 
-## Phase 4: AI Gateway & Context Integration
+## Phase 4: AI Gateway & Context Integration [checkpoint: bb4edb9]
 
 - [x] Task: Fetch Context for AI 9feea12
   - [x] Write tests to verify `locale` and `budget_strategy` are fetched correctly in the route handler
@@ -44,4 +44,4 @@
 - [x] Task: Update AI Tools & Delivery 9feea12
   - [x] Write tests for updated aggregation functions (e.g., `getSpendingByClassification`)
   - [x] Implement AI tools to use `classification` and deliver insights via Smart Cards and Chat
-- [ ] Task: Conductor - User Manual Verification 'Phase 4: AI Gateway & Context Integration' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 4: AI Gateway & Context Integration' (Protocol in workflow.md) bb4edb9
