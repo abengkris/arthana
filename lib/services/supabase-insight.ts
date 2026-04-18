@@ -53,7 +53,7 @@ export class SupabaseInsightService implements IInsightService {
         await Promise.all([
           this.supabase
             .from('transactions')
-            .select('amount, category_id')
+            .select('amount, category_id, classification')
             .eq('user_id', userId)
             .gte('date', `${year}-${month.toString().padStart(2, '0')}-01`),
           this.supabase
@@ -69,7 +69,7 @@ export class SupabaseInsightService implements IInsightService {
             .eq('user_id', userId),
           this.supabase
             .from('profiles')
-            .select('subscription_tier')
+            .select('subscription_tier, budget_strategy')
             .eq('id', userId)
             .single(),
         ]);
@@ -86,12 +86,14 @@ export class SupabaseInsightService implements IInsightService {
         })
       );
       const subscriptionTier = profileRes.data?.subscription_tier || 'free';
+      const strategy = profileRes.data?.budget_strategy || '50/30/20';
 
       // 2. Generate Insights using the pure logic
       const allInsights = generateInsights(
         transactions,
         categories,
-        totalIncome
+        totalIncome,
+        strategy
       );
 
       // 3. Ephemeral Logic: Delete old, Insert new

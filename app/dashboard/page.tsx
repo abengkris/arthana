@@ -6,6 +6,8 @@ import SummaryCards from '@/components/dashboard/SummaryCards';
 import TimeFilter from '@/components/dashboard/TimeFilter';
 import SpendingByCategory from '@/components/dashboard/SpendingByCategory';
 import TransactionFeed from '@/components/dashboard/TransactionFeed';
+import { AIInsightSection } from '@/components/dashboard/AIInsightSection';
+import { AIInsightSkeleton } from '@/components/dashboard/AIInsightSkeleton';
 import { getDashboardData, getDashboardSpendingByCategory } from './actions';
 import { SummaryCardsSkeleton } from '@/components/dashboard/SummaryCardsSkeleton';
 import { TransactionFeedSkeleton } from '@/components/dashboard/TransactionFeedSkeleton';
@@ -72,6 +74,12 @@ export default async function DashboardPage() {
           name={user?.user_metadata?.name || user?.email?.split('@')[0] || ''}
         />
       </div>
+
+      <SectionErrorBoundary>
+        <Suspense fallback={<AIInsightSkeleton />}>
+          <AIInsightSection />
+        </Suspense>
+      </SectionErrorBoundary>
 
       <SectionErrorBoundary>
         <Suspense fallback={<SummaryCardsSkeleton />}>
