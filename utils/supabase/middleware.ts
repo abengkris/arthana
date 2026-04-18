@@ -39,6 +39,28 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  // Handle i18n locale
+  const currentCookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+
+  if (user) {
+    // Try to get locale from profile
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('locale')
+      .eq('id', user.id)
+      .single();
+
+    if (profile?.locale && profile.locale !== currentCookieLocale) {
+      supabaseResponse.cookies.set('NEXT_LOCALE', profile.locale, {
+        path: '/',
+      });
+    } else if (!currentCookieLocale) {
+      supabaseResponse.cookies.set('NEXT_LOCALE', 'id', { path: '/' });
+    }
+  } else if (!currentCookieLocale) {
+    supabaseResponse.cookies.set('NEXT_LOCALE', 'id', { path: '/' });
+  }
+
   // Route paths
   const isDashboard = request.nextUrl.pathname.startsWith('/dashboard');
   const isOnboarding = request.nextUrl.pathname.startsWith('/onboarding');

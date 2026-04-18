@@ -45,7 +45,7 @@ describe('TransactionFeed', () => {
     );
 
     expect(screen.getByText(/Recent Transactions/i)).toBeInTheDocument();
-    expect(screen.getByText(/Food/i)).toBeInTheDocument();
-    expect(screen.getByText(/Salary/i)).toBeInTheDocument();
+    expect(screen.getByText(/Test Dinner/i)).toBeInTheDocument();
+    expect(screen.getByText(/Test Salary/i)).toBeInTheDocument();
   });
 });

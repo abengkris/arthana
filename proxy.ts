@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   return await updateSession(request);
 }
 
-export const proxyConfig = {
+export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
