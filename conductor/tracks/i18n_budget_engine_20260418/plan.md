@@ -10,14 +10,14 @@
   - [x] Implement SQL update for the trigger to insert localized-key default categories
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Database Migration & Triggers' (Protocol in workflow.md) 4e799ce
 
-## Phase 2: i18n Infrastructure (next-intl)
+## Phase 2: i18n Infrastructure (next-intl) [checkpoint: 748db80]
 
 - [x] Task: Setup `next-intl` 569f622
   - [x] Write configuration tests (if applicable) for the routing and middleware
   - [x] Implement `next-intl` initialization, routing, and middleware to read `locale`
 - [x] Task: Create Dictionaries 569f622
   - [x] Create `messages/en.json` and `messages/id.json` with base UI and category keys
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: i18n Infrastructure (next-intl)' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 2: i18n Infrastructure (next-intl)' (Protocol in workflow.md) 748db80
 
 ## Phase 3: UI Components & Settings
 
