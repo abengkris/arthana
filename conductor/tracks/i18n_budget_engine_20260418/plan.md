@@ -28,9 +28,9 @@
 - [x] Task: Transaction Modal Classification Field 40e6e97
   - [x] Write unit tests for `AddTransactionForm` requiring `classification`
   - [x] Implement mandatory `classification` Select field in the modal
-- [ ] Task: Apply Translations to UI
-  - [ ] Write tests to verify translations are applied to Dashboard and Modal components
-  - [ ] Implement text replacement using `next-intl` hooks across the UI
+- [x] Task: Apply Translations to UI 6034b0b
+  - [x] Write tests to verify translations are applied to Dashboard and Modal components
+  - [x] Implement text replacement using `next-intl` hooks across the UI
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: UI Components & Settings' (Protocol in workflow.md)
 
 ## Phase 4: AI Gateway & Context Integration
