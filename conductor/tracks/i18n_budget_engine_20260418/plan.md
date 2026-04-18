@@ -21,10 +21,10 @@
 
 ## Phase 3: UI Components & Settings
 
-- [ ] Task: Settings Page (`/settings`)
-  - [ ] Write unit tests for Settings page rendering and interaction
-  - [ ] Implement Language Toggle and Budget Strategy Selector components
-  - [ ] Implement server actions to update user `locale` and `budget_strategy` in Supabase
+- [x] Task: Settings Page (`/settings`) 84b3265
+  - [x] Write unit tests for Settings page rendering and interaction
+  - [x] Implement Language Toggle and Budget Strategy Selector components
+  - [x] Implement server actions to update user `locale` and `budget_strategy` in Supabase
 - [ ] Task: Transaction Modal Classification Field
   - [ ] Write unit tests for `AddTransactionForm` requiring `classification`
   - [ ] Implement mandatory `classification` Select field in the modal
