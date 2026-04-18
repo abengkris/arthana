@@ -1,6 +1,6 @@
 # Implementation Plan: Comprehensive Overhaul for i18n & Strategy-Based Budgeting Engine
 
-## Phase 1: Database Migration & Triggers
+## Phase 1: Database Migration & Triggers [checkpoint: 4e799ce]
 
 - [x] Task: Create Supabase Migration for New Columns 9aae8a1
   - [x] Write tests for new database constraints (if using pgTap, else define manual test steps)
@@ -8,7 +8,7 @@
 - [x] Task: Update `handle_new_user` Trigger 9aae8a1
   - [x] Write tests to verify new users receive default categories with proper classifications
   - [x] Implement SQL update for the trigger to insert localized-key default categories
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Database Migration & Triggers' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Database Migration & Triggers' (Protocol in workflow.md) 4e799ce
 
 ## Phase 2: i18n Infrastructure (next-intl)
 
