@@ -1,0 +1,43 @@
+{
+  "dashboard": {
+    "balance": "Balance",
+    "income": "Income",
+    "expenses": "Expenses",
+    "savings": "Savings",
+    "recent_transactions": "Recent Transactions",
+    "view_all": "View All"
+  },
+  "settings": {
+    "title": "Settings",
+    "preferences": "Preferences",
+    "language": "Language",
+    "budget_strategy": "Budget Strategy",
+    "strategy": {
+      "50_30_20": "50/30/20 (Balanced)",
+      "50_20_30": "50/20/30 (Aggressive Saving)",
+      "60_20_20": "60/20/20 (Realistic/Sandwich Gen)"
+    },
+    "save": "Save Changes"
+  },
+  "transaction": {
+    "add_new": "Add Transaction",
+    "amount": "Amount",
+    "category": "Category",
+    "classification": "Classification",
+    "classification_options": {
+      "kebutuhan": "Needs",
+      "keinginan": "Wants",
+      "tabungan": "Savings",
+      "pendapatan": "Income"
+    },
+    "description": "Description",
+    "date": "Date",
+    "save": "Save"
+  },
+  "category": {
+    "salary": "Salary",
+    "daily_needs": "Daily Needs",
+    "entertainment": "Entertainment",
+    "investment": "Investment"
+  }
+}

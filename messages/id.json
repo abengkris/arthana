@@ -1,0 +1,43 @@
+{
+  "dashboard": {
+    "balance": "Saldo",
+    "income": "Pemasukan",
+    "expenses": "Pengeluaran",
+    "savings": "Tabungan",
+    "recent_transactions": "Transaksi Terakhir",
+    "view_all": "Lihat Semua"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "preferences": "Preferensi",
+    "language": "Bahasa",
+    "budget_strategy": "Strategi Anggaran",
+    "strategy": {
+      "50_30_20": "50/30/20 (Seimbang)",
+      "50_20_30": "50/20/30 (Agresif Menabung)",
+      "60_20_20": "60/20/20 (Realistis/Generasi Sandwich)"
+    },
+    "save": "Simpan Perubahan"
+  },
+  "transaction": {
+    "add_new": "Tambah Transaksi",
+    "amount": "Jumlah",
+    "category": "Kategori",
+    "classification": "Klasifikasi",
+    "classification_options": {
+      "kebutuhan": "Kebutuhan",
+      "keinginan": "Keinginan",
+      "tabungan": "Tabungan",
+      "pendapatan": "Pendapatan"
+    },
+    "description": "Deskripsi",
+    "date": "Tanggal",
+    "save": "Simpan"
+  },
+  "category": {
+    "salary": "Gaji",
+    "daily_needs": "Kebutuhan Sehari-hari",
+    "entertainment": "Hiburan",
+    "investment": "Investasi"
+  }
+}
