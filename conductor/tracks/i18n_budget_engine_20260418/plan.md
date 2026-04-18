@@ -35,13 +35,13 @@
 
 ## Phase 4: AI Gateway & Context Integration
 
-- [ ] Task: Fetch Context for AI
-  - [ ] Write tests to verify `locale` and `budget_strategy` are fetched correctly in the route handler
-  - [ ] Implement data fetching logic in `/api/chat/route.ts`
-- [ ] Task: Dynamic System Prompting
-  - [ ] Write tests for dynamic prompt construction based on locale and strategy
-  - [ ] Implement dynamic prompt injection in the AI Gateway setup
-- [ ] Task: Update AI Tools & Delivery
-  - [ ] Write tests for updated aggregation functions (e.g., `getSpendingByClassification`)
-  - [ ] Implement AI tools to use `classification` and deliver insights via Smart Cards and Chat
+- [x] Task: Fetch Context for AI 9feea12
+  - [x] Write tests to verify `locale` and `budget_strategy` are fetched correctly in the route handler
+  - [x] Implement data fetching logic in `/api/chat/route.ts`
+- [x] Task: Dynamic System Prompting 9feea12
+  - [x] Write tests for dynamic prompt construction based on locale and strategy
+  - [x] Implement dynamic prompt injection in the AI Gateway setup
+- [x] Task: Update AI Tools & Delivery 9feea12
+  - [x] Write tests for updated aggregation functions (e.g., `getSpendingByClassification`)
+  - [x] Implement AI tools to use `classification` and deliver insights via Smart Cards and Chat
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: AI Gateway & Context Integration' (Protocol in workflow.md)
