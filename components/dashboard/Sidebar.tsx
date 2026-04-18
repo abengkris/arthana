@@ -19,14 +19,17 @@ import {
   SheetTitle,
 } from '@/components/ui/sheet';
 
+import { useTranslations } from 'next-intl';
+
 const navItems = [
-  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboardIcon },
-  { name: 'Budgets', href: '/dashboard/budgets', icon: WalletIcon },
-  { name: 'Transactions', href: '/dashboard/transactions', icon: RepeatIcon },
-  { name: 'Settings', href: '/dashboard/settings', icon: SettingsIcon },
+  { id: 'dashboard', href: '/dashboard', icon: LayoutDashboardIcon },
+  { id: 'budgets', href: '/dashboard/budgets', icon: WalletIcon },
+  { id: 'transactions', href: '/dashboard/transactions', icon: RepeatIcon },
+  { id: 'settings', href: '/settings', icon: SettingsIcon },
 ];
 
 function NavLinks({ pathname }: { pathname: string }) {
+  const t = useTranslations('nav');
   return (
     <div className="flex flex-col gap-2 p-4">
       {navItems.map((item) => (
@@ -39,7 +42,7 @@ function NavLinks({ pathname }: { pathname: string }) {
         >
           <Link href={item.href}>
             <item.icon data-icon="inline-start" />
-            {item.name}
+            {t(item.id)}
           </Link>
         </Button>
       ))}

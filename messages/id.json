@@ -5,7 +5,40 @@
     "expenses": "Pengeluaran",
     "savings": "Tabungan",
     "recent_transactions": "Transaksi Terakhir",
-    "view_all": "Lihat Semua"
+    "recent_transactions_empty": "Belum ada pergerakan uang nih. Yuk catat transaksi pertamamu!",
+    "view_all": "Lihat Semua",
+    "greeting": {
+      "morning": "Selamat Pagi",
+      "afternoon": "Selamat Siang",
+      "evening": "Selamat Sore",
+      "night": "Selamat Malam",
+      "default": "Halo",
+      "friend": "Teman",
+      "question": "Gimana arus kasmu hari ini?"
+    }
+  },
+  "dashboard_charts": {
+    "spending_by_category": "Pengeluaran per Kategori",
+    "spending_empty": "Belum ada pengeluaran yang tercatat.",
+    "total": "Total"
+  },
+  "header": {
+    "dashboard": "Dasbor",
+    "new_transaction": "Transaksi Baru",
+    "my_account": "Akun Saya",
+    "logout": "Keluar"
+  },
+  "bottom_nav": {
+    "home": "Beranda",
+    "stats": "Statistik",
+    "budget": "Anggaran",
+    "profile": "Profil"
+  },
+  "nav": {
+    "dashboard": "Dasbor",
+    "budgets": "Anggaran",
+    "transactions": "Transaksi",
+    "settings": "Pengaturan"
   },
   "settings": {
     "title": "Pengaturan",

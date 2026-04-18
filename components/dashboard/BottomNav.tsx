@@ -5,8 +5,11 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, BarChart2, Wallet, User, Plus } from 'lucide-react';
 
+import { useTranslations } from 'next-intl';
+
 export default function BottomNav() {
   const pathname = usePathname();
+  const t = useTranslations('bottom_nav');
 
   return (
     <div className="fixed right-0 bottom-0 left-0 z-50 w-full bg-[#0F1115] lg:hidden">
@@ -27,28 +30,28 @@ export default function BottomNav() {
           className={`flex flex-col items-center gap-1 p-2 transition-colors ${pathname === '/dashboard' ? 'text-[#4A85F6]' : 'text-[#9CA3AF] hover:text-white'}`}
         >
           <Home size={24} />
-          <span className="text-[10px] font-medium">Home</span>
+          <span className="text-[10px] font-medium">{t('home')}</span>
         </Link>
         <Link
           href="/dashboard/budgets"
           className={`flex flex-col items-center gap-1 p-2 transition-colors ${pathname.includes('/budgets') ? 'text-[#4A85F6]' : 'text-[#9CA3AF] hover:text-white'}`}
         >
           <BarChart2 size={24} />
-          <span className="text-[10px] font-medium">Stats</span>
+          <span className="text-[10px] font-medium">{t('stats')}</span>
         </Link>
         <Link
           href="/dashboard/transactions"
           className={`mr-8 flex flex-col items-center gap-1 p-2 transition-colors ${pathname.includes('/transactions') ? 'text-[#4A85F6]' : 'text-[#9CA3AF] hover:text-white'}`}
         >
           <Wallet size={24} />
-          <span className="text-[10px] font-medium">Budget</span>
+          <span className="text-[10px] font-medium">{t('budget')}</span>
         </Link>
         <Link
-          href="/dashboard/settings"
+          href="/settings"
           className={`flex flex-col items-center gap-1 p-2 transition-colors ${pathname.includes('/settings') ? 'text-[#4A85F6]' : 'text-[#9CA3AF] hover:text-white'}`}
         >
           <User size={24} />
-          <span className="text-[10px] font-medium">Profile</span>
+          <span className="text-[10px] font-medium">{t('profile')}</span>
         </Link>
       </div>
     </div>

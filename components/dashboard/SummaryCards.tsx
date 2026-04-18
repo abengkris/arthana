@@ -7,11 +7,15 @@ interface SummaryCardsProps {
   expenses: number;
 }
 
+import { useTranslations } from 'next-intl';
+
 export default function SummaryCards({
   balance,
   income,
   expenses,
 }: SummaryCardsProps) {
+  const t = useTranslations('dashboard');
+
   return (
     <div className="relative mb-8 overflow-hidden rounded-[24px] bg-[#4A85F6] p-6 shadow-lg shadow-blue-500/20">
       {/* Background decoration */}
@@ -19,7 +23,7 @@ export default function SummaryCards({
       <div className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-white/10 blur-2xl"></div>
 
       <p className="relative z-10 mb-1 text-sm font-medium text-white/80">
-        Total Balance
+        {t('balance')}
       </p>
       <h2 className="relative z-10 mb-8 text-3xl font-extrabold tracking-tight text-white md:text-4xl">
         {formatIDR(balance)}
@@ -31,7 +35,7 @@ export default function SummaryCards({
             <ArrowDownToLine size={16} className="text-white" />
           </div>
           <div>
-            <p className="text-xs text-white/80">Income</p>
+            <p className="text-xs text-white/80">{t('income')}</p>
             <p className="font-semibold text-white">{formatIDR(income)}</p>
           </div>
         </div>
@@ -40,7 +44,7 @@ export default function SummaryCards({
             <ArrowUpFromLine size={16} className="text-white" />
           </div>
           <div>
-            <p className="text-xs text-white/80">Expenses</p>
+            <p className="text-xs text-white/80">{t('expenses')}</p>
             <p className="font-semibold text-white">{formatIDR(expenses)}</p>
           </div>
         </div>

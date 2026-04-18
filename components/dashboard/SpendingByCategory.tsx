@@ -9,18 +9,22 @@ interface SpendingByCategoryProps {
   categories: CategorySpending[];
 }
 
+import { useTranslations } from 'next-intl';
+
 export default function SpendingByCategory({
   categories,
 }: SpendingByCategoryProps) {
+  const t = useTranslations('dashboard_charts');
+  const tc = useTranslations('category');
   const total = categories.reduce((sum, cat) => sum + cat.value, 0);
 
   return (
     <div className="mb-8 w-full rounded-[24px] bg-[#1A1D24] p-6 text-white">
-      <h3 className="mb-6 text-lg font-bold">Spending by Category</h3>
+      <h3 className="mb-6 text-lg font-bold">{t('spending_by_category')}</h3>
 
       {categories.length === 0 ? (
         <div className="py-8 text-center text-sm text-[#9CA3AF]">
-          Belum ada pengeluaran yang tercatat.
+          {t('spending_empty')}
         </div>
       ) : (
         <div className="flex flex-col items-center justify-between gap-6 md:flex-row md:gap-12">
@@ -42,7 +46,7 @@ export default function SpendingByCategory({
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-xs text-[#9CA3AF]">Total</span>
+              <span className="text-xs text-[#9CA3AF]">{t('total')}</span>
               <span className="text-sm font-bold">
                 {formatIDR(total).replace(',00', '')}
               </span>
@@ -61,7 +65,7 @@ export default function SpendingByCategory({
                     style={{ backgroundColor: category.color }}
                   ></div>
                   <span className="text-sm text-[#9CA3AF]">
-                    {category.name}
+                    {tc(category.name)}
                   </span>
                 </div>
                 <span className="text-sm font-semibold">

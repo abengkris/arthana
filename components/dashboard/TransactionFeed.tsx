@@ -7,11 +7,18 @@ interface TransactionFeedProps {
   transactions: TransactionSummary[];
 }
 
+import { useTranslations } from 'next-intl';
+
 export default function TransactionFeed({
   transactions,
 }: TransactionFeedProps) {
+  const t = useTranslations('dashboard');
+  const tc = useTranslations('category');
+
   const getIconForCategory = (catName?: string) => {
     const name = catName?.toLowerCase() || '';
+    if (name.includes('salary') || name.includes('gaji'))
+      return { icon: Zap, color: '#34D399', bg: '#34D39920' };
     if (name.includes('food') || name.includes('makan'))
       return { icon: Coffee, color: '#F87171', bg: '#F8717120' };
     if (name.includes('transport'))
@@ -26,15 +33,15 @@ export default function TransactionFeed({
   return (
     <div className="w-full rounded-[24px] bg-[#1A1D24] p-6 text-white">
       <div className="mb-6 flex items-center justify-between">
-        <h3 className="text-lg font-bold">Recent Transactions</h3>
+        <h3 className="text-lg font-bold">{t('recent_transactions')}</h3>
         <button className="text-sm font-medium text-[#4A85F6] hover:underline">
-          See All
+          {t('view_all')}
         </button>
       </div>
 
       {transactions.length === 0 ? (
         <div className="py-8 text-center text-sm text-[#9CA3AF]">
-          Belum ada pergerakan uang nih. Yuk catat pengeluaran pertamamu!
+          {t('recent_transactions_empty') || 'No transactions found.'}
         </div>
       ) : (
         <div className="flex flex-col gap-4">
@@ -44,10 +51,6 @@ export default function TransactionFeed({
               color,
               bg,
             } = getIconForCategory(tx.category_name);
-            // Assuming the amount is absolute in the db and type is in category.
-            // But we already map the type in our summary, however tx summary doesn't include type.
-            // For now, let's assume if it's income, it's 'Gaji Utama'. Better to just rely on tx.amount if it's signed,
-            // but in the DB amount might be always positive. We will format it as expense normally unless we know it's income.
             const displayAmount = Math.abs(tx.amount);
 
             return (
@@ -64,7 +67,10 @@ export default function TransactionFeed({
                   </div>
                   <div className="overflow-hidden">
                     <p className="max-w-[150px] truncate font-semibold md:max-w-xs">
-                      {tx.description || tx.category_name || 'No Description'}
+                      {tx.description ||
+                        (tx.category_name
+                          ? tc(tx.category_name)
+                          : 'No Description')}
                     </p>
                     <p className="mt-1 text-xs text-[#9CA3AF]">
                       {format(new Date(tx.date), 'MMM dd, hh:mm a')}
@@ -73,12 +79,10 @@ export default function TransactionFeed({
                 </div>
                 <p
                   className={`shrink-0 font-bold ${
-                    tx.category_name === 'Gaji Utama'
-                      ? 'text-[#34D399]'
-                      : 'text-white'
+                    tx.amount > 0 ? 'text-[#34D399]' : 'text-white'
                   }`}
                 >
-                  {tx.category_name === 'Gaji Utama' ? '+' : '-'}
+                  {tx.amount > 0 ? '+' : '-'}
                   {formatIDR(displayAmount)}
                 </p>
               </div>

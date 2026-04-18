@@ -5,7 +5,40 @@
     "expenses": "Expenses",
     "savings": "Savings",
     "recent_transactions": "Recent Transactions",
-    "view_all": "View All"
+    "recent_transactions_empty": "No movement yet. Let's record your first transaction!",
+    "view_all": "View All",
+    "greeting": {
+      "morning": "Good Morning",
+      "afternoon": "Good Afternoon",
+      "evening": "Good Evening",
+      "night": "Good Night",
+      "default": "Hello",
+      "friend": "Friend",
+      "question": "How is your cash flow today?"
+    }
+  },
+  "dashboard_charts": {
+    "spending_by_category": "Spending by Category",
+    "spending_empty": "No expenses recorded yet.",
+    "total": "Total"
+  },
+  "header": {
+    "dashboard": "Dashboard",
+    "new_transaction": "New Transaction",
+    "my_account": "My Account",
+    "logout": "Logout"
+  },
+  "bottom_nav": {
+    "home": "Home",
+    "stats": "Stats",
+    "budget": "Budget",
+    "profile": "Profile"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "budgets": "Budgets",
+    "transactions": "Transactions",
+    "settings": "Settings"
   },
   "settings": {
     "title": "Settings",

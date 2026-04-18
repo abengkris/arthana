@@ -22,9 +22,12 @@ import {
 
 import Link from 'next/link';
 
+import { useTranslations } from 'next-intl';
+
 export function Header() {
   const router = useRouter();
   const supabase = createClient();
+  const t = useTranslations('header');
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -38,7 +41,9 @@ export function Header() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/dashboard">Dashboard</BreadcrumbLink>
+              <BreadcrumbLink href="/dashboard">
+                {t('dashboard')}
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -48,7 +53,7 @@ export function Header() {
         <Button variant="default" size="sm" className="hidden md:flex" asChild>
           <Link href="/dashboard/transactions/new">
             <PlusCircleIcon className="mr-2 h-4 w-4" />
-            New Transaction
+            {t('new_transaction')}
           </Link>
         </Button>
 
@@ -68,14 +73,14 @@ export function Header() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{t('my_account')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={handleLogout}
               className="text-destructive"
             >
               <LogOutIcon data-icon="inline-start" />
-              Logout
+              {t('logout')}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

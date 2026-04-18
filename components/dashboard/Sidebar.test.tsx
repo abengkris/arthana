@@ -1,6 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import { Sidebar } from './Sidebar';
 import { vi, describe, it, expect } from 'vitest';
+import { NextIntlClientProvider } from 'next-intl';
+
+const messages = {
+  nav: {
+    dashboard: 'Dashboard',
+    budgets: 'Budgets',
+    transactions: 'Transactions',
+    settings: 'Settings',
+  },
+};
 
 // Mock next/navigation
 vi.mock('next/navigation', () => ({
@@ -8,8 +18,15 @@ vi.mock('next/navigation', () => ({
 }));
 
 describe('Sidebar', () => {
+  const renderSidebar = () =>
+    render(
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <Sidebar />
+      </NextIntlClientProvider>
+    );
+
   it('renders navigation links', () => {
-    render(<Sidebar />);
+    renderSidebar();
     expect(
       screen.getByRole('link', { name: /dashboard/i })
     ).toBeInTheDocument();
@@ -21,7 +38,7 @@ describe('Sidebar', () => {
   });
 
   it('marks active link based on pathname', () => {
-    render(<Sidebar />);
+    renderSidebar();
     const dashboardLink = screen.getByRole('link', { name: /dashboard/i });
     expect(dashboardLink).toHaveAttribute('data-active', 'true');
   });

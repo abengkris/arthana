@@ -1,15 +1,18 @@
 import { render, screen } from '@testing-library/react';
 import { Header } from './Header';
-import { vi, describe, it, expect, beforeEach, Mock } from 'vitest';
-import { createClient } from '@/utils/supabase/client';
-import { TransactionModalRoot } from '../transactions/TransactionModalRoot';
+import { vi, describe, it, expect } from 'vitest';
+import { NextIntlClientProvider } from 'next-intl';
 
-// Mock Supabase client
-vi.mock('@/utils/supabase/client', () => ({
-  createClient: vi.fn(),
-}));
+const messages = {
+  header: {
+    dashboard: 'Dashboard',
+    new_transaction: 'New Transaction',
+    my_account: 'My Account',
+    logout: 'Logout',
+  },
+};
 
-// Mock Next.js navigation
+// Mock next/navigation
 vi.mock('next/navigation', () => ({
   useRouter: () => ({
     push: vi.fn(),
@@ -17,40 +20,25 @@ vi.mock('next/navigation', () => ({
 }));
 
 describe('Header', () => {
-  const mockSignOut = vi.fn();
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-    (createClient as Mock).mockReturnValue({
-      auth: {
-        signOut: mockSignOut,
-      },
-    });
-  });
-
-  const renderWithModal = () =>
+  const renderHeader = () =>
     render(
-      <TransactionModalRoot>
+      <NextIntlClientProvider locale="en" messages={messages}>
         <Header />
-      </TransactionModalRoot>
+      </NextIntlClientProvider>
     );
 
   it('renders breadcrumbs placeholder', () => {
-    renderWithModal();
-    expect(screen.getByText(/dashboard/i)).toBeInTheDocument();
+    renderHeader();
+    expect(screen.getByText('Dashboard')).toBeInTheDocument();
   });
 
   it('renders user avatar', () => {
-    renderWithModal();
-    expect(
-      screen.getByRole('button', { name: /user menu/i })
-    ).toBeInTheDocument();
+    renderHeader();
+    expect(screen.getByLabelText(/user menu/i)).toBeInTheDocument();
   });
 
   it('renders New Transaction button', () => {
-    renderWithModal();
-    expect(
-      screen.getByRole('link', { name: /new transaction/i })
-    ).toBeInTheDocument();
+    renderHeader();
+    expect(screen.getByText(/New Transaction/i)).toBeInTheDocument();
   });
 });

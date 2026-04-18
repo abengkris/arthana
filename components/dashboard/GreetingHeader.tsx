@@ -2,35 +2,30 @@
 
 import React, { useState, useEffect } from 'react';
 
-const getGreeting = () => {
-  const hour = new Date().getHours();
-  if (hour < 12) return 'Selamat Pagi';
-  if (hour < 15) return 'Selamat Siang';
-  if (hour < 18) return 'Selamat Sore';
-  return 'Selamat Malam';
-};
-
-interface GreetingHeaderProps {
-  name?: string | null;
-}
-
 export default function GreetingHeader({ name }: GreetingHeaderProps) {
-  const [greeting, setGreeting] = useState<string>('Halo');
+  const t = useTranslations('dashboard.greeting');
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setGreeting(getGreeting());
-
     setMounted(true);
   }, []);
 
-  const displayName = name || 'Teman';
-  const displayGreeting = mounted ? greeting : 'Halo';
+  const hour = typeof window !== 'undefined' ? new Date().getHours() : 0;
+  let greetingKey = 'default';
+  if (mounted) {
+    if (hour < 12) greetingKey = 'morning';
+    else if (hour < 15) greetingKey = 'afternoon';
+    else if (hour < 18) greetingKey = 'evening';
+    else greetingKey = 'night';
+  }
+
+  const displayName = name || t('friend');
+  const displayGreeting = t(greetingKey);
 
   return (
     <h1 className="text-2xl font-bold tracking-tight text-balance">
-      {displayGreeting}, {displayName}! Gimana arus kasmu hari ini? ☕
+      {displayGreeting}, {displayName}! {t('question')} ☕
     </h1>
   );
 }

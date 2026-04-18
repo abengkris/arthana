@@ -1,89 +1,91 @@
 import { render, screen } from '@testing-library/react';
 import DashboardPage from './page';
-import DashboardLayout from './layout';
-import { vi, describe, it, expect, beforeEach, Mock } from 'vitest';
-import { createClient as createServerClient } from '@/utils/supabase/server';
-import { createClient as createClientSide } from '@/utils/supabase/client';
+import { describe, it, expect, vi } from 'vitest';
+import { NextIntlClientProvider } from 'next-intl';
 
-// Mock Supabase server client
+const messages = {
+  dashboard: {
+    balance: 'Total Balance',
+    income: 'Income',
+    expenses: 'Expenses',
+    savings: 'Savings',
+    recent_transactions: 'Recent Transactions',
+    view_all: 'View All',
+    recent_transactions_empty: 'No transactions',
+    greeting: {
+      morning: 'Good Morning',
+      afternoon: 'Good Afternoon',
+      evening: 'Good Evening',
+      night: 'Good Night',
+      default: 'Hello',
+      friend: 'Friend',
+      question: 'How is your cash flow?',
+    },
+  },
+  dashboard_charts: {
+    spending_by_category: 'Spending by Category',
+    spending_empty: 'No spending',
+    total: 'Total',
+  },
+  header: {
+    dashboard: 'Dashboard',
+    new_transaction: 'New Transaction',
+    my_account: 'My Account',
+    logout: 'Logout',
+  },
+  nav: {
+    dashboard: 'Dashboard',
+    budgets: 'Budgets',
+    transactions: 'Transactions',
+    settings: 'Settings',
+  },
+  category: {},
+};
+
+// Mock Supabase
 vi.mock('@/utils/supabase/server', () => ({
-  createClient: vi.fn(),
-}));
-
-// Mock Supabase client side
-vi.mock('@/utils/supabase/client', () => ({
-  createClient: vi.fn(),
+  createClient: vi.fn(() => ({
+    auth: {
+      getUser: vi.fn(() =>
+        Promise.resolve({
+          data: { user: { id: 'user-123', email: 'test@example.com' } },
+        })
+      ),
+    },
+    from: vi.fn(() => ({
+      select: vi.fn(() => ({
+        eq: vi.fn(() => ({
+          single: vi.fn(() =>
+            Promise.resolve({
+              data: { full_name: 'Test User' },
+              error: null,
+            })
+          ),
+          order: vi.fn(() => Promise.resolve({ data: [], error: null })),
+        })),
+        order: vi.fn(() => Promise.resolve({ data: [], error: null })),
+      })),
+    })),
+  })),
 }));
 
 // Mock next/navigation
 vi.mock('next/navigation', () => ({
-  usePathname: () => '/dashboard',
-  useRouter: () => ({
-    push: vi.fn(),
-  }),
-}));
-
-// Mock AIInsightSection
-vi.mock('@/components/dashboard/AIInsightSection', () => ({
-  AIInsightSection: () => <div data-testid="mock-insights">Mock Insights</div>,
-}));
-
-// Mock insight actions
-vi.mock('@/app/dashboard/insight-actions', () => ({
-  refreshInsights: vi
-    .fn()
-    .mockResolvedValue([{ content: 'Mock Insight', type: 'warning' }]),
-  getInsights: vi
-    .fn()
-    .mockResolvedValue([{ content: 'Mock Insight', type: 'warning' }]),
-}));
-
-// Mock next/cache
-vi.mock('next/cache', () => ({
-  revalidatePath: vi.fn(),
+  redirect: vi.fn(),
+  usePathname: vi.fn(() => '/dashboard'),
+  useRouter: vi.fn(() => ({ push: vi.fn() })),
 }));
 
 describe('Dashboard Integration', () => {
-  const mockGetUser = vi.fn();
-  const mockSignOut = vi.fn();
-
-  beforeEach(() => {
-    vi.clearAllMocks();
-    (createServerClient as Mock).mockResolvedValue({
-      auth: {
-        getUser: mockGetUser,
-      },
-      from: vi.fn().mockReturnThis(),
-      select: vi.fn().mockReturnThis(),
-      eq: vi.fn().mockReturnThis(),
-      single: vi
-        .fn()
-        .mockResolvedValue({
-          data: { subscription_tier: 'free' },
-          error: null,
-        }),
-      order: vi.fn().mockReturnThis(),
-      delete: vi.fn().mockReturnThis(),
-      insert: vi.fn().mockResolvedValue({ error: null }),
-      gte: vi.fn().mockResolvedValue({ data: [], error: null }),
-    });
-    (createClientSide as Mock).mockReturnValue({
-      auth: {
-        signOut: mockSignOut,
-      },
-    });
-  });
-
-  it('renders dashboard with user email', async () => {
-    mockGetUser.mockResolvedValue({
-      data: { user: { email: 'test@example.com' } },
-      error: null,
-    });
-
+  it('renders dashboard with greeting', async () => {
     const Page = await DashboardPage();
-    render(<DashboardLayout>{Page}</DashboardLayout>);
+    render(
+      <NextIntlClientProvider locale="en" messages={messages}>
+        {Page}
+      </NextIntlClientProvider>
+    );
 
-    expect(screen.getByText(/gimana arus kasmu hari ini/i)).toBeInTheDocument();
-    expect(screen.getByText(/arthana/i)).toBeInTheDocument(); // From Sidebar
+    // Should find the greeting or user identifier (in this case 'test' from email or 'Test User')
+    expect(screen.getByText(/How is your cash flow/i)).toBeInTheDocument();
   });
 });
