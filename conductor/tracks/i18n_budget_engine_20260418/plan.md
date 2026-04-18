@@ -2,12 +2,12 @@
 
 ## Phase 1: Database Migration & Triggers
 
-- [ ] Task: Create Supabase Migration for New Columns
-  - [ ] Write tests for new database constraints (if using pgTap, else define manual test steps)
-  - [ ] Implement migration using Supabase CLI to add `budget_strategy`, `locale` to `profiles` and `classification` to `categories`
-- [ ] Task: Update `handle_new_user` Trigger
-  - [ ] Write tests to verify new users receive default categories with proper classifications
-  - [ ] Implement SQL update for the trigger to insert localized-key default categories
+- [x] Task: Create Supabase Migration for New Columns 9aae8a1
+  - [x] Write tests for new database constraints (if using pgTap, else define manual test steps)
+  - [x] Implement migration using Supabase CLI to add `budget_strategy`, `locale` to `profiles` and `classification` to `categories`
+- [x] Task: Update `handle_new_user` Trigger 9aae8a1
+  - [x] Write tests to verify new users receive default categories with proper classifications
+  - [x] Implement SQL update for the trigger to insert localized-key default categories
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Database Migration & Triggers' (Protocol in workflow.md)
 
 ## Phase 2: i18n Infrastructure (next-intl)
