@@ -1,5 +1,5 @@
 import { openai } from '@ai-sdk/openai';
-import { streamText, tool } from 'ai';
+import { streamText } from 'ai';
 import { createClient } from '@/utils/supabase/server';
 import { z } from 'zod';
 
@@ -45,14 +45,14 @@ export async function POST(req: Request) {
     messages,
     system: systemPrompt,
     tools: {
-      getSpendingByClassification: tool({
+      getSpendingByClassification: {
         description:
           'Get total spending aggregated by classification (Needs, Wants, Savings, Income)',
         parameters: z.object({
           month: z.number().optional(),
           year: z.number().optional(),
         }),
-        execute: async ({ month, year }) => {
+        execute: async ({ month, year }: { month?: number; year?: number }) => {
           const now = new Date();
           const targetMonth = month || now.getMonth() + 1;
           const targetYear = year || now.getFullYear();
@@ -80,17 +80,21 @@ export async function POST(req: Request) {
 
           if (error) throw error;
 
-          const totals = data.reduce((acc: Record<string, number>, tx) => {
-            const cls = tx.classification || 'unclassified';
-            acc[cls] = (acc[cls] || 0) + Number(tx.amount);
-            return acc;
-          }, {});
+          const totals = (data || []).reduce(
+            (acc: Record<string, number>, tx) => {
+              const cls = tx.classification || 'unclassified';
+              acc[cls] = (acc[cls] || 0) + Number(tx.amount);
+              return acc;
+            },
+            {}
+          );
 
           return totals;
         },
-      }),
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } as any,
     },
   });
 
-  return result.toDataStreamResponse();
+  return result.toTextStreamResponse();
 }

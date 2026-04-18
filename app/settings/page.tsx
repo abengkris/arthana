@@ -2,8 +2,8 @@ import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
 import SettingsForm from './SettingsForm';
 import { getTranslations } from 'next-intl/server';
-import Sidebar from '@/components/dashboard/Sidebar';
-import Header from '@/components/dashboard/Header';
+import { Sidebar } from '@/components/dashboard/Sidebar';
+import { Header } from '@/components/dashboard/Header';
 import MobileHeader from '@/components/dashboard/MobileHeader';
 import BottomNav from '@/components/dashboard/BottomNav';
 

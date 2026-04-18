@@ -47,7 +47,7 @@ describe('addTransaction Action', () => {
     type: 'expense' as const,
     amount: 100,
     category_id: '550e8400-e29b-41d4-a716-446655440000',
-    classification: 'kebutuhan',
+    classification: 'kebutuhan' as const,
     date: new Date('2026-04-15'),
     note: 'Dinner',
   };
