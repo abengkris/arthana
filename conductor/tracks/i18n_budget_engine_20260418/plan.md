@@ -25,9 +25,9 @@
   - [x] Write unit tests for Settings page rendering and interaction
   - [x] Implement Language Toggle and Budget Strategy Selector components
   - [x] Implement server actions to update user `locale` and `budget_strategy` in Supabase
-- [ ] Task: Transaction Modal Classification Field
-  - [ ] Write unit tests for `AddTransactionForm` requiring `classification`
-  - [ ] Implement mandatory `classification` Select field in the modal
+- [x] Task: Transaction Modal Classification Field 40e6e97
+  - [x] Write unit tests for `AddTransactionForm` requiring `classification`
+  - [x] Implement mandatory `classification` Select field in the modal
 - [ ] Task: Apply Translations to UI
   - [ ] Write tests to verify translations are applied to Dashboard and Modal components
   - [ ] Implement text replacement using `next-intl` hooks across the UI
